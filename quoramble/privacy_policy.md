@@ -1,3 +1,8 @@
+---
+title: Quoramble - Privacy Policy
+layout: default
+---
+
 **Privacy Policy**
 
 Tutkunur Vatansever built the Quoramble app as a Free app. This SERVICE is provided by Tutkunur Vatansever at no cost
