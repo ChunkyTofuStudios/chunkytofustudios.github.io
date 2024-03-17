@@ -1,0 +1,285 @@
+/* ===================
+MAIN ELEMENTS
+=================== */
+
+body {
+    font-family: 'Circularstd', 'Avenir', 'Lato-light', sans-serif;
+    width: 100%;
+    background-color: #f2e8d8;
+}
+
+/* Default Sizes (Smallest screens ) */
+h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+/* Medium Screens */
+@media (min-width: 768px) {
+    h1 { 
+        font-size: 40px; 
+    }
+
+    h2 { 
+        font-size: 24px; 
+    }
+}
+
+/* Large Screens */
+@media (min-width: 1200px) {
+    h1 { 
+        font-size: 56px; 
+    }
+
+    h2 { 
+        font-size: 30px; 
+    }
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+/* ===================
+WRAPPERS
+=================== */
+
+.container {
+    background-color: #f2e8d8;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+section {
+    margin-top: 32px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.nav {
+    display: flex;
+    margin-bottom: 15vh;
+    width: 80vw;
+}
+
+/* Medium Screens */
+@media (min-width: 768px) {
+    .nav { 
+        width: 75vw;
+    }
+}
+
+.nav div:last-child {
+    margin-left: auto;
+}
+
+.hero {
+    margin-bottom: 10vh;
+    width: 80vw;
+}
+
+.hero * {
+    margin-right: 0vw;
+}
+
+/* Medium Screens */
+@media (min-width: 768px) {
+    .hero { 
+        width: 75vw;
+    }
+
+    .hero * {
+        margin-right: 15vw;
+    }
+}
+
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 5vh;
+    width: 90%;
+}
+
+.footer-social-icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: none;
+    margin: 5vh auto;
+}
+
+/* ===================
+COMPONENTS
+=================== */
+
+.nav a {
+    font-weight: bold;
+    font-size: max(1.2vw, 20px);
+}
+
+#main-nav {
+    vertical-align: middle;
+}
+
+#main-nav a {
+    margin-left: 2vw;
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 5px;
+    height: 48px;
+    line-height: 48px;
+    transition: all 200ms;
+}
+
+#main-nav a:hover {
+    border-bottom: 2px solid black;
+    padding-bottom: 0px;
+    transition: all 200ms;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 16px;
+    height: 65vh;
+    width: 20vw;
+    min-height: 300px;
+    min-width: 250px;
+    border-radius: 3px;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    transform-style: preserve-3d;
+}
+
+/* Medium Screens */
+@media (min-width: 500px) {
+    .card {
+        margin: 25px;
+        height: 45vh;
+    }
+}
+
+.card .card-img {
+    display: flex;
+    width: 100%;
+    height: 45%;
+    margin: 0;
+    background: white;
+}
+
+.card-img img {
+    margin: auto;
+    height: 40%;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: whitesmoke;
+    flex: 1;
+}
+
+/* Medium Screens */
+@media (min-width: 768px) {
+    .card-content {
+        padding: 25px;
+    }
+}
+
+.card .title {
+    z-index: 2;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: 0.02em;
+    transform: translateZ(20px);
+}
+
+.card .description {
+    justify-content: flex-end;
+    font-weight: 350;
+    font-size: 18px;
+    opacity: 0.6;
+    transform: translateZ(20px);
+    word-wrap: break-word; 
+}
+
+.card .credits {
+    justify-content: flex-end;
+    margin-top: auto;
+    font-weight: 350;
+    font-size: 14px;
+    opacity: 0.6;
+    transform: translateZ(20px);
+    color: rgba(0, 0, 0, 0.6);
+    transition: all 200ms;
+}
+
+.card .credits:hover {
+    color: rgba(0, 0, 0, 1);
+    transition: all 200ms;
+}
+
+p>a:hover {
+    color: #d9d9d9;
+    text-decoration: underline;
+}
+
+.footer-social-icons>a {
+    align-self: center;
+    font-size: 16px;
+    margin-top: 8px;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.6);
+    transition: all 200ms;
+}
+
+.footer-social-icons>a:hover {
+    color: rgba(0, 0, 0, 1);
+    transition: all 200ms;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    padding: none;
+}
+
+.social-icons i {
+    color: rgba(0, 0, 0, 0.6);
+    margin: 8px;
+    font-size: 24px;
+}
+
+.fa-twitter {
+    -o-transition: 200ms;
+    -ms-transition: 200ms;
+    -moz-transition: 200ms;
+    -webkit-transition: 200ms;
+    transition: 200ms;
+}
+
+.fa-twitter:hover {
+    color: #00aced;
+}
+
+.fa-github {
+    -o-transition: 200ms;
+    -ms-transition: 200ms;
+    -moz-transition: 200ms;
+    -webkit-transition: 200ms;
+    transition: 200ms;
+}
+
+.fa-github:hover {
+    color: #6e5494;
+}
