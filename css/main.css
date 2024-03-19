@@ -102,7 +102,7 @@ section {
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 5vh;
-    width: 90%;
+    width: 90%; 
 }
 
 .footer-social-icons {
@@ -148,23 +148,16 @@ COMPONENTS
 .card {
     display: flex;
     flex-direction: column;
+    flex: 1 0 20vw;
     position: relative;
     margin: 16px;
     height: 65vh;
     width: 20vw;
     min-height: 300px;
-    min-width: 250px;
+    min-width: min(280px, 90vw);
     border-radius: 3px;
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
     transform-style: preserve-3d;
-}
-
-/* Medium Screens */
-@media (min-width: 500px) {
-    .card {
-        margin: 25px;
-        height: 45vh;
-    }
 }
 
 .card .card-img {
@@ -177,7 +170,7 @@ COMPONENTS
 
 .card-img img {
     margin: auto;
-    height: 60%;
+    height: 45%;
 }
 
 .card-content {
