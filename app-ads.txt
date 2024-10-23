@@ -1,4 +1,4 @@
-google.com, pub-4850813488129691, DIRECT, f08c47fec0942fa0
+google.com, pub-4517773000459134, DIRECT, f08c47fec0942fa0
 aceinmobi.com, 9e311c7a68e94888aac7fbb4272381e2, RESELLER
 adform.com, 716, RESELLER
 admanmedia.com, 2153, RESELLER
