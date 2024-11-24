@@ -8,4 +8,3 @@ description: Yet another game studios publishing fun apps.
 logo: /assets/img/logo.png # not used
 show_downloads: false
 google_analytics: G-REYS4TKJBK
-include: [".well-known"]
