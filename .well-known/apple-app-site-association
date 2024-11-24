@@ -1,0 +1,22 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "WQ65PJ26MP.com.chunkytofustudios.beehive"
+        ],
+        "components": [
+          {
+            "/": "/beehive/*",
+            "comment": "Redirects any URL under /beehive/ to the app."
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "WQ65PJ26MP.com.chunkytofustudios.beehive"
+    ]
+  }
+}
