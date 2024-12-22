@@ -3,6 +3,17 @@
     "details": [
       {
         "appIDs": [
+          "WQ65PJ26MP.com.chunkytofustudios.destiwake"
+        ],
+        "components": [
+          {
+            "/": "/destiwake/share/*",
+            "comment": "Redirects any URL under /destiwake/share/ to the app."
+          }
+        ]
+      },
+      {
+        "appIDs": [
           "WQ65PJ26MP.com.chunkytofustudios.beehive"
         ],
         "components": [
@@ -16,6 +27,7 @@
   },
   "webcredentials": {
     "apps": [
+      "WQ65PJ26MP.com.chunkytofustudios.destiwake",
       "WQ65PJ26MP.com.chunkytofustudios.beehive"
     ]
   }
