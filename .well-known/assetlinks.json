@@ -5,6 +5,20 @@
         ],
         "target": {
             "namespace": "android_app",
+            "package_name": "com.chunkytofustudios.pixel_buddy",
+            "sha256_cert_fingerprints": [
+                "15:63:00:C6:32:A4:2F:5C:47:0A:B0:FE:DF:FC:E7:1D:64:88:C6:46:29:46:E2:A3:D2:71:A5:97:CD:A1:AD:E2",
+                "D4:5D:AD:08:BC:49:92:DB:D3:63:9F:FA:64:CC:95:C0:B2:38:EA:CA:B7:C7:09:17:48:80:7F:6E:07:02:A6:A4",
+                "25:26:ED:33:D8:61:64:CB:92:85:1D:97:64:8D:C4:17:28:FD:BE:19:DB:B3:1A:38:D7:9E:BD:2B:D0:E1:BF:4E"
+            ]
+        }
+    },
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
             "package_name": "com.chunkytofustudios.destiwake",
             "sha256_cert_fingerprints": [
                 "AD:7A:29:8E:47:F7:C4:18:2A:84:C9:3B:B4:5C:96:56:36:CC:91:A0:80:8A:1A:28:E9:9D:53:4A:02:E1:DB:24",
