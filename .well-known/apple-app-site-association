@@ -22,6 +22,14 @@
         ],
         "components": [
           {
+            "/": "/dozy/app/*",
+            "comment": "Redirects any URL under /dozy/app/ to the app."
+          },
+          {
+            "/": "/dozy/share/*",
+            "comment": "Redirects any URL under /dozy/share/ to the app."
+          },
+          {
             "/": "/destiwake/app/*",
             "comment": "Redirects any URL under /destiwake/app/ to the app."
           },
