@@ -26,5 +26,19 @@
                 "25:26:ED:33:D8:61:64:CB:92:85:1D:97:64:8D:C4:17:28:FD:BE:19:DB:B3:1A:38:D7:9E:BD:2B:D0:E1:BF:4E"
             ]
         }
+    },
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.chunkytofustudios.beehive",
+            "sha256_cert_fingerprints": [
+                "E4:16:6A:2D:4B:16:CE:50:18:71:0A:AA:D1:A4:BD:98:5D:00:18:3F:02:96:E3:6C:0C:75:B6:C1:A6:FD:23:32",
+                "D4:5D:AD:08:BC:49:92:DB:D3:63:9F:FA:64:CC:95:C0:B2:38:EA:CA:B7:C7:09:17:48:80:7F:6E:07:02:A6:A4",
+                "25:26:ED:33:D8:61:64:CB:92:85:1D:97:64:8D:C4:17:28:FD:BE:19:DB:B3:1A:38:D7:9E:BD:2B:D0:E1:BF:4E"
+            ]
+        }
     }
 ]
