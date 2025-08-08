@@ -49,7 +49,11 @@
             "comment": "Redirects any URL under /beehive/app/ to the app."
           },
           {
-            "/": "/beehive/*",
+            "/": "/beehive/auth/*",
+            "comment": "Redirects any URL under /beehive/app/ to the app."
+          },
+          {
+            "/": "/beehive/group/*",
             "comment": "Redirects any URL under /beehive/ to the app."
           }
         ]
