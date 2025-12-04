@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { Twitter, Github, Linkedin, Instagram, ArrowRight, Globe, Code, Heart, Facebook } from "lucide-react";
 import { Button } from "./ui/button";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import companyLogo from 'figma:asset/aa55f8629a4c518a9b5e7b51719f1e3ccbca2804.png';
+import companyLogo from 'figma:asset/cts_logo_with_name.png';
 
 type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
 

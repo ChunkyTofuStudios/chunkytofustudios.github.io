@@ -3,7 +3,7 @@ import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ExternalLink, Package, Code, Heart, Star, Download, Users, ArrowRight } from "lucide-react";
-import pubDevScreenshot from 'figma:asset/f55dc7fed7edd49425c305e29b6f5c439a4b23d5.png';
+import pubDevScreenshot from 'figma:asset/open_source_ss.png';
 
 const packages = [
   {

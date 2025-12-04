@@ -6,10 +6,10 @@ import { ArrowLeft, Zap, Users, TrendingUp, Target, Gamepad2, Trophy, Clock, Ext
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
-import beehiveLogo from 'figma:asset/050d0a1ee9402135f8325503759aa7a486b52e95.png';
-import beehiveScreenshot from 'figma:asset/3f06ee9950c9f5e4b7266220fdb4df1c2288e6f4.png';
-import googlePlayButtonImg from 'figma:asset/e1adc25562e85286f7fc0d34a0a6861c32b5e958.png';
-import appStoreButtonImg from 'figma:asset/b0291754fcbbd70bd543aabfc05aaee41c6bcc26.png';
+import beehiveLogo from 'figma:asset/beehive_logo.png';
+import beehiveScreenshot from 'figma:asset/beehive_ss.png';
+import googlePlayButtonImg from 'figma:asset/play_store_logo.png';
+import appStoreButtonImg from 'figma:asset/app_store_logo.png';
 
 type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
 

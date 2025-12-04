@@ -6,10 +6,10 @@ import { ArrowLeft, Palette, Zap, Heart, Users, Smartphone, Shield, ExternalLink
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
-import pixelBuddyLogo from 'figma:asset/e30c86619c0e75e245ce0e2b6ef3f41a250b14e6.png';
-import pixelBuddyScreenshot from 'figma:asset/bdd4e5d36472427647dcc03105be2e55b702b8c1.png';
-import googlePlayButtonImg from 'figma:asset/e1adc25562e85286f7fc0d34a0a6861c32b5e958.png';
-import appStoreButtonImg from 'figma:asset/b0291754fcbbd70bd543aabfc05aaee41c6bcc26.png';
+import pixelBuddyLogo from 'figma:asset/pixel_buddy_logo.png';
+import pixelBuddyScreenshot from 'figma:asset/pixel_buddy_ss.png';
+import googlePlayButtonImg from 'figma:asset/play_store_logo.png';
+import appStoreButtonImg from 'figma:asset/app_store_logo.png';
 
 type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
 

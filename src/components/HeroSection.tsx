@@ -3,8 +3,8 @@ import { Button } from "./ui/button";
 import { ChevronDown, Smartphone, ArrowRight, Zap, Star, Sparkles, Heart, Code } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
-import companyLogo from 'figma:asset/aa55f8629a4c518a9b5e7b51719f1e3ccbca2804.png';
-import appsMockup from 'figma:asset/116035988358f04c3cc9352d02d16def93847856.png';
+import companyLogo from 'figma:asset/cts_logo_with_name.png';
+import appsMockup from 'figma:asset/hero.png';
 
 type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
 

@@ -6,10 +6,10 @@ import { ArrowLeft, MapPin, Clock, Bell, BarChart3, Settings, Smartphone, Extern
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
-import dozyLogo from 'figma:asset/d954d2293c1ec86b56bd41368e4aec9e6634cbfa.png';
-import dozyScreenshot from 'figma:asset/ffa7cf176e994884d955a696742271bbf0ec25f8.png';
-import googlePlayButtonImg from 'figma:asset/e1adc25562e85286f7fc0d34a0a6861c32b5e958.png';
-import appStoreButtonImg from 'figma:asset/b0291754fcbbd70bd543aabfc05aaee41c6bcc26.png';
+import dozyLogo from 'figma:asset/dozy_logo.png';
+import dozyScreenshot from 'figma:asset/dozy_ss.png';
+import googlePlayButtonImg from 'figma:asset/play_store_logo.png';
+import appStoreButtonImg from 'figma:asset/app_store_logo.png';
 
 type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
 
