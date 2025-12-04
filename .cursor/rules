@@ -1,7 +1,7 @@
 Project: Chunky Tofu Studios Website
 
 Purpose:
-- Build a professional landing page for Chunky Tofu Studios, a global indie mobile app studio, showcasing its flagship apps (Beehive, Pixel Buddy, Dozy), services, values, team, and contact pathways. The site lives at chunkytofustudios.github.io and is served under https://chunkytofustudios.com.
+- Build a professional landing page for Chunky Tofu Studios, a global mobile app studio, showcasing its flagship apps (Beehive, Pixel Buddy, Dozy), services, values, team, and contact pathways. The site lives at chunkytofustudios.github.io and is served under https://chunkytofustudios.com.
 
 Tech Stack:
 - React 18 + TypeScript driven by Vite (`@vitejs/plugin-react-swc`).

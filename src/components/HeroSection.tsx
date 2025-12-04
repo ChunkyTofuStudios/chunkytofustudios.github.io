@@ -124,8 +124,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                 <h1 className="text-2xl text-gray-900 tracking-tight font-medium">Chunky Tofu Studios</h1>
                 <div className="flex items-center gap-1 text-gray-600">
                   <Code className="w-4 h-4" />
-                  <span className="text-sm font-medium">Indie Mobile Developers</span>
-                  <Heart className="w-4 h-4 fill-current text-red-500 ml-1" />
+                  <span className="text-sm font-medium">Mobile App Studio</span>
                 </div>
               </div>
             </motion.div>
@@ -257,33 +256,33 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="relative max-w-5xl mx-auto scale-130"
+                className="relative max-w-5xl mx-auto scale-100"
               >
                 <ImageWithFallback 
                   src={appsMockup}
                   alt="Chunky Tofu Studios mobile apps mockup - Beehive, Pixel Buddy, and Dozy"
-                  className="w-[80%] h-auto drop-shadow-2xl mx-auto"
+                  className="w-full h-auto drop-shadow-2xl"
                 />
                 
                 {/* Interactive overlay areas for each app */}
                 <div className="absolute inset-0 grid grid-cols-3 gap-4 p-4">
                   {/* Beehive - Left phone */}
                   <div 
-                    className="cursor-pointer rounded-3xl hover:bg-yellow-500/10 transition-colors duration-300"
+                    className="cursor-pointer rounded-3xl"
                     onClick={() => onAppClick ? onAppClick('beehive') : window.open('https://play.google.com/store/apps/details?id=com.chunkytofustudios.beehive&hl=en_IE', '_blank')}
                     title="View Beehive"
                   />
                   
                   {/* Pixel Buddy - Center phone */}
                   <div 
-                    className="cursor-pointer rounded-3xl hover:bg-blue-500/10 transition-colors duration-300"
+                    className="cursor-pointer rounded-3xl"
                     onClick={() => onAppClick ? onAppClick('pixelbuddy') : window.open('https://play.google.com/store/apps/details?id=com.chunkytofustudios.pixel_buddy&hl=en_IE', '_blank')}
                     title="View Pixel Buddy"
                   />
                   
                   {/* Dozy - Right phone */}
                   <div 
-                    className="cursor-pointer rounded-3xl hover:bg-purple-500/10 transition-colors duration-300"
+                    className="cursor-pointer rounded-3xl"
                     onClick={() => onAppClick ? onAppClick('dozy') : window.open('https://play.google.com/store/apps/details?id=com.chunkytofustudios.destiwake&hl=en_IE', '_blank')}
                     title="View Dozy"
                   />
