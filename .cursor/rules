@@ -1,0 +1,27 @@
+Project: Chunky Tofu Studios Website
+
+Purpose:
+- Build a professional landing page for Chunky Tofu Studios, a global indie mobile app studio, showcasing its flagship apps (Beehive, Pixel Buddy, Dozy), services, values, team, and contact pathways. The site lives at chunkytofustudios.github.io and is served under https://chunkytofustudios.com.
+
+Tech Stack:
+- React 18 + TypeScript driven by Vite (`@vitejs/plugin-react-swc`).
+- Tailwind CSS v4 precompiled into `src/index.css` for tokens/utilities.
+- Motion One (`motion/react`) powers hero/background animations.
+- Radix UI + shadcn-style primitives in `src/components/ui` supply consistent form, layout, and overlay components.
+- Lucide icons, Embla carousel, Recharts, react-hook-form, sonner, etc. provide supporting UI/UX capabilities.
+- Figma-exported assets are imported through `figma:asset/*` aliases defined in `vite.config.ts`.
+
+Structure & Behavior:
+- `src/main.tsx` mounts `<App />`, which delegates routing/state to `AppRouter`.
+- `AppRouter` switches between the home landing experience and detailed app pages via local state; hero and portfolio CTAs call `onAppClick` or smooth-scroll to section anchors (`data-section` attributes).
+- Landing page sections live in `src/components/*Section.tsx` (Hero, Services, Portfolio, Team, Values, Contact, Footer); detailed app presentations live under `src/components/pages/`.
+- `ImageWithFallback` wraps all Figma assets to provide graceful degradation when an image fails to load.
+
+Dev & Deploy:
+- Install dependencies with `npm install`; run `npm run dev` for the Vite dev server (port 3000, auto-open) and `npm run build` for production output in `build/`.
+- `.github/workflows/deploy.yml` publishes the Vite build to GitHub Pages, aligning with the checked-in `CNAME` for `chunkytofustudios.com`.
+
+Voice & Positioning Notes:
+- Messaging should reinforce Chunky Tofu Studios as a polished, trustworthy mobile app studio producing textured, delightful experiences.
+- Maintain calls-to-action toward exploring apps, contacting the team, or visiting the App Store / Google Play developer page.
+- Keep animations performant (Motion One) and reuse the existing Tailwind design tokens to match the established aesthetic.

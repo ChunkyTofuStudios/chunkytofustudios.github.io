@@ -2,9 +2,15 @@
 
 The source code for the Chunky Tofu Studios website: [chunkytofustudios.com](https://chunkytofustudios.com).
 
+Created using Figma Make and heavily edited.
+
 ## Run Locally
 
 ```bash
-bundle install
-bundle exec jekyll serve
+npm i
+npm run dev
 ```
+
+## Deploying Changes
+
+The GitHub Action `deploy` will serve the website using GitHub Pages when pushed to main.
