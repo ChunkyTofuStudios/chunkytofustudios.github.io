@@ -92,3 +92,4 @@ yarn-error.log
 
 # Vite specific
 .vite/
+build/
