@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Card } from "./ui/card";
-import { Target, Zap, Heart, Users, Lightbulb, Shield, Code, Palette } from "lucide-react";
+import { Target, Zap, Users, Shield, Code, Palette } from "lucide-react";
 
 const values = [
   { 

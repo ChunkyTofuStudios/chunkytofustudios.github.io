@@ -2,14 +2,14 @@ import { motion } from "motion/react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
-import { ArrowLeft, Palette, Zap, Heart, Users, Smartphone, Shield, ExternalLink } from "lucide-react";
+import { ArrowLeft, Palette, Zap, Heart, Users, Smartphone, Shield } from "lucide-react";
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
-import pixelBuddyLogo from 'figma:asset/pixel_buddy_logo.png';
-import pixelBuddyScreenshot from 'figma:asset/pixel_buddy_ss.png';
-import googlePlayButtonImg from 'figma:asset/play_store_logo.png';
-import appStoreButtonImg from 'figma:asset/app_store_logo.png';
+import pixelBuddyLogo from '../../assets/pixel_buddy_logo.png';
+import pixelBuddyScreenshot from '../../assets/pixel_buddy_ss.png';
+import googlePlayButtonImg from '../../assets/play_store_logo.png';
+import appStoreButtonImg from '../../assets/app_store_logo.png';
 
 type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
 

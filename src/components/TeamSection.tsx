@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Globe, Code, Heart, Zap } from "lucide-react";
+import { Globe, Code, Heart } from "lucide-react";
 
 export function TeamSection() {
   return (

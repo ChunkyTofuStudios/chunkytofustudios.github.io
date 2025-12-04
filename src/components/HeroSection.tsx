@@ -1,10 +1,10 @@
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
-import { ChevronDown, Smartphone, ArrowRight, Zap, Star, Sparkles, Heart, Code } from "lucide-react";
+import { ChevronDown, ArrowRight, Heart, Code } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
-import companyLogo from 'figma:asset/cts_logo_with_name.png';
-import appsMockup from 'figma:asset/hero.png';
+import companyLogo from '../assets/cts_logo_with_name.png';
+import appsMockup from '../assets/hero.png';
 
 type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
 
@@ -261,17 +261,17 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
               >
                 <ImageWithFallback 
                   src={appsMockup}
-                  alt="Chunky Tofu Studios mobile apps mockup - BeeHive, Pixel Buddy, and Dozy"
-                  className="w-full h-auto drop-shadow-2xl"
+                  alt="Chunky Tofu Studios mobile apps mockup - Beehive, Pixel Buddy, and Dozy"
+                  className="w-[80%] h-auto drop-shadow-2xl mx-auto"
                 />
                 
                 {/* Interactive overlay areas for each app */}
                 <div className="absolute inset-0 grid grid-cols-3 gap-4 p-4">
-                  {/* BeeHive - Left phone */}
+                  {/* Beehive - Left phone */}
                   <div 
                     className="cursor-pointer rounded-3xl hover:bg-yellow-500/10 transition-colors duration-300"
                     onClick={() => onAppClick ? onAppClick('beehive') : window.open('https://play.google.com/store/apps/details?id=com.chunkytofustudios.beehive&hl=en_IE', '_blank')}
-                    title="View BeeHive"
+                    title="View Beehive"
                   />
                   
                   {/* Pixel Buddy - Center phone */}

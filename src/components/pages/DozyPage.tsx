@@ -2,14 +2,14 @@ import { motion } from "motion/react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
-import { ArrowLeft, MapPin, Clock, Bell, BarChart3, Settings, Smartphone, ExternalLink } from "lucide-react";
+import { ArrowLeft, MapPin, Bell, BarChart3, Settings, Smartphone } from "lucide-react";
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
-import dozyLogo from 'figma:asset/dozy_logo.png';
-import dozyScreenshot from 'figma:asset/dozy_ss.png';
-import googlePlayButtonImg from 'figma:asset/play_store_logo.png';
-import appStoreButtonImg from 'figma:asset/app_store_logo.png';
+import dozyLogo from '../../assets/dozy_logo.png';
+import dozyScreenshot from '../../assets/dozy_ss.png';
+import googlePlayButtonImg from '../../assets/play_store_logo.png';
+import appStoreButtonImg from '../../assets/app_store_logo.png';
 
 type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
 

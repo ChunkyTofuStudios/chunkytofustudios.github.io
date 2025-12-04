@@ -2,23 +2,23 @@ import { motion } from "motion/react";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { Card, CardContent } from "../ui/card";
-import { ArrowLeft, Zap, Users, TrendingUp, Target, Gamepad2, Trophy, Clock, ExternalLink } from "lucide-react";
+import { ArrowLeft, Zap, TrendingUp, Target, Gamepad2, Trophy, Clock } from "lucide-react";
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 
-import beehiveLogo from 'figma:asset/beehive_logo.png';
-import beehiveScreenshot from 'figma:asset/beehive_ss.png';
-import googlePlayButtonImg from 'figma:asset/play_store_logo.png';
-import appStoreButtonImg from 'figma:asset/app_store_logo.png';
+import beehiveLogo from '../../assets/beehive_logo.png';
+import beehiveScreenshot from '../../assets/beehive_ss.png';
+import googlePlayButtonImg from '../../assets/play_store_logo.png';
+import appStoreButtonImg from '../../assets/app_store_logo.png';
 
 type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
 
-interface BeeHivePageProps {
+interface BeehivePageProps {
   onBack?: () => void;
   onAppClick?: (app: AppPage) => void;
 }
 
-export function BeeHivePage({ onBack, onAppClick }: BeeHivePageProps) {
+export function BeehivePage({ onBack, onAppClick }: BeehivePageProps) {
   const handlePlayStoreClick = () => {
     window.open("https://play.google.com/store/apps/details?id=com.chunkytofustudios.beehive&hl=en_IE", "_blank");
   };
@@ -31,7 +31,7 @@ export function BeeHivePage({ onBack, onAppClick }: BeeHivePageProps) {
     {
       icon: <Zap className="w-6 h-6" />,
       title: "Start Your Daily Word Buzz",
-      description: "Kickstart your day with our exciting daily word challenges. Just open the app, tap on the challenge, and let the fun begin! BeeHive makes sure every day is a new adventure in the world of words."
+      description: "Kickstart your day with our exciting daily word challenges. Just open the app, tap on the challenge, and let the fun begin! Beehive makes sure every day is a new adventure in the world of words."
     },
     {
       icon: <Target className="w-6 h-6" />,
@@ -56,7 +56,7 @@ export function BeeHivePage({ onBack, onAppClick }: BeeHivePageProps) {
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Buzz Everywhere",
-      description: "No matter where you are, BeeHive is ready to play. Available on both iOS and Android, our game works seamlessly on any device. So, whether you're at home or on the go, the fun never stops."
+      description: "No matter where you are, Beehive is ready to play. Available on both iOS and Android, our game works seamlessly on any device. So, whether you're at home or on the go, the fun never stops."
     }
   ];
 
@@ -81,10 +81,10 @@ export function BeeHivePage({ onBack, onAppClick }: BeeHivePageProps) {
               <div className="flex items-center gap-3">
                 <ImageWithFallback
                   src={beehiveLogo}
-                  alt="BeeHive Logo"
+                  alt="Beehive Logo"
                   className="w-10 h-10 rounded-xl shadow-lg object-contain"
                 />
-                <span className="text-xl font-semibold text-gray-900">BeeHive</span>
+                <span className="text-xl font-semibold text-gray-900">Beehive</span>
               </div>
             </div>
             <nav className="hidden md:flex items-center gap-6">
@@ -114,12 +114,12 @@ export function BeeHivePage({ onBack, onAppClick }: BeeHivePageProps) {
                 >
                   <ImageWithFallback
                     src={beehiveLogo}
-                    alt="BeeHive"
+                    alt="Beehive"
                     className="w-16 h-16 rounded-2xl shadow-lg object-contain"
                   />
                 </motion.div>
                 <div>
-                  <h1 className="text-4xl font-semibold text-gray-900 mb-2">BeeHive</h1>
+                  <h1 className="text-4xl font-semibold text-gray-900 mb-2">Beehive</h1>
                   <div className="flex items-center gap-2">
                     <Badge className="bg-green-500 text-white border-0 px-2 py-1 text-sm">Free</Badge>
                     <Badge variant="outline" className="border-yellow-300 text-yellow-700 bg-yellow-50 text-sm">Games</Badge>
@@ -129,10 +129,10 @@ export function BeeHivePage({ onBack, onAppClick }: BeeHivePageProps) {
 
               <div>
                 <h2 className="text-2xl font-semibold text-gray-900 mb-4 leading-tight">
-                  Buzz into the World of Words with BeeHive
+                  Buzz into the World of Words with Beehive
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  Are you ready to add some buzz to your brain? BeeHive is not just a game—it's your daily dose of fun and learning wrapped into one.
+                  Are you ready to add some buzz to your brain? Beehive is not just a game—it's your daily dose of fun and learning wrapped into one.
                 </p>
               </div>
 
@@ -181,7 +181,7 @@ export function BeeHivePage({ onBack, onAppClick }: BeeHivePageProps) {
               >
                 <ImageWithFallback
                   src={beehiveScreenshot}
-                  alt="BeeHive App Screenshot"
+                  alt="Beehive App Screenshot"
                   className="w-full h-auto rounded-3xl"
                 />
               </motion.div>
@@ -201,10 +201,10 @@ export function BeeHivePage({ onBack, onAppClick }: BeeHivePageProps) {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
-              Why Players Love BeeHive
+              Why Players Love Beehive
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Discover what makes BeeHive the perfect word puzzle companion for players around the world.
+              Discover what makes Beehive the perfect word puzzle companion for players around the world.
             </p>
           </motion.div>
 

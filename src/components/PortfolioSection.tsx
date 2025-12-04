@@ -1,8 +1,7 @@
 import { motion } from "motion/react";
-import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { Download, ArrowRight, Smartphone, Zap, Users, TrendingUp, Instagram, MessageCircle } from "lucide-react";
+import { ArrowRight, Instagram, MessageCircle } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 // TikTok Icon Component
@@ -19,18 +18,18 @@ const AppleIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-import dozyLogo from 'figma:asset/dozy_logo.png';
-import pixelBuddyLogo from 'figma:asset/pixel_buddy_logo.png';
-import beehiveLogo from 'figma:asset/beehive_logo.png';
-import dozyScreenshot from 'figma:asset/dozy_ss.png';
-import beehiveScreenshot from 'figma:asset/beehive_ss.png';
-import pixelBuddyScreenshot from 'figma:asset/pixel_buddy_ss.png';
-import googlePlayButtonImg from 'figma:asset/play_store_logo.png';
-import appStoreButtonImg from 'figma:asset/app_store_logo.png';
+import dozyLogo from '../assets/dozy_logo.png';
+import pixelBuddyLogo from '../assets/pixel_buddy_logo.png';
+import beehiveLogo from '../assets/beehive_logo.png';
+import dozyScreenshot from '../assets/dozy_ss.png';
+import beehiveScreenshot from '../assets/beehive_ss.png';
+import pixelBuddyScreenshot from '../assets/pixel_buddy_ss.png';
+import googlePlayButtonImg from '../assets/play_store_logo.png';
+import appStoreButtonImg from '../assets/app_store_logo.png';
 
 const apps = [
   {
-    title: "BeeHive",
+    title: "Beehive",
     description: "A strategic word puzzle game. Build your vocabulary with challenging daily puzzles and hexagonal gameplay.",
     logo: beehiveLogo,
     screenshot: beehiveScreenshot,
@@ -110,7 +109,7 @@ export function PortfolioSection({ onAppClick }: PortfolioSectionProps) {
     if (!onAppClick) return;
     
     const appMap: Record<string, AppPage> = {
-      'BeeHive': 'beehive',
+      'Beehive': 'beehive',
       'Pixel Buddy': 'pixelbuddy',
       'Dozy': 'dozy'
     };
@@ -270,8 +269,8 @@ export function PortfolioSection({ onAppClick }: PortfolioSectionProps) {
                       >
                         <TikTokIcon className="w-5 h-5" />
                       </motion.a>
-                      {/* Only show Discord for BeeHive */}
-                      {app.title === "BeeHive" && (
+                      {/* Only show Discord for Beehive */}
+                      {app.title === "Beehive" && (
                         <motion.a
                           href={app.socialMedia.discord}
                           target="_blank"

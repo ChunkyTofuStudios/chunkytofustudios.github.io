@@ -1,8 +1,7 @@
 import { motion } from "motion/react";
-import { Twitter, Github, Linkedin, Instagram, ArrowRight, Globe, Code, Heart, Facebook } from "lucide-react";
-import { Button } from "./ui/button";
+import { Twitter, Github, Linkedin, Instagram, ArrowRight, Code, Heart, Facebook } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import companyLogo from 'figma:asset/cts_logo_with_name.png';
+import companyLogo from '../assets/cts_logo_with_name.png';
 
 type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
 
@@ -237,7 +236,7 @@ export function Footer({ onAppClick }: FooterProps) {
                   className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2"
                 >
                   <span className="w-1 h-1 bg-yellow-500 rounded-full"></span>
-                  BeeHive
+                  Beehive
                 </button>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>

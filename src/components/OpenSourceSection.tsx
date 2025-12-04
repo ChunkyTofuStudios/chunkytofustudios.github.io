@@ -2,8 +2,7 @@ import { motion } from "motion/react";
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { ExternalLink, Package, Code, Heart, Star, Download, Users, ArrowRight } from "lucide-react";
-import pubDevScreenshot from 'figma:asset/open_source_ss.png';
+import { ExternalLink, Package, Heart, Star, Download, ArrowRight } from "lucide-react";
 
 const packages = [
   {

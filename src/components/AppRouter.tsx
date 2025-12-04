@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BeeHivePage } from "./pages/BeeHivePage";
+import { BeehivePage } from "./pages/BeehivePage";
 import { PixelBuddyPage } from "./pages/PixelBuddyPage";
 import { DozyPage } from "./pages/DozyPage";
 
@@ -26,7 +26,7 @@ export function AppRouter() {
   };
 
   if (currentPage === 'beehive') {
-    return <BeeHivePage onBack={navigateHome} onAppClick={navigateToApp} />;
+    return <BeehivePage onBack={navigateHome} onAppClick={navigateToApp} />;
   }
 
   if (currentPage === 'pixelbuddy') {
