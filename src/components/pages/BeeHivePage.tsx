@@ -11,7 +11,7 @@ import beehiveScreenshot from '../../assets/beehive_ss.png';
 import googlePlayButtonImg from '../../assets/play_store_logo.png';
 import appStoreButtonImg from '../../assets/app_store_logo.png';
 
-type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
+type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
 interface BeehivePageProps {
   onBack?: () => void;

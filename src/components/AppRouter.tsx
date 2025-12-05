@@ -1,4 +1,5 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { BeehivePage } from "./pages/BeehivePage";
 import { PixelBuddyPage } from "./pages/PixelBuddyPage";
 import { DozyPage } from "./pages/DozyPage";
@@ -12,7 +13,18 @@ import { TeamSection } from "./TeamSection";
 import { ContactSection } from "./ContactSection";
 import { Footer } from "./Footer";
 
-type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
+type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
+
+// Scroll restoration following React Router guide
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function HomePage() {
   const navigate = useNavigate();
@@ -20,8 +32,6 @@ function HomePage() {
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') {
       navigate('/');
-    } else if (app === 'pixelbuddy') {
-      navigate('/pixel-buddy');
     } else {
       navigate(`/${app}`);
     }
@@ -58,8 +68,6 @@ function BeehivePageWrapper() {
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') {
       navigate('/');
-    } else if (app === 'pixelbuddy') {
-      navigate('/pixel-buddy');
     } else {
       navigate(`/${app}`);
     }
@@ -75,8 +83,6 @@ function PixelBuddyPageWrapper() {
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') {
       navigate('/');
-    } else if (app === 'pixelbuddy') {
-      navigate('/pixel-buddy');
     } else {
       navigate(`/${app}`);
     }
@@ -92,8 +98,6 @@ function DozyPageWrapper() {
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') {
       navigate('/');
-    } else if (app === 'pixelbuddy') {
-      navigate('/pixel-buddy');
     } else {
       navigate(`/${app}`);
     }
@@ -104,11 +108,14 @@ function DozyPageWrapper() {
 
 export function AppRouter() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/beehive" element={<BeehivePageWrapper />} />
-      <Route path="/pixel-buddy" element={<PixelBuddyPageWrapper />} />
-      <Route path="/dozy" element={<DozyPageWrapper />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/beehive" element={<BeehivePageWrapper />} />
+        <Route path="/pixel-buddy" element={<PixelBuddyPageWrapper />} />
+        <Route path="/dozy" element={<DozyPageWrapper />} />
+      </Routes>
+    </>
   );
 }

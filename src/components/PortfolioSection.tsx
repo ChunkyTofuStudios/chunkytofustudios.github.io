@@ -35,15 +35,16 @@ const apps = [
     screenshot: beehiveScreenshot,
     tags: ["Flutter", "Puzzle", "Word Game"],
     platform: "iOS & Android",
-    playStoreUrl: "https://play.google.com/store/apps/details?id=com.chunkytofustudios.beehive&hl=en_IE",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.chunkytofustudios.beehive&utm_source=cts&utm_medium=web&utm_campaign=landingpage",
     appStoreUrl: "https://testflight.apple.com/join/5WeUgnQ1",
     gradient: "from-yellow-500 to-orange-600",
     category: "Games",
     color: "orange",
     socialMedia: {
-      instagram: "https://instagram.com/beehiveapp",
-      tiktok: "https://tiktok.com/@beehiveapp",
-      discord: "https://discord.gg/beehiveapp"
+      instagram: "https://instagram.com/beehivegame",
+      tiktok: "https://tiktok.com/@beehive.game",
+      youtube: "https://www.youtube.com/@beehivegame",
+      discord: "https://discord.gg/F5hESWNkVR",
     }
   },
   {
@@ -53,15 +54,15 @@ const apps = [
     screenshot: pixelBuddyScreenshot,
     tags: ["Flutter", "Entertainment", "Coloring"],
     platform: "iOS & Android",
-    playStoreUrl: "https://play.google.com/store/apps/details?id=com.chunkytofustudios.pixel_buddy",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.chunkytofustudios.pixel_buddy&utm_source=cts&utm_medium=web&utm_campaign=landingpage",
     appStoreUrl: "https://apps.apple.com/us/app/pixel-buddy-coloring-book/id6451399345?uo=4",
     gradient: "from-green-500 to-blue-600",
     category: "Art & Design",
     color: "blue",
     socialMedia: {
-      instagram: "https://instagram.com/pixelbuddyapp",
-      tiktok: "https://tiktok.com/@pixelbuddyapp",
-      discord: "https://discord.gg/pixelbuddyapp"
+      instagram: "https://instagram.com/pixelbuddy_game",
+      tiktok: "https://www.tiktok.com/@pixelbuddy.game",
+      youtube: "https://www.youtube.com/@PixelBuddyOfficial",
     }
   },
   {
@@ -72,14 +73,13 @@ const apps = [
     tags: ["Flutter", "Transportation", "Productivity"],
     platform: "iOS & Android",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.chunkytofustudios.destiwake&utm_source=cts&utm_medium=web&utm_campaign=landingpage",
-    appStoreUrl: "https://apps.apple.com/us/app/dozy-commute-companion/id6736437794",
+    appStoreUrl: "https://apps.apple.com/app/apple-store/id6736437794?pt=106088813&ct=landingpage&mt=8",
     gradient: "from-indigo-500 to-purple-600",
     category: "Transportation",
     color: "purple",
     socialMedia: {
-      instagram: "https://instagram.com/dozyapp",
-      tiktok: "https://tiktok.com/@dozyapp",
-      discord: "https://discord.gg/dozyapp"
+      instagram: "https://www.instagram.com/dozyapp",
+      tiktok: "https://www.tiktok.com/@dozyapp",
     }
   }
 ];
@@ -90,7 +90,7 @@ const colorSchemes = {
   orange: "from-orange-500/10 to-red-500/10"
 };
 
-type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
+type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
 interface PortfolioSectionProps {
   onAppClick?: (app: AppPage) => void;
@@ -110,7 +110,7 @@ export function PortfolioSection({ onAppClick }: PortfolioSectionProps) {
     
     const appMap: Record<string, AppPage> = {
       'Beehive': 'beehive',
-      'Pixel Buddy': 'pixelbuddy',
+      'Pixel Buddy': 'pixel-buddy',
       'Dozy': 'dozy'
     };
     

@@ -11,7 +11,7 @@ import pixelBuddyScreenshot from '../../assets/pixel_buddy_ss.png';
 import googlePlayButtonImg from '../../assets/play_store_logo.png';
 import appStoreButtonImg from '../../assets/app_store_logo.png';
 
-type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
+type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
 interface PixelBuddyPageProps {
   onBack?: () => void;

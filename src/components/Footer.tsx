@@ -3,7 +3,7 @@ import { Twitter, Github, Linkedin, Instagram, ArrowRight, Code, Heart, Facebook
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import companyLogo from '../assets/cts_logo_with_name.png';
 
-type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
+type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
 interface FooterProps {
   onAppClick?: (app: AppPage) => void;
@@ -223,7 +223,7 @@ export function Footer({ onAppClick }: FooterProps) {
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                 <button 
-                  onClick={() => handleAppClick('pixelbuddy')}
+                  onClick={() => handleAppClick('pixel-buddy')}
                   className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2"
                 >
                   <span className="w-1 h-1 bg-green-500 rounded-full"></span>

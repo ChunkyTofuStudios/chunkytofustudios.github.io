@@ -2,10 +2,26 @@
   import { defineConfig } from 'vite';
   import react from '@vitejs/plugin-react-swc';
   import path from 'path';
+  import { dirname, resolve } from 'node:path';
+  import { fileURLToPath } from 'node:url';
+
+  const __dirname = dirname(fileURLToPath(import.meta.url));
 
   export default defineConfig({
     base: '/',
     plugins: [react()],
+    build: {
+      target: 'esnext',
+      outDir: 'build',
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'index.html'),
+          beehive: resolve(__dirname, 'beehive.html'),
+          'pixel-buddy': resolve(__dirname, 'pixel-buddy.html'),
+          dozy: resolve(__dirname, 'dozy.html'),
+        },
+      },
+    },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
@@ -49,10 +65,6 @@
         '@radix-ui/react-accordion@1.2.3': '@radix-ui/react-accordion',
         '@': path.resolve(__dirname, './src'),
       },
-    },
-    build: {
-      target: 'esnext',
-      outDir: 'build',
     },
     server: {
       port: 3000,

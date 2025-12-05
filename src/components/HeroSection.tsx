@@ -6,7 +6,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import companyLogo from '../assets/cts_logo_with_name.png';
 import appsMockup from '../assets/hero.png';
 
-type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
+type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
 interface HeroSectionProps {
   onAppClick?: (app: AppPage) => void;
@@ -277,7 +277,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                   {/* Pixel Buddy - Center phone */}
                   <div 
                     className="cursor-pointer rounded-3xl"
-                    onClick={() => onAppClick ? onAppClick('pixelbuddy') : window.open('https://play.google.com/store/apps/details?id=com.chunkytofustudios.pixel_buddy&hl=en_IE', '_blank')}
+                    onClick={() => onAppClick ? onAppClick('pixel-buddy') : window.open('https://play.google.com/store/apps/details?id=com.chunkytofustudios.pixel_buddy&hl=en_IE', '_blank')}
                     title="View Pixel Buddy"
                   />
                   
