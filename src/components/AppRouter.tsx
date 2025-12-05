@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { BeehivePage } from "./pages/BeehivePage";
 import { PixelBuddyPage } from "./pages/PixelBuddyPage";
 import { DozyPage } from "./pages/DozyPage";
@@ -14,30 +14,19 @@ import { Footer } from "./Footer";
 
 type AppPage = 'home' | 'beehive' | 'pixelbuddy' | 'dozy';
 
-export function AppRouter() {
-  const [currentPage, setCurrentPage] = useState<AppPage>('home');
+function HomePage() {
+  const navigate = useNavigate();
 
   const navigateToApp = (app: AppPage) => {
-    setCurrentPage(app);
+    if (app === 'home') {
+      navigate('/');
+    } else if (app === 'pixelbuddy') {
+      navigate('/pixel-buddy');
+    } else {
+      navigate(`/${app}`);
+    }
   };
 
-  const navigateHome = () => {
-    setCurrentPage('home');
-  };
-
-  if (currentPage === 'beehive') {
-    return <BeehivePage onBack={navigateHome} onAppClick={navigateToApp} />;
-  }
-
-  if (currentPage === 'pixelbuddy') {
-    return <PixelBuddyPage onBack={navigateHome} onAppClick={navigateToApp} />;
-  }
-
-  if (currentPage === 'dozy') {
-    return <DozyPage onBack={navigateHome} onAppClick={navigateToApp} />;
-  }
-
-  // Home page with modified PortfolioSection to handle navigation
   return (
     <div className="min-h-screen">
       <HeroSection onAppClick={navigateToApp} />
@@ -59,5 +48,67 @@ export function AppRouter() {
       </div>
       <Footer onAppClick={navigateToApp} />
     </div>
+  );
+}
+
+function BeehivePageWrapper() {
+  const navigate = useNavigate();
+
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') {
+      navigate('/');
+    } else if (app === 'pixelbuddy') {
+      navigate('/pixel-buddy');
+    } else {
+      navigate(`/${app}`);
+    }
+  };
+
+  return <BeehivePage onBack={navigateHome} onAppClick={navigateToApp} />;
+}
+
+function PixelBuddyPageWrapper() {
+  const navigate = useNavigate();
+
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') {
+      navigate('/');
+    } else if (app === 'pixelbuddy') {
+      navigate('/pixel-buddy');
+    } else {
+      navigate(`/${app}`);
+    }
+  };
+
+  return <PixelBuddyPage onBack={navigateHome} onAppClick={navigateToApp} />;
+}
+
+function DozyPageWrapper() {
+  const navigate = useNavigate();
+
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') {
+      navigate('/');
+    } else if (app === 'pixelbuddy') {
+      navigate('/pixel-buddy');
+    } else {
+      navigate(`/${app}`);
+    }
+  };
+
+  return <DozyPage onBack={navigateHome} onAppClick={navigateToApp} />;
+}
+
+export function AppRouter() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/beehive" element={<BeehivePageWrapper />} />
+      <Route path="/pixel-buddy" element={<PixelBuddyPageWrapper />} />
+      <Route path="/dozy" element={<DozyPageWrapper />} />
+    </Routes>
   );
 }

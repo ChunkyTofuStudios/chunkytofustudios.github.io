@@ -6,37 +6,37 @@ const services = [
   {
     icon: Smartphone,
     title: "Mobile Development",
-    description: "Cross-platform mobile apps built with Flutter for exceptional performance and design.",
+    description: "Cross-platform mobile apps built with Flutter for exceptional performance, consistently at 60fps.",
     accent: "blue"
   },
   {
     icon: Palette,
     title: "Design & Experience",
-    description: "User-first design that prioritizes delightful experiences.",
+    description: "User-first, consistent design that prioritizes delightful experiences.",
     accent: "purple"
   },
   {
     icon: Code,
     title: "Product Strategy",
-    description: "From concept to launch, we shape your app idea into a successful product.",
+    description: "From concept to launch, we conduct user research interviews to build the app collaboratively.",
     accent: "green"
   },
   {
     icon: Cog,
     title: "Backend & APIs",
-    description: "Scalable backend solutions and integrations for your app.",
+    description: "Horizontally scaleable Firebase backend solutions and serverless functions.",
     accent: "orange"
   },
   {
     icon: Shield,
     title: "Quality Assurance",
-    description: "Rigorous testing ensures your app works flawlessly.",
+    description: "Rigorous testing combined with a battle tested SDK and CI/CD pipeline.",
     accent: "indigo"
   },
   {
     icon: Rocket,
     title: "Launch & Support",
-    description: "From app store submission to ongoing maintenance.",
+    description: "From app store submission to ongoing monthly updates, we keep our apps fresh.",
     accent: "pink"
   }
 ];

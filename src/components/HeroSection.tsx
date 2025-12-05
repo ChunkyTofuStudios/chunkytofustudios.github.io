@@ -202,6 +202,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
               <motion.div 
                 whileHover={{ scale: 1.05 }} 
                 whileTap={{ scale: 0.95 }}
+                className="rounded-2xl"
                 animate={{
                   boxShadow: ["0 0 20px rgba(147, 51, 234, 0.4)", "0 0 40px rgba(147, 51, 234, 0.6)", "0 0 20px rgba(147, 51, 234, 0.4)"]
                 }}

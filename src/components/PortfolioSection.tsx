@@ -285,7 +285,7 @@ export function PortfolioSection({ onAppClick }: PortfolioSectionProps) {
                     </div>
 
                     {/* CTA Buttons */}
-                    <div className="flex gap-4 flex-wrap">
+                    <div className="flex gap-4 flex-wrap items-center">
                       {app.playStoreUrl && (
                         <motion.button
                           onClick={() => handlePlayStoreClick(app.playStoreUrl)}
@@ -317,12 +317,11 @@ export function PortfolioSection({ onAppClick }: PortfolioSectionProps) {
                       <motion.div
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
-                        className="shadow-2xl hover:shadow-3xl transition-all duration-300"
                       >
                         <Button
                           size="lg"
                           onClick={() => handleAppNavigation(app.title)}
-                          className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 text-lg rounded-2xl border-0 transition-all duration-200 font-semibold"
+                          className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 text-lg rounded-2xl border-0 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl"
                         >
                           <ArrowRight className="w-5 h-5 mr-2" />
                           Learn More
