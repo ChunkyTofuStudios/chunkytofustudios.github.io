@@ -8,35 +8,46 @@ const packages = [
   {
     name: "native_geofence",
     description: "Battery efficient Flutter Geofencing that uses native iOS and Android APIs.",
-    version: "v1.1.0",
-    downloads: "1.97k",
-    likes: "31",
-    points: "150",
-    category: "Location",
-    tags: ["SDK", "Flutter", "Platform", "Android", "iOS"],
-    color: "from-blue-500 to-cyan-600"
-  },
-  {
-    name: "firebase_auth_games_services",
-    description: "Enables logging into Firebase using Android Play Games and iOS Game Center.",
-    version: "v3.0.1",
-    downloads: "219",
-    likes: "6",
+    version: "v1.2.0",
+    downloads: "2.34k",
+    likes: "33",
     points: "160",
-    category: "Authentication",
-    tags: ["SDK", "Flutter", "Platform", "Android", "iOS"],
-    color: "from-purple-500 to-pink-600"
+    category: "Location",
+    tags: ["Flutter", "Geofencing", "Android", "iOS"],
+    color: "from-blue-500 to-cyan-600"
   },
   {
     name: "play_install_referrer",
     description: "A Flutter plugin for the Android Play Install Referrer API. You can use it to securely retrieve referral content from Google Play.",
     version: "v0.5.0",
-    downloads: "1.57k",
-    likes: "3",
+    downloads: "8.55k",
+    likes: "5",
     points: "160",
     category: "Analytics",
-    tags: ["SDK", "Flutter", "Platform", "Android"],
+    tags: ["Flutter", "Android", "Google Play"],
     color: "from-green-500 to-emerald-600"
+  },
+  {
+    name: "firebase_auth_games_services",
+    description: "Enables logging into Firebase using Android Play Games and iOS Game Center.",
+    version: "v3.0.1",
+    downloads: "170",
+    likes: "6",
+    points: "160",
+    category: "Authentication",
+    tags: ["Flutter", "Android", "iOS", "Firebase", "Google Play Games", "Game Center"],
+    color: "from-purple-500 to-pink-600"
+  },
+  {
+    name: "native_virtual_keyboard",
+    description: "An almost pixel perfect Flutter replica of iOS and Android native keyboards.",
+    version: "v0.1.2",
+    downloads: "134",
+    likes: "0",
+    points: "160",
+    category: "User Interface",
+    tags: ["Flutter", "Android", "iOS", "Linux", "MacOS", "Web", "Windows"],
+    color: "from-orange-500 to-orange-600"
   }
 ];
 
@@ -117,7 +128,7 @@ export function OpenSourceSection() {
             viewport={{ once: true }}
           >
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">3.8K+</div>
+              <div className="text-3xl font-bold text-blue-600">10K+</div>
               <div className="text-gray-600 text-sm">Total Downloads</div>
             </div>
             <div className="text-center">
@@ -125,7 +136,7 @@ export function OpenSourceSection() {
               <div className="text-gray-600 text-sm">Community Likes</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-pink-600">3</div>
+              <div className="text-3xl font-bold text-pink-600">4</div>
               <div className="text-gray-600 text-sm">Active Packages</div>
             </div>
           </motion.div>
