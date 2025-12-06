@@ -3,15 +3,21 @@ import { useEffect } from "react";
 import { BeehivePage } from "./pages/BeehivePage";
 import { PixelBuddyPage } from "./pages/PixelBuddyPage";
 import { DozyPage } from "./pages/DozyPage";
+import { MarkdownPage } from "./pages/MarkdownPage";
 
+import { HomeNavigation } from "./HomeNavigation";
 import { HeroSection } from "./HeroSection";
 import { ServicesSection } from "./ServicesSection";
-import { PortfolioSection } from "./PortfolioSection";
+import { TitlesSection } from "./TitlesSection";
 import { OpenSourceSection } from "./OpenSourceSection";
 import { ValuesSection } from "./ValuesSection";
 import { TeamSection } from "./TeamSection";
 import { ContactSection } from "./ContactSection";
 import { Footer } from "./Footer";
+
+import pixelBuddyLogo from '../assets/pixel_buddy_logo.png';
+import dozyLogo from '../assets/dozy_logo.png';
+import beehiveLogo from '../assets/beehive_logo.png';
 
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
@@ -39,17 +45,20 @@ function HomePage() {
 
   return (
     <div className="min-h-screen">
+      <HomeNavigation />
       <HeroSection onAppClick={navigateToApp} />
       <div data-section="services">
         <ServicesSection />
       </div>
-      <div data-section="portfolio">
-        <PortfolioSection onAppClick={navigateToApp} />
+      <div data-section="titles">
+        <TitlesSection onAppClick={navigateToApp} />
       </div>
       <div data-section="opensource">
         <OpenSourceSection />
       </div>
-      <ValuesSection />
+      <div data-section="values">
+        <ValuesSection />
+      </div>
       <div data-section="team">
         <TeamSection />
       </div>
@@ -106,15 +115,219 @@ function DozyPageWrapper() {
   return <DozyPage onBack={navigateHome} onAppClick={navigateToApp} />;
 }
 
+function PixelBuddyTermsPageWrapper() {
+  const navigate = useNavigate();
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') navigate('/');
+    else navigate(`/${app}`);
+  };
+  
+  return (
+    <MarkdownPage
+      app="pixel-buddy"
+      pageType="terms-and-conditions"
+      appLogo={pixelBuddyLogo}
+      appName="Pixel Buddy"
+      themeColor="blue"
+      onBack={() => navigate('/pixel-buddy')}
+      onAppClick={navigateToApp}
+    />
+  );
+}
+
+function PixelBuddyPrivacyPageWrapper() {
+  const navigate = useNavigate();
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') navigate('/');
+    else navigate(`/${app}`);
+  };
+  
+  return (
+    <MarkdownPage
+      app="pixel-buddy"
+      pageType="privacy-policy"
+      appLogo={pixelBuddyLogo}
+      appName="Pixel Buddy"
+      themeColor="blue"
+      onBack={() => navigate('/pixel-buddy')}
+      onAppClick={navigateToApp}
+    />
+  );
+}
+
+function PixelBuddyDataSafetyPageWrapper() {
+  const navigate = useNavigate();
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') navigate('/');
+    else navigate(`/${app}`);
+  };
+  
+  return (
+    <MarkdownPage
+      app="pixel-buddy"
+      pageType="data-safety"
+      appLogo={pixelBuddyLogo}
+      appName="Pixel Buddy"
+      themeColor="blue"
+      onBack={() => navigate('/pixel-buddy')}
+      onAppClick={navigateToApp}
+    />
+  );
+}
+
+function DozyTermsPageWrapper() {
+  const navigate = useNavigate();
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') navigate('/');
+    else navigate(`/${app}`);
+  };
+  
+  return (
+    <MarkdownPage
+      app="dozy"
+      pageType="terms-and-conditions"
+      appLogo={dozyLogo}
+      appName="Dozy"
+      themeColor="purple"
+      onBack={() => navigate('/dozy')}
+      onAppClick={navigateToApp}
+    />
+  );
+}
+
+function DozyPrivacyPageWrapper() {
+  const navigate = useNavigate();
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') navigate('/');
+    else navigate(`/${app}`);
+  };
+  
+  return (
+    <MarkdownPage
+      app="dozy"
+      pageType="privacy-policy"
+      appLogo={dozyLogo}
+      appName="Dozy"
+      themeColor="purple"
+      onBack={() => navigate('/dozy')}
+      onAppClick={navigateToApp}
+    />
+  );
+}
+
+function DozyDataSafetyPageWrapper() {
+  const navigate = useNavigate();
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') navigate('/');
+    else navigate(`/${app}`);
+  };
+  
+  return (
+    <MarkdownPage
+      app="dozy"
+      pageType="data-safety"
+      appLogo={dozyLogo}
+      appName="Dozy"
+      themeColor="purple"
+      onBack={() => navigate('/dozy')}
+      onAppClick={navigateToApp}
+    />
+  );
+}
+
+function BeehiveTermsPageWrapper() {
+  const navigate = useNavigate();
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') navigate('/');
+    else navigate(`/${app}`);
+  };
+  
+  return (
+    <MarkdownPage
+      app="beehive"
+      pageType="terms-and-conditions"
+      appLogo={beehiveLogo}
+      appName="Beehive"
+      themeColor="yellow"
+      onBack={() => navigate('/beehive')}
+      onAppClick={navigateToApp}
+    />
+  );
+}
+
+function BeehivePrivacyPageWrapper() {
+  const navigate = useNavigate();
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') navigate('/');
+    else navigate(`/${app}`);
+  };
+  
+  return (
+    <MarkdownPage
+      app="beehive"
+      pageType="privacy-policy"
+      appLogo={beehiveLogo}
+      appName="Beehive"
+      themeColor="yellow"
+      onBack={() => navigate('/beehive')}
+      onAppClick={navigateToApp}
+    />
+  );
+}
+
+function BeehiveDataSafetyPageWrapper() {
+  const navigate = useNavigate();
+  const navigateHome = () => navigate('/');
+  const navigateToApp = (app: AppPage) => {
+    if (app === 'home') navigate('/');
+    else navigate(`/${app}`);
+  };
+  
+  return (
+    <MarkdownPage
+      app="beehive"
+      pageType="data-safety"
+      appLogo={beehiveLogo}
+      appName="Beehive"
+      themeColor="yellow"
+      onBack={() => navigate('/beehive')}
+      onAppClick={navigateToApp}
+    />
+  );
+}
+
 export function AppRouter() {
   return (
     <>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/beehive" element={<BeehivePageWrapper />} />
+        
+        {/* Pixel Buddy Routes */}
         <Route path="/pixel-buddy" element={<PixelBuddyPageWrapper />} />
+        <Route path="/pixel-buddy/terms-and-conditions" element={<PixelBuddyTermsPageWrapper />} />
+        <Route path="/pixel-buddy/privacy-policy" element={<PixelBuddyPrivacyPageWrapper />} />
+        <Route path="/pixel-buddy/data-safety" element={<PixelBuddyDataSafetyPageWrapper />} />
+        
+        {/* Dozy Routes */}
         <Route path="/dozy" element={<DozyPageWrapper />} />
+        <Route path="/dozy/terms-and-conditions" element={<DozyTermsPageWrapper />} />
+        <Route path="/dozy/privacy-policy" element={<DozyPrivacyPageWrapper />} />
+        <Route path="/dozy/data-safety" element={<DozyDataSafetyPageWrapper />} />
+        
+        {/* Beehive Routes */}
+        <Route path="/beehive" element={<BeehivePageWrapper />} />
+        <Route path="/beehive/terms-and-conditions" element={<BeehiveTermsPageWrapper />} />
+        <Route path="/beehive/privacy-policy" element={<BeehivePrivacyPageWrapper />} />
+        <Route path="/beehive/data-safety" element={<BeehiveDataSafetyPageWrapper />} />
       </Routes>
     </>
   );

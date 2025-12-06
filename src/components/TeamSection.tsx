@@ -1,12 +1,31 @@
 import { motion } from "motion/react";
-import { Globe, Code, Heart } from "lucide-react";
+import { Briefcase, Linkedin } from "lucide-react";
+import { ImageWithFallback } from "./figma/ImageWithFallback";
+
+import orkunHeadshot from '../assets/orkun_headshot.jpg';
+import yasinHeadshot from '../assets/yasin_headshot.jpg';
+
+const cofounders = [
+  {
+    name: "Orkun Duman",
+    title: "Co-founder & CEO",
+    image: orkunHeadshot,
+    linkedin: "https://www.linkedin.com/in/orkun-duman/"
+  },
+  {
+    name: "Yasin Gunes",
+    title: "Co-founder & CPO",
+    image: yasinHeadshot,
+    linkedin: "https://www.linkedin.com/in/yasingunes/"
+  }
+];
 
 export function TeamSection() {
   return (
-    <section className="py-16 bg-white relative overflow-hidden">
+    <section className="py-16 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        {[...Array(12)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute text-4xl opacity-5"
@@ -15,125 +34,100 @@ export function TeamSection() {
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              rotate: [0, 360],
-              scale: [0.8, 1.2, 0.8],
-              opacity: [0.02, 0.08, 0.02],
+              y: [-20, 20, -20],
+              rotate: [0, 180, 360],
+              opacity: [0.02, 0.05, 0.02],
             }}
             transition={{
-              duration: 8 + i,
+              duration: 10 + i,
               repeat: Infinity,
               ease: "easeInOut",
               delay: i * 0.5,
             }}
           >
-            {['👩‍💻', '👨‍💻', '🌍', '💻', '🚀', '⚡'][i % 6]}
+            {['🚀', '💡', '🎯', '✨'][i % 4]}
           </motion.div>
         ))}
       </div>
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-6xl font-semibold text-gray-900 tracking-tight mb-6">
-            Our Global Studio
+          <h2 className="text-5xl md:text-6xl font-semibold text-gray-900 tracking-tight mb-8">
+            Our Story
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            A distributed team of passionate indie developers working across six cities, united by our mission 
-            to create apps with texture and rediscover the joy of coding together.
-          </p>
-
-          {/* Global cities showcase */}
+          
+          {/* Backstory Paragraph */}
           <motion.div
-            className="flex justify-center items-center gap-4 flex-wrap mb-8"
+            className="max-w-4xl mx-auto mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            {["San Francisco", "Princeton", "Dublin", "Istanbul", "Mexico City", "Milan"].map((city, index) => (
+            <p className="text-xl text-gray-600 leading-relaxed">
+              Chunky Tofu Studios was launched in late 2024 as a side project, a way for us to work on 
+              something we truly love. In 2025 we were able to go full-time, thanks to the 
+              support of a group of enthusiastic part-time team members and the encouraging and lovely feedback from our users. We're now expanding 
+              the studio and to bring novel AI features to gaming and daily utilities.
+            </p>
+          </motion.div>
+
+          {/* Cofounders */}
+          <div className="grid md:grid-cols-2 gap-12 max-w-2xl mx-auto">
+            {cofounders.map((founder, index) => (
               <motion.div
-                key={city}
-                className="bg-gradient-to-r from-gray-50 to-white px-3 py-2 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 shadow-sm"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 * index }}
-                whileHover={{ scale: 1.05 }}
+                key={founder.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 + index * 0.2 }}
+                viewport={{ once: true }}
+                className="group"
               >
-                {city}
+                <div className="bg-white rounded-3xl p-8 border border-gray-200/50 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                  {/* Headshot - Circular image */}
+                  <motion.div
+                    className="w-32 h-32 mx-auto mb-6"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ImageWithFallback
+                      src={founder.image}
+                      alt={`${founder.name} headshot`}
+                      className="w-full h-full rounded-full object-cover shadow-lg"
+                    />
+                  </motion.div>
+
+                  {/* Name and Title */}
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                    {founder.name}
+                  </h3>
+                  <div className="flex items-center justify-center gap-2 mb-4">
+                    <Briefcase className="w-4 h-4 text-gray-500" />
+                    <p className="text-sm font-medium text-gray-700">
+                      {founder.title}
+                    </p>
+                  </div>
+
+                  {/* LinkedIn Link */}
+                  <motion.a
+                    href={founder.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm text-blue-600 hover:text-blue-700 mb-4 transition-colors"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </motion.a>
+                </div>
               </motion.div>
             ))}
-          </motion.div>
-
-          {/* Global presence indicator */}
-          <motion.div
-            className="flex justify-center items-center gap-6 flex-wrap"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-blue-600/10 px-4 py-2 rounded-full border border-blue-200">
-              <Globe className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-medium text-gray-700">6 Cities</span>
-            </div>
-            <div className="flex items-center gap-2 bg-gradient-to-r from-green-500/10 to-green-600/10 px-4 py-2 rounded-full border border-green-200">
-              <Code className="w-4 h-4 text-green-600" />
-              <span className="text-sm font-medium text-gray-700">Indie Spirit</span>
-            </div>
-            <div className="flex items-center gap-2 bg-gradient-to-r from-pink-500/10 to-pink-600/10 px-4 py-2 rounded-full border border-pink-200">
-              <Heart className="w-4 h-4 text-pink-600" />
-              <span className="text-sm font-medium text-gray-700">Love for Code</span>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Team culture section */}
-        <motion.div
-          className="mt-12 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-12 border border-gray-200/50 shadow-xl shadow-gray-500/5">
-            <motion.div
-              className="max-w-4xl mx-auto"
-              whileHover={{ scale: 1.01 }}
-              transition={{ duration: 0.2 }}
-            >
-              <h3 className="text-3xl font-semibold text-gray-900 mb-6 tracking-tight">
-                Our Indie Developer Culture
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                We believe in the power of small teams creating big impact. Our distributed approach 
-                allows us to work with the best talent while maintaining the close-knit culture of 
-                indie developers who truly care about craft, texture, and user experience.
-              </p>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div className="text-center">
-                  <div className="text-2xl mb-2">🎯</div>
-                  <div className="text-sm text-gray-600">User-First</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-2">⚡</div>
-                  <div className="text-sm text-gray-600">High Agency</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-2">🤝</div>
-                  <div className="text-sm text-gray-600">Teamwork</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-2">🚀</div>
-                  <div className="text-sm text-gray-600">Growth</div>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </motion.div>
       </div>

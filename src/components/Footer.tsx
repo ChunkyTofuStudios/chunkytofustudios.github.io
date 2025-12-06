@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Twitter, Github, Linkedin, Instagram, ArrowRight, Code, Heart, Facebook } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import companyLogo from '../assets/cts_logo_with_name.png';
+import companyLogo from '../assets/cts_logo.png';
 
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
@@ -118,8 +118,7 @@ export function Footer({ onAppClick }: FooterProps) {
             </motion.div>
 
             <p className="text-gray-400 leading-relaxed mb-6">
-              A group of indie developers across six cities worldwide, 
-              creating delightful mobile experiences with texture and soul.
+              Group of indie developers spread across six cities worldwide, creating delightful mobile experiences that users absolutely love.
             </p>
 
             {/* Location indicators */}
@@ -185,19 +184,12 @@ export function Footer({ onAppClick }: FooterProps) {
                 "Cross-Platform Solutions",
                 "Open Source Libraries"
               ].map((service, index) => (
-                <motion.li 
-                  key={index}
-                  whileHover={{ x: 4 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <a 
-                    href="#" 
-                    className="text-gray-400 hover:text-white transition-colors duration-200 text-sm flex items-center gap-2"
-                  >
+                <li key={index}>
+                  <span className="text-gray-400 text-sm flex items-center gap-2">
                     <span className="w-1 h-1 bg-purple-500 rounded-full"></span>
                     {service}
-                  </a>
-                </motion.li>
+                  </span>
+                </li>
               ))}
             </ul>
           </motion.div>
@@ -209,7 +201,7 @@ export function Footer({ onAppClick }: FooterProps) {
             viewport={{ once: true }}
           >
             <h4 className="text-lg mb-6 text-white flex items-center gap-2">
-              📱 Our Apps
+              📱 Our Titles
             </h4>
             <ul className="space-y-3">
               <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
@@ -265,15 +257,6 @@ export function Footer({ onAppClick }: FooterProps) {
               <p className="text-gray-400 text-sm">
                 &copy; {currentYear} Chunky Tofu Studios. All rights reserved.
               </p>
-              <motion.div 
-                className="text-gray-500 text-sm flex items-center gap-2"
-                animate={{
-                  scale: [1, 1.05, 1],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                Made with <Heart className="w-3 h-3 text-red-400 fill-current" /> by indie developers
-              </motion.div>
             </div>
             <div className="flex gap-6">
               <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">

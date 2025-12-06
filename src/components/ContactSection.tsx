@@ -3,7 +3,7 @@ import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { Mail, MessageSquare, Zap, Send, Phone, MapPin } from "lucide-react";
+import { Mail, MessageSquare, Zap, Send, Phone, MapPin, CheckCircle, AlertCircle } from "lucide-react";
 import { useState } from "react";
 
 export function ContactSection() {
@@ -12,11 +12,44 @@ export function ContactSection() {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitResult, setSubmitResult] = useState<'success' | 'error' | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    setSubmitResult(null);
+
+    try {
+      const formData = new FormData(e.currentTarget);
+      formData.append("access_key", "a79ea7a3-9420-499d-b391-157156427580");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitResult('success');
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+        // Clear success message after 5 seconds
+        setTimeout(() => setSubmitResult(null), 5000);
+      } else {
+        setSubmitResult('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitResult('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -67,8 +100,8 @@ export function ContactSection() {
             Let's Talk
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Have an amazing app idea? Ready to bring your vision to life? 
-            Let's create something incredible together!
+            Ready to bring your vision to life? Have questions about Flutter best practices? Are you looking for a mobile app SDK?
+            Don't hesitate to reach out!
           </p>
         </motion.div>
 
@@ -88,7 +121,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-gray-900">Start Your Project</h3>
-                    <p className="text-gray-600">Tell us about your app idea</p>
+                    <p className="text-gray-600">Tell us about your idea</p>
                   </div>
                 </div>
 
@@ -101,9 +134,10 @@ export function ContactSection() {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="Enter your full name"
+                      placeholder="John Doe"
                       className="rounded-xl border-gray-200 bg-gray-50/50 focus:bg-white transition-colors"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                   
@@ -116,9 +150,10 @@ export function ContactSection() {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="your@email.com"
+                      placeholder="john@company.com"
                       className="rounded-xl border-gray-200 bg-gray-50/50 focus:bg-white transition-colors"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
                   
@@ -130,25 +165,61 @@ export function ContactSection() {
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="Tell us about your app idea, target audience, and any specific features you have in mind..."
+                      placeholder="Tell us about your app idea, SDK/consulting needs, and the timeline you have in mind..."
                       rows={6}
                       className="rounded-xl border-gray-200 bg-gray-50/50 focus:bg-white transition-colors resize-none"
                       required
+                      disabled={isSubmitting}
                     />
                   </div>
+
+                  {/* Success/Error Messages */}
+                  {submitResult === 'success' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-2 p-4 bg-green-50 border border-green-200 rounded-xl text-green-800"
+                    >
+                      <CheckCircle className="w-5 h-5" />
+                      <p className="font-medium">Message sent successfully! We'll get back to you soon.</p>
+                    </motion.div>
+                  )}
+
+                  {submitResult === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-xl text-red-800"
+                    >
+                      <AlertCircle className="w-5 h-5" />
+                      <p className="font-medium">Something went wrong. Please try again or email us directly.</p>
+                    </motion.div>
+                  )}
                   
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   >
                     <Button 
                       type="submit"
-                      size="lg" 
-                      className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-4 text-lg rounded-xl shadow-xl"
+                      disabled={isSubmitting}
+                      className="w-full h-11 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-lg rounded-xl shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-5 h-5 mr-2" />
-                      Send Message
-                      <Zap className="w-5 h-5 ml-2" />
+                      {isSubmitting ? (
+                        <>
+                          <motion.div
+                            className="w-5 h-5 mr-2 border-2 border-white border-t-transparent rounded-full"
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5 mr-2" />
+                          Send Message
+                        </>
+                      )}
                     </Button>
                   </motion.div>
                 </form>
@@ -176,7 +247,7 @@ export function ContactSection() {
 
             <div className="space-y-6">
               <motion.div
-                className="flex items-center gap-4 p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-purple-100"
+                className="flex items-center gap-4 p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-purple-100"
                 whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.8)" }}
                 transition={{ duration: 0.2 }}
               >
@@ -190,7 +261,7 @@ export function ContactSection() {
               </motion.div>
 
               <motion.div
-                className="flex items-center gap-4 p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-purple-100"
+                className="flex items-center gap-4 p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-purple-100"
                 whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.8)" }}
                 transition={{ duration: 0.2 }}
               >
@@ -204,7 +275,7 @@ export function ContactSection() {
               </motion.div>
 
               <motion.div
-                className="flex items-center gap-4 p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-purple-100"
+                className="flex items-center gap-4 p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-purple-100"
                 whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.8)" }}
                 transition={{ duration: 0.2 }}
               >

@@ -6,15 +6,15 @@ const values = [
   { 
     icon: Target, 
     title: "User First", 
-    description: "We start with the user and build for the user. Every line of code serves a purpose.", 
+    description: "We start with the user. We judge outcomes by how much they benefit users.", 
     color: "text-blue-600",
     bgColor: "from-blue-500/10 to-blue-600/10",
     borderColor: "border-blue-200"
   },
   { 
     icon: Zap, 
-    title: "High Agency", 
-    description: "We work on things we are passionate about. Indie developers who own their craft.", 
+    title: "Self expression", 
+    description: "We create a safe space to share ideas. We embrace and celebrate diversity.", 
     color: "text-purple-600",
     bgColor: "from-purple-500/10 to-purple-600/10",
     borderColor: "border-purple-200"
@@ -30,15 +30,15 @@ const values = [
   { 
     icon: Users, 
     title: "Teamwork", 
-    description: "We know we can be successful as a team, even when distributed across three cities.", 
+    description: "We know we succeed as a team. We prioritize helping and unblocking each other.", 
     color: "text-green-600",
     bgColor: "from-green-500/10 to-green-600/10",
     borderColor: "border-green-200"
   },
   { 
     icon: Code, 
-    title: "Love of Code", 
-    description: "Rediscovering the joy of programming through beautiful, well-crafted mobile apps.", 
+    title: "Growth", 
+    description: "We are always learning. We actively seek feedback and receive it with a growth mindset.", 
     color: "text-orange-600",
     bgColor: "from-orange-500/10 to-orange-600/10",
     borderColor: "border-orange-200"
@@ -46,7 +46,7 @@ const values = [
   { 
     icon: Shield, 
     title: "Ethical & Respectful", 
-    description: "We build things we personally would use. No politics, just great software.", 
+    description: "We build things we personally would use. We treat everyone with candor and respect.", 
     color: "text-indigo-600",
     bgColor: "from-indigo-500/10 to-indigo-600/10",
     borderColor: "border-indigo-200"
@@ -93,20 +93,19 @@ export function ValuesSection() {
         >
           <h2 className="text-5xl md:text-6xl text-gray-900 tracking-tight mb-6">Our Values</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            What makes us indie developers who care. These principles guide everything we build, 
-            from the first line of code to the final user experience.
+            These principles guide everything we build, from the first line of code to the final user experience.
           </p>
           
           {/* Indie developer motto */}
           <motion.div 
             className="mt-8 inline-block bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-2xl px-6 py-3 border border-purple-200"
             animate={{
-              scale: [1, 1.02, 1],
+              scale: [1, 1.04, 1],
             }}
             transition={{ duration: 3, repeat: Infinity }}
           >
             <p className="text-lg font-medium text-gray-700">
-              🎨 <span className="text-purple-600">Building apps with texture</span> across three cities
+              <span className="text-purple-600">how to be <b>Chunky</b></span>
             </p>
           </motion.div>
         </motion.div>

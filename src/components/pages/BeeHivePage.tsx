@@ -5,6 +5,7 @@ import { Card, CardContent } from "../ui/card";
 import { ArrowLeft, Zap, TrendingUp, Target, Gamepad2, Trophy, Clock } from "lucide-react";
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import beehiveLogo from '../../assets/beehive_logo.png';
 import beehiveScreenshot from '../../assets/beehive_ss.png';
@@ -19,6 +20,9 @@ interface BeehivePageProps {
 }
 
 export function BeehivePage({ onBack, onAppClick }: BeehivePageProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   const handlePlayStoreClick = () => {
     window.open("https://play.google.com/store/apps/details?id=com.chunkytofustudios.beehive&hl=en_IE", "_blank");
   };
@@ -26,6 +30,14 @@ export function BeehivePage({ onBack, onAppClick }: BeehivePageProps) {
   const handleAppStoreClick = () => {
     window.open("https://testflight.apple.com/join/5WeUgnQ1", "_blank");
   };
+
+  const navPages = [
+    { path: '/beehive/data-safety', label: 'Data Safety' },
+    { path: '/beehive/privacy-policy', label: 'Privacy Policy' },
+    { path: '/beehive/terms-and-conditions', label: 'Terms & Conditions' },
+  ];
+
+  const isCurrentPage = (path: string) => location.pathname === path;
 
   const features = [
     {
@@ -87,10 +99,20 @@ export function BeehivePage({ onBack, onAppClick }: BeehivePageProps) {
                 <span className="text-xl font-semibold text-gray-900">Beehive</span>
               </div>
             </div>
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#data-safety" className="text-sm text-gray-600 hover:text-orange-600 transition-colors">Data Safety</a>
-              <a href="#privacy" className="text-sm text-gray-600 hover:text-orange-600 transition-colors">Privacy Policy</a>
-              <a href="#terms" className="text-sm text-gray-600 hover:text-orange-600 transition-colors">Terms & Conditions</a>
+            <nav className="hidden md:flex items-center gap-2">
+              {navPages.map((page) => (
+                <button
+                  key={page.path}
+                  onClick={() => navigate(page.path)}
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                    isCurrentPage(page.path)
+                      ? 'bg-orange-600 text-white shadow-md'
+                      : 'text-gray-600 hover:text-orange-600 hover:bg-white/80'
+                  }`}
+                >
+                  {page.label}
+                </button>
+              ))}
             </nav>
           </div>
         </div>

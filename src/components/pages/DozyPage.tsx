@@ -5,6 +5,7 @@ import { Card, CardContent } from "../ui/card";
 import { ArrowLeft, MapPin, Bell, BarChart3, Settings, Smartphone } from "lucide-react";
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import dozyLogo from '../../assets/dozy_logo.png';
 import dozyScreenshot from '../../assets/dozy_ss.png';
@@ -19,6 +20,9 @@ interface DozyPageProps {
 }
 
 export function DozyPage({ onBack, onAppClick }: DozyPageProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   const handlePlayStoreClick = () => {
     window.open("https://play.google.com/store/apps/details?id=com.chunkytofustudios.destiwake&utm_source=cts&utm_medium=web&utm_campaign=landingpage", "_blank");
   };
@@ -26,6 +30,14 @@ export function DozyPage({ onBack, onAppClick }: DozyPageProps) {
   const handleAppStoreClick = () => {
     window.open("https://apps.apple.com/us/app/dozy-commute-companion/id6736437794", "_blank");
   };
+
+  const navPages = [
+    { path: '/dozy/data-safety', label: 'Data Safety' },
+    { path: '/dozy/privacy-policy', label: 'Privacy Policy' },
+    { path: '/dozy/terms-and-conditions', label: 'Terms & Conditions' },
+  ];
+
+  const isCurrentPage = (path: string) => location.pathname === path;
 
   const features = [
     {
@@ -87,10 +99,20 @@ export function DozyPage({ onBack, onAppClick }: DozyPageProps) {
                 <span className="text-xl font-semibold text-gray-900">Dozy</span>
               </div>
             </div>
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#data-safety" className="text-sm text-gray-600 hover:text-purple-600 transition-colors">Data Safety</a>
-              <a href="#privacy" className="text-sm text-gray-600 hover:text-purple-600 transition-colors">Privacy Policy</a>
-              <a href="#terms" className="text-sm text-gray-600 hover:text-purple-600 transition-colors">Terms & Conditions</a>
+            <nav className="hidden md:flex items-center gap-2">
+              {navPages.map((page) => (
+                <button
+                  key={page.path}
+                  onClick={() => navigate(page.path)}
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                    isCurrentPage(page.path)
+                      ? 'bg-purple-600 text-white shadow-md'
+                      : 'text-gray-600 hover:text-purple-600 hover:bg-white/80'
+                  }`}
+                >
+                  {page.label}
+                </button>
+              ))}
             </nav>
           </div>
         </div>

@@ -10,6 +10,7 @@
   export default defineConfig({
     base: '/',
     plugins: [react()],
+    assetsInclude: ['**/*.md'],
     build: {
       target: 'esnext',
       outDir: 'build',

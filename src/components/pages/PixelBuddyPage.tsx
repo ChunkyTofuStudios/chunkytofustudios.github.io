@@ -5,6 +5,7 @@ import { Card, CardContent } from "../ui/card";
 import { ArrowLeft, Palette, Zap, Heart, Users, Smartphone, Shield } from "lucide-react";
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import pixelBuddyLogo from '../../assets/pixel_buddy_logo.png';
 import pixelBuddyScreenshot from '../../assets/pixel_buddy_ss.png';
@@ -19,6 +20,9 @@ interface PixelBuddyPageProps {
 }
 
 export function PixelBuddyPage({ onBack, onAppClick }: PixelBuddyPageProps) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   const handlePlayStoreClick = () => {
     window.open("https://play.google.com/store/apps/details?id=com.chunkytofustudios.pixel_buddy", "_blank");
   };
@@ -26,6 +30,14 @@ export function PixelBuddyPage({ onBack, onAppClick }: PixelBuddyPageProps) {
   const handleAppStoreClick = () => {
     window.open("https://apps.apple.com/us/app/pixel-buddy-coloring-book/id6451399345?uo=4", "_blank");
   };
+
+  const navPages = [
+    { path: '/pixel-buddy/data-safety', label: 'Data Safety' },
+    { path: '/pixel-buddy/privacy-policy', label: 'Privacy Policy' },
+    { path: '/pixel-buddy/terms-and-conditions', label: 'Terms & Conditions' },
+  ];
+
+  const isCurrentPage = (path: string) => location.pathname === path;
 
   const features = [
     {
@@ -87,10 +99,20 @@ export function PixelBuddyPage({ onBack, onAppClick }: PixelBuddyPageProps) {
                 <span className="text-xl font-semibold text-gray-900">Pixel Buddy</span>
               </div>
             </div>
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#data-safety" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Data Safety</a>
-              <a href="#privacy" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Privacy Policy</a>
-              <a href="#terms" className="text-sm text-gray-600 hover:text-blue-600 transition-colors">Terms & Conditions</a>
+            <nav className="hidden md:flex items-center gap-2">
+              {navPages.map((page) => (
+                <button
+                  key={page.path}
+                  onClick={() => navigate(page.path)}
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                    isCurrentPage(page.path)
+                      ? 'bg-blue-600 text-white shadow-md'
+                      : 'text-gray-600 hover:text-blue-600 hover:bg-white/80'
+                  }`}
+                >
+                  {page.label}
+                </button>
+              ))}
             </nav>
           </div>
         </div>

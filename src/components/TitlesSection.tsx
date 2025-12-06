@@ -75,7 +75,7 @@ const apps = [
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.chunkytofustudios.destiwake&utm_source=cts&utm_medium=web&utm_campaign=landingpage",
     appStoreUrl: "https://apps.apple.com/app/apple-store/id6736437794?pt=106088813&ct=landingpage&mt=8",
     gradient: "from-indigo-500 to-purple-600",
-    category: "Utility",
+    category: "Utilities",
     color: "purple",
     socialMedia: {
       instagram: "https://www.instagram.com/dozyapp",
@@ -92,11 +92,11 @@ const colorSchemes = {
 
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
-interface PortfolioSectionProps {
+interface TitlesSectionProps {
   onAppClick?: (app: AppPage) => void;
 }
 
-export function PortfolioSection({ onAppClick }: PortfolioSectionProps) {
+export function TitlesSection({ onAppClick }: TitlesSectionProps) {
   const handlePlayStoreClick = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -172,7 +172,7 @@ export function PortfolioSection({ onAppClick }: PortfolioSectionProps) {
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           >
             <h2 className="text-6xl md:text-7xl text-gray-900 tracking-tight mb-6 font-semibold">
-              Our Apps
+              Our Titles
             </h2>
           </motion.div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">

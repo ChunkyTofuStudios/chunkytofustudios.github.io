@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { ChevronDown, ArrowRight, Heart, Code } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
-import companyLogo from '../assets/cts_logo_with_name.png';
+import companyLogo from '../assets/cts_logo.png';
 import appsMockup from '../assets/hero.png';
 
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
@@ -32,7 +32,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
   };
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-gray-50">
+    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-gray-50 pt-16">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated Gradient Orbs */}
@@ -212,14 +212,14 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                   size="lg" 
                   className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-4 text-lg rounded-2xl shadow-xl hover:shadow-2xl border-0 transition-all duration-300 font-medium group relative overflow-hidden"
                   onClick={() => {
-                    const portfolioSection = document.querySelector('[data-section="portfolio"]');
-                    if (portfolioSection) {
-                      portfolioSection.scrollIntoView({ behavior: 'smooth' });
+                    const titlesSection = document.querySelector('[data-section="titles"]');
+                    if (titlesSection) {
+                      titlesSection.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
                 >
                   <span className="relative z-10 flex items-center">
-                    Explore Our Apps
+                    Explore Our Titles
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
