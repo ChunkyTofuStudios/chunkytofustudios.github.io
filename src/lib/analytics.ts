@@ -136,5 +136,5 @@ function setupOutboundLinkTracking() {
     }
   });
 
-  log('Outbound link tracking enabled');
+  log('Outbound link tracking enabled.');
 }
