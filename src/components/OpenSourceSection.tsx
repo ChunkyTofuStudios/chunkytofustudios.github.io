@@ -195,13 +195,13 @@ export function OpenSourceSection() {
                         <Package className="w-6 h-6 text-white" />
                       </motion.div>
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900">{pkg.name}</h3>
+                        <h3 className="text-xl font-semibold text-gray-900 truncate">{pkg.name}</h3>
                         <Badge variant="outline" className="text-xs mt-1">
                           {pkg.version}
                         </Badge>
                       </div>
                     </div>
-                    <Badge className={`bg-gradient-to-r ${pkg.color} text-white border-0`}>
+                    <Badge className={`hidden sm:inline-flex bg-gradient-to-r ${pkg.color} text-white border-0`}>
                       {pkg.category}
                     </Badge>
                   </div>

@@ -114,7 +114,7 @@ export function ContactSection() {
             viewport={{ once: true }}
           >
             <Card className="border-0 bg-white/70 backdrop-blur-sm shadow-2xl rounded-3xl overflow-hidden">
-              <CardContent className="p-12">
+              <CardContent className="p-6 md:p-12">
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center">
                     <MessageSquare className="w-6 h-6 text-white" />

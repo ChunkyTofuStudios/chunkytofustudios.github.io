@@ -287,35 +287,37 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
                     </div>
 
                     {/* CTA Buttons */}
-                    <div className="flex gap-4 flex-wrap items-center">
-                      {app.playStoreUrl && (
-                        <motion.button
-                          onClick={() => handlePlayStoreClick(app.playStoreUrl)}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="cursor-pointer"
-                        >
-                          <ImageWithFallback
-                            src={googlePlayButtonImg}
-                            alt="Get it on Google Play"
-                            className="h-14 w-auto"
-                          />
-                        </motion.button>
-                      )}
-                      {app.appStoreUrl && (
-                        <motion.button
-                          onClick={() => handleAppStoreClick(app.appStoreUrl)}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="cursor-pointer"
-                        >
-                          <ImageWithFallback
-                            src={appStoreButtonImg}
-                            alt="Download on the App Store"
-                            className="h-14 w-auto"
-                          />
-                        </motion.button>
-                      )}
+                    <div className="flex flex-col sm:flex-row gap-4 items-center">
+                      <div className="flex gap-3 sm:gap-4 items-center">
+                        {app.playStoreUrl && (
+                          <motion.button
+                            onClick={() => handlePlayStoreClick(app.playStoreUrl)}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="cursor-pointer"
+                          >
+                            <ImageWithFallback
+                              src={googlePlayButtonImg}
+                              alt="Get it on Google Play"
+                              className="h-14 w-auto"
+                            />
+                          </motion.button>
+                        )}
+                        {app.appStoreUrl && (
+                          <motion.button
+                            onClick={() => handleAppStoreClick(app.appStoreUrl)}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="cursor-pointer"
+                          >
+                            <ImageWithFallback
+                              src={appStoreButtonImg}
+                              alt="Download on the App Store"
+                              className="h-14 w-auto"
+                            />
+                          </motion.button>
+                        )}
+                      </div>
                       <motion.div
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
