@@ -7,6 +7,7 @@ import { Button } from '../ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { Footer } from '../Footer';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { LinkButton } from '../ui/link-button';
 
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 type PageType = 'terms-and-conditions' | 'privacy-policy' | 'data-safety';
@@ -128,15 +129,20 @@ export function MarkdownPage({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleBack}
-                className="text-gray-700 hover:bg-gray-100/80"
+              <LinkButton
+                to={`/${app}`}
+                onNavigate={handleBack}
+                className="no-underline"
               >
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back
-              </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-700 hover:bg-gray-100/80"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back
+                </Button>
+              </LinkButton>
               <div className="flex items-center gap-3">
                 <ImageWithFallback
                   src={appLogo}
@@ -148,17 +154,17 @@ export function MarkdownPage({
             </div>
             <nav className="hidden md:flex items-center gap-2">
               {allPages.map((page) => (
-                <button
+                <LinkButton
                   key={page}
-                  onClick={() => navigate(`/${app}/${page}`)}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                  to={`/${app}/${page}`}
+                  className={`px-4 py-2 text-sm rounded-lg transition-all duration-200 no-underline ${
                     isCurrentPage(page)
-                      ? `${colors.active} shadow-md`
-                      : `text-gray-600 ${colors.hover} hover:bg-white/80`
+                      ? `text-gray-900 font-bold bg-white shadow-md`
+                      : `text-gray-600 font-medium ${colors.hover} hover:bg-white/80`
                   }`}
                 >
                   {pageTitles[page]}
-                </button>
+                </LinkButton>
               ))}
             </nav>
           </div>
@@ -179,26 +185,69 @@ export function MarkdownPage({
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
               </div>
             ) : (
-              <article className="prose prose-lg prose-gray max-w-none
-                prose-headings:font-semibold prose-headings:text-gray-900
-                prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-0
-                prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-                prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4
-                prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
-                prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
-                prose-li:text-gray-700 prose-li:my-2 prose-li:leading-relaxed
-                prose-strong:text-gray-900 prose-strong:font-semibold
-                prose-a:text-blue-600 prose-a:font-medium prose-a:underline hover:prose-a:text-blue-700
-                prose-code:text-gray-800 prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-                prose-pre:bg-gray-900 prose-pre:text-gray-100
-                [&>*:first-child]:mt-0
-              ">
+              <article className="max-w-none text-gray-700">
                 <ReactMarkdown 
                   remarkPlugins={[remarkGfm]}
                   components={{
+                    // Headings
+                    h1: ({ node, ...props }) => (
+                      <h1 className="text-4xl font-semibold text-gray-900 mb-4 mt-0" {...props} />
+                    ),
+                    h2: ({ node, ...props }) => (
+                      <h2 className="text-2xl font-semibold text-gray-900 mt-8 mb-4" {...props} />
+                    ),
+                    h3: ({ node, ...props }) => (
+                      <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3" {...props} />
+                    ),
+                    
+                    // Paragraphs
+                    p: ({ node, ...props }) => (
+                      <p className="text-gray-700 leading-relaxed mb-4" {...props} />
+                    ),
+                    
+                    // Links
                     a: ({ node, ...props }) => (
-                      <a {...props} target="_blank" rel="noopener noreferrer" />
+                      <a 
+                        className="text-blue-600 font-medium underline hover:text-blue-700 transition-colors" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        {...props} 
+                      />
+                    ),
+                    
+                    // Lists
+                    ul: ({ node, ...props }) => (
+                      <ul className="mt-4 mb-6 list-disc pl-0 ml-6 space-y-2 [&_p]:inline [&_p]:m-0" style={{ listStyleType: 'disc', listStylePosition: 'inside' }} {...props} />
+                    ),
+                    ol: ({ node, ...props }) => (
+                      <ol className="mt-4 mb-6 list-decimal pl-0 ml-6 space-y-2 [&_p]:inline [&_p]:m-0" style={{ listStyleType: 'decimal', listStylePosition: 'inside' }} {...props} />
+                    ),
+                    li: ({ node, ...props }) => (
+                      <li className="text-gray-700 leading-relaxed [&>p]:inline [&>p]:m-0" style={{ display: 'list-item' }} {...props} />
+                    ),
+                    
+                    // Strong text
+                    strong: ({ node, ...props }) => (
+                      <strong className="text-gray-900 font-semibold inline" {...props} />
+                    ),
+                    
+                    // Code
+                    code: ({ node, className, children, ...props }) => {
+                      const isInline = !className;
+                      return isInline ? (
+                        <code className="text-gray-800 bg-gray-100 px-1 py-0.5 rounded text-sm" {...props}>
+                          {children}
+                        </code>
+                      ) : (
+                        <code className={`block bg-gray-900 text-gray-100 p-4 rounded-lg my-4 overflow-x-auto ${className || ''}`} {...props}>
+                          {children}
+                        </code>
+                      );
+                    },
+                    
+                    // Pre blocks
+                    pre: ({ node, ...props }) => (
+                      <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg my-4 overflow-x-auto" {...props} />
                     ),
                   }}
                 >
@@ -216,14 +265,18 @@ export function MarkdownPage({
             className="mt-8 flex flex-wrap justify-center gap-4"
           >
             {allPages.filter(p => p !== pageType).map((page) => (
-              <Button
+              <LinkButton
                 key={page}
-                variant="outline"
-                onClick={() => navigate(`/${app}/${page}`)}
-                className="text-gray-700 hover:bg-gray-100"
+                to={`/${app}/${page}`}
+                className="no-underline"
               >
-                {pageTitles[page]}
-              </Button>
+                <Button
+                  variant="outline"
+                  className="text-gray-700 hover:bg-gray-100"
+                >
+                  {pageTitles[page]}
+                </Button>
+              </LinkButton>
             ))}
           </motion.div>
         </div>

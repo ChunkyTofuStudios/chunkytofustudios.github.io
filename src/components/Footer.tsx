@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Twitter, Github, Linkedin, Instagram, ArrowRight, Code, Heart, Facebook } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import companyLogo from '../assets/cts_logo.png';
+import { LinkButton } from "./ui/link-button";
 
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
@@ -205,31 +206,34 @@ export function Footer({ onAppClick }: FooterProps) {
             </h4>
             <ul className="space-y-3">
               <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                <button 
-                  onClick={() => handleAppClick('dozy')}
-                  className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2"
+                <LinkButton
+                  to="/dozy"
+                  onNavigate={() => handleAppClick('dozy')}
+                  className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2 no-underline"
                 >
                   <span className="w-1 h-1 bg-indigo-500 rounded-full"></span>
                   Dozy
-                </button>
+                </LinkButton>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                <button 
-                  onClick={() => handleAppClick('pixel-buddy')}
-                  className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2"
+                <LinkButton
+                  to="/pixel-buddy"
+                  onNavigate={() => handleAppClick('pixel-buddy')}
+                  className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2 no-underline"
                 >
                   <span className="w-1 h-1 bg-green-500 rounded-full"></span>
                   Pixel Buddy
-                </button>
+                </LinkButton>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                <button 
-                  onClick={() => handleAppClick('beehive')}
-                  className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2"
+                <LinkButton
+                  to="/beehive"
+                  onNavigate={() => handleAppClick('beehive')}
+                  className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2 no-underline"
                 >
                   <span className="w-1 h-1 bg-yellow-500 rounded-full"></span>
                   Beehive
-                </button>
+                </LinkButton>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                 <button 

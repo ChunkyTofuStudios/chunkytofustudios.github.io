@@ -3,6 +3,7 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ArrowRight, Instagram, MessageCircle } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { LinkButton } from "./ui/link-button";
 
 // TikTok Icon Component
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -97,6 +98,12 @@ interface TitlesSectionProps {
 }
 
 export function TitlesSection({ onAppClick }: TitlesSectionProps) {
+  const appMap: Record<string, AppPage> = {
+    'Beehive': 'beehive',
+    'Pixel Buddy': 'pixel-buddy',
+    'Dozy': 'dozy'
+  };
+
   const handlePlayStoreClick = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -105,19 +112,14 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  const handleAppNavigation = (appTitle: string) => {
-    if (!onAppClick) return;
-    
-    const appMap: Record<string, AppPage> = {
-      'Beehive': 'beehive',
-      'Pixel Buddy': 'pixel-buddy',
-      'Dozy': 'dozy'
+  const handleAppNavigation = (appTitle: string): string => {
+    const pathMap: Record<string, string> = {
+      'Beehive': '/beehive',
+      'Pixel Buddy': '/pixel-buddy',
+      'Dozy': '/dozy'
     };
     
-    const appKey = appMap[appTitle];
-    if (appKey) {
-      onAppClick(appKey);
-    }
+    return pathMap[appTitle] || '/';
   };
 
   return (
@@ -318,14 +320,19 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
                       >
-                        <Button
-                          size="lg"
-                          onClick={() => handleAppNavigation(app.title)}
-                          className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 text-lg rounded-2xl border-0 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl"
+                        <LinkButton
+                          to={handleAppNavigation(app.title)}
+                          onNavigate={() => onAppClick?.(appMap[app.title])}
+                          className="no-underline"
                         >
-                          <ArrowRight className="w-5 h-5 mr-2" />
-                          Learn More
-                        </Button>
+                          <Button
+                            size="lg"
+                            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 text-lg rounded-2xl border-0 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl"
+                          >
+                            <ArrowRight className="w-5 h-5 mr-2" />
+                            Learn More
+                          </Button>
+                        </LinkButton>
                       </motion.div>
                     </div>
                   </motion.div>

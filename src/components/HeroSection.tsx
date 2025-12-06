@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Button } from "./ui/button";
 import { ChevronDown, ArrowRight, Heart, Code } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { Link } from "react-router-dom";
 
 import companyLogo from '../assets/cts_logo.png';
 import appsMockup from '../assets/hero.png';
@@ -268,23 +269,40 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                 {/* Interactive overlay areas for each app */}
                 <div className="absolute inset-0 grid grid-cols-3 gap-4 p-4">
                   {/* Beehive - Left phone */}
-                  <div 
-                    className="cursor-pointer rounded-3xl"
-                    onClick={() => onAppClick ? onAppClick('beehive') : window.open('https://play.google.com/store/apps/details?id=com.chunkytofustudios.beehive&hl=en_IE', '_blank')}
+                  <Link 
+                    to="/beehive"
+                    className="cursor-pointer rounded-3xl no-underline"
+                    onClick={(e) => {
+                      // For Command/Ctrl+Click, let browser handle naturally
+                      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+                      // Otherwise use onAppClick if provided
+                      e.preventDefault();
+                      if (onAppClick) onAppClick('beehive');
+                    }}
                     title="View Beehive"
                   />
                   
                   {/* Pixel Buddy - Center phone */}
-                  <div 
-                    className="cursor-pointer rounded-3xl"
-                    onClick={() => onAppClick ? onAppClick('pixel-buddy') : window.open('https://play.google.com/store/apps/details?id=com.chunkytofustudios.pixel_buddy&hl=en_IE', '_blank')}
+                  <Link 
+                    to="/pixel-buddy"
+                    className="cursor-pointer rounded-3xl no-underline"
+                    onClick={(e) => {
+                      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+                      e.preventDefault();
+                      if (onAppClick) onAppClick('pixel-buddy');
+                    }}
                     title="View Pixel Buddy"
                   />
                   
                   {/* Dozy - Right phone */}
-                  <div 
-                    className="cursor-pointer rounded-3xl"
-                    onClick={() => onAppClick ? onAppClick('dozy') : window.open('https://play.google.com/store/apps/details?id=com.chunkytofustudios.destiwake&hl=en_IE', '_blank')}
+                  <Link 
+                    to="/dozy"
+                    className="cursor-pointer rounded-3xl no-underline"
+                    onClick={(e) => {
+                      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+                      e.preventDefault();
+                      if (onAppClick) onAppClick('dozy');
+                    }}
                     title="View Dozy"
                   />
                 </div>

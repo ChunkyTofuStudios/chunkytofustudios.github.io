@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import companyLogo from '../assets/cts_logo.png';
+import { LinkButton } from "./ui/link-button";
 
 export function HomeNavigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -87,27 +87,21 @@ export function HomeNavigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <motion.button
-              onClick={scrollToTop}
-              className="flex items-center gap-3 cursor-pointer"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+            <LinkButton
+              to="/"
+              onNavigate={scrollToTop}
+              className="flex items-center gap-3 cursor-pointer no-underline"
             >
-              <div className={`w-10 h-10 bg-black rounded-xl p-2 transition-all duration-300 ${
-                isScrolled ? 'shadow-lg' : 'shadow-md'
-              }`}>
-                <img 
-                  src={companyLogo} 
-                  alt="Chunky Tofu Studios" 
-                  className="w-full h-full object-contain scale-125"
-                />
-              </div>
-              <span className={`text-lg font-semibold hidden sm:block transition-colors duration-300 ${
-                isScrolled ? 'text-gray-900' : 'text-gray-800'
-              }`}>
+              <motion.span
+                className={`text-lg font-semibold transition-colors duration-300 ${
+                  isScrolled ? 'text-gray-900' : 'text-gray-800'
+                }`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 Chunky Tofu Studios
-              </span>
-            </motion.button>
+              </motion.span>
+            </LinkButton>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-1">

@@ -6,6 +6,7 @@ import { ArrowLeft, MapPin, Bell, BarChart3, Settings, Smartphone } from "lucide
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { useNavigate, useLocation } from "react-router-dom";
+import { LinkButton } from "../ui/link-button";
 
 import dozyLogo from '../../assets/dozy_logo.png';
 import dozyScreenshot from '../../assets/dozy_ss.png';
@@ -80,38 +81,46 @@ export function DozyPage({ onBack, onAppClick }: DozyPageProps) {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
               {onBack && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={onBack}
-                  className="text-gray-700 hover:bg-gray-100/80"
+                <LinkButton
+                  to="/"
+                  onNavigate={onBack}
+                  className="no-underline"
                 >
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Back
-                </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-gray-700 hover:bg-gray-100/80"
+                  >
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    Back
+                  </Button>
+                </LinkButton>
               )}
-              <div className="flex items-center gap-3">
+              <LinkButton
+                to="/dozy"
+                className="flex items-center gap-3 no-underline hover:opacity-80 transition-opacity"
+              >
                 <img 
                   src={dozyLogo} 
                   alt="Dozy Logo" 
                   className="w-10 h-10 rounded-xl shadow-lg object-contain"
                 />
                 <span className="text-xl font-semibold text-gray-900">Dozy</span>
-              </div>
+              </LinkButton>
             </div>
             <nav className="hidden md:flex items-center gap-2">
               {navPages.map((page) => (
-                <button
+                <LinkButton
                   key={page.path}
-                  onClick={() => navigate(page.path)}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                  to={page.path}
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 no-underline ${
                     isCurrentPage(page.path)
                       ? 'bg-purple-600 text-white shadow-md'
                       : 'text-gray-600 hover:text-purple-600 hover:bg-white/80'
                   }`}
                 >
                   {page.label}
-                </button>
+                </LinkButton>
               ))}
             </nav>
           </div>

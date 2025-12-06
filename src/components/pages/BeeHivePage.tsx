@@ -6,6 +6,7 @@ import { ArrowLeft, Zap, TrendingUp, Target, Gamepad2, Trophy, Clock } from "luc
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { useNavigate, useLocation } from "react-router-dom";
+import { LinkButton } from "../ui/link-button";
 
 import beehiveLogo from '../../assets/beehive_logo.png';
 import beehiveScreenshot from '../../assets/beehive_ss.png';
@@ -80,15 +81,20 @@ export function BeehivePage({ onBack, onAppClick }: BeehivePageProps) {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
               {onBack && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={onBack}
-                  className="text-gray-700 hover:bg-gray-100/80"
+                <LinkButton
+                  to="/"
+                  onNavigate={onBack}
+                  className="no-underline"
                 >
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Back
-                </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-gray-700 hover:bg-gray-100/80"
+                  >
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    Back
+                  </Button>
+                </LinkButton>
               )}
               <div className="flex items-center gap-3">
                 <ImageWithFallback
@@ -101,17 +107,17 @@ export function BeehivePage({ onBack, onAppClick }: BeehivePageProps) {
             </div>
             <nav className="hidden md:flex items-center gap-2">
               {navPages.map((page) => (
-                <button
+                <LinkButton
                   key={page.path}
-                  onClick={() => navigate(page.path)}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                  to={page.path}
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 no-underline ${
                     isCurrentPage(page.path)
                       ? 'bg-orange-600 text-white shadow-md'
                       : 'text-gray-600 hover:text-orange-600 hover:bg-white/80'
                   }`}
                 >
                   {page.label}
-                </button>
+                </LinkButton>
               ))}
             </nav>
           </div>
