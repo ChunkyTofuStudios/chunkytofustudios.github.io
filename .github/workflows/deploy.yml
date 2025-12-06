@@ -46,6 +46,8 @@ jobs:
         with:
           # Upload build folder (your outDir from vite.config.ts)
           path: "./build"
+          # Include hidden files like .well-known directory
+          include-hidden-files: true
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
