@@ -19,6 +19,7 @@ import pixelBuddyLogo from '../assets/pixel_buddy_logo.png';
 import dozyLogo from '../assets/dozy_logo.png';
 import beehiveLogo from '../assets/beehive_logo.png';
 
+
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
 // Scroll restoration following React Router guide
@@ -73,7 +74,6 @@ function HomePage() {
 function BeehivePageWrapper() {
   const navigate = useNavigate();
 
-  const navigateHome = () => navigate('/');
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') {
       navigate('/');
@@ -82,13 +82,12 @@ function BeehivePageWrapper() {
     }
   };
 
-  return <BeehivePage onBack={navigateHome} onAppClick={navigateToApp} />;
+  return <BeehivePage onAppClick={navigateToApp} />;
 }
 
 function PixelBuddyPageWrapper() {
   const navigate = useNavigate();
 
-  const navigateHome = () => navigate('/');
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') {
       navigate('/');
@@ -97,13 +96,12 @@ function PixelBuddyPageWrapper() {
     }
   };
 
-  return <PixelBuddyPage onBack={navigateHome} onAppClick={navigateToApp} />;
+  return <PixelBuddyPage onAppClick={navigateToApp} />;
 }
 
 function DozyPageWrapper() {
   const navigate = useNavigate();
 
-  const navigateHome = () => navigate('/');
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') {
       navigate('/');
@@ -112,12 +110,11 @@ function DozyPageWrapper() {
     }
   };
 
-  return <DozyPage onBack={navigateHome} onAppClick={navigateToApp} />;
+  return <DozyPage onAppClick={navigateToApp} />;
 }
 
 function PixelBuddyTermsPageWrapper() {
   const navigate = useNavigate();
-  const navigateHome = () => navigate('/');
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
@@ -130,7 +127,6 @@ function PixelBuddyTermsPageWrapper() {
       appLogo={pixelBuddyLogo}
       appName="Pixel Buddy"
       themeColor="blue"
-      onBack={() => navigate('/pixel-buddy')}
       onAppClick={navigateToApp}
     />
   );
@@ -138,7 +134,6 @@ function PixelBuddyTermsPageWrapper() {
 
 function PixelBuddyPrivacyPageWrapper() {
   const navigate = useNavigate();
-  const navigateHome = () => navigate('/');
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
@@ -151,15 +146,13 @@ function PixelBuddyPrivacyPageWrapper() {
       appLogo={pixelBuddyLogo}
       appName="Pixel Buddy"
       themeColor="blue"
-      onBack={() => navigate('/pixel-buddy')}
       onAppClick={navigateToApp}
     />
   );
 }
 
 function PixelBuddyDataSafetyPageWrapper() {
-  const navigate = useNavigate();
-  const navigateHome = () => navigate('/');
+  const navigate = useNavigate(); 
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
@@ -172,7 +165,6 @@ function PixelBuddyDataSafetyPageWrapper() {
       appLogo={pixelBuddyLogo}
       appName="Pixel Buddy"
       themeColor="blue"
-      onBack={() => navigate('/pixel-buddy')}
       onAppClick={navigateToApp}
     />
   );
@@ -180,7 +172,6 @@ function PixelBuddyDataSafetyPageWrapper() {
 
 function DozyTermsPageWrapper() {
   const navigate = useNavigate();
-  const navigateHome = () => navigate('/');
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
@@ -193,7 +184,6 @@ function DozyTermsPageWrapper() {
       appLogo={dozyLogo}
       appName="Dozy"
       themeColor="purple"
-      onBack={() => navigate('/dozy')}
       onAppClick={navigateToApp}
     />
   );
@@ -201,7 +191,6 @@ function DozyTermsPageWrapper() {
 
 function DozyPrivacyPageWrapper() {
   const navigate = useNavigate();
-  const navigateHome = () => navigate('/');
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
@@ -214,7 +203,6 @@ function DozyPrivacyPageWrapper() {
       appLogo={dozyLogo}
       appName="Dozy"
       themeColor="purple"
-      onBack={() => navigate('/dozy')}
       onAppClick={navigateToApp}
     />
   );
@@ -235,7 +223,6 @@ function DozyDataSafetyPageWrapper() {
       appLogo={dozyLogo}
       appName="Dozy"
       themeColor="purple"
-      onBack={() => navigate('/dozy')}
       onAppClick={navigateToApp}
     />
   );
@@ -243,7 +230,6 @@ function DozyDataSafetyPageWrapper() {
 
 function BeehiveTermsPageWrapper() {
   const navigate = useNavigate();
-  const navigateHome = () => navigate('/');
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
@@ -256,7 +242,6 @@ function BeehiveTermsPageWrapper() {
       appLogo={beehiveLogo}
       appName="Beehive"
       themeColor="yellow"
-      onBack={() => navigate('/beehive')}
       onAppClick={navigateToApp}
     />
   );
@@ -264,7 +249,6 @@ function BeehiveTermsPageWrapper() {
 
 function BeehivePrivacyPageWrapper() {
   const navigate = useNavigate();
-  const navigateHome = () => navigate('/');
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
@@ -277,7 +261,6 @@ function BeehivePrivacyPageWrapper() {
       appLogo={beehiveLogo}
       appName="Beehive"
       themeColor="yellow"
-      onBack={() => navigate('/beehive')}
       onAppClick={navigateToApp}
     />
   );
@@ -285,7 +268,6 @@ function BeehivePrivacyPageWrapper() {
 
 function BeehiveDataSafetyPageWrapper() {
   const navigate = useNavigate();
-  const navigateHome = () => navigate('/');
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
@@ -298,7 +280,6 @@ function BeehiveDataSafetyPageWrapper() {
       appLogo={beehiveLogo}
       appName="Beehive"
       themeColor="yellow"
-      onBack={() => navigate('/beehive')}
       onAppClick={navigateToApp}
     />
   );

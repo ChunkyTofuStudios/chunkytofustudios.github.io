@@ -6,11 +6,10 @@ import pixelBuddyScreenshot from '../../assets/pixel_buddy_ss.png';
 type AppPageType = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
 interface PixelBuddyPageProps {
-  onBack?: () => void;
   onAppClick?: (app: AppPageType) => void;
 }
 
-export function PixelBuddyPage({ onBack, onAppClick }: PixelBuddyPageProps) {
+export function PixelBuddyPage({ onAppClick }: PixelBuddyPageProps) {
   const config = {
     name: "Pixel Buddy",
     slug: "pixel-buddy",
@@ -62,5 +61,5 @@ export function PixelBuddyPage({ onBack, onAppClick }: PixelBuddyPageProps) {
     ]
   };
 
-  return <AppPage config={config} onBack={onBack} onAppClick={onAppClick} />;
+  return <AppPage config={config} onAppClick={onAppClick} />;
 }
