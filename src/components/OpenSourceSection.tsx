@@ -48,7 +48,7 @@ const packages = [
     category: "User Interface",
     tags: ["Flutter", "Android", "iOS", "Linux", "MacOS", "Web", "Windows"],
     color: "from-orange-500 to-orange-600"
-  }
+  },
 ];
 
 export function OpenSourceSection() {
