@@ -1,6 +1,6 @@
-# Terms & Conditions
-
 **Last updated:** June 23, 2025
+
+# Terms & Conditions
 
 Welcome to Beehive, a mobile game developed and operated by Chunky Tofu Studio LLC ("Chunky Tofu," "we," "us," or "our"). These Terms and Conditions ("Terms") govern your use of Beehive ("the Beehive") and related services worldwide. By accessing or using the Beehive, you agree to these Terms. If you do not agree, do not use the Beehive.
 

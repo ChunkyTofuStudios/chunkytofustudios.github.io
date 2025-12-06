@@ -145,6 +145,13 @@
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
+
+  /* Hide mobile menu button on desktop (md breakpoint and above) */
+  @media (min-width: 768px) {
+    [data-mobile-menu-button="true"] {
+      display: none !important;
+    }
+  }
 }
 
 /**

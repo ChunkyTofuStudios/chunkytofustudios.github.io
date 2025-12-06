@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Twitter, Github, Linkedin, Instagram, ArrowRight, Code, Heart, Facebook } from "lucide-react";
+import { Twitter, Github, Linkedin, ArrowRight, Code } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import companyLogo from '../assets/cts_logo.png';
 import { LinkButton } from "./ui/link-button";
@@ -15,6 +15,12 @@ export function Footer({ onAppClick }: FooterProps) {
 
   const socialLinks = [
     { 
+      icon: Linkedin, 
+      href: "https://www.linkedin.com/company/chunky-tofu-studios/", 
+      label: "Professional updates",
+      hoverColor: "hover:from-blue-600 hover:to-blue-700"
+    },
+    { 
       icon: Twitter, 
       href: "https://x.com/Chunky_Tofu", 
       label: "Follow our journey on X",
@@ -26,24 +32,6 @@ export function Footer({ onAppClick }: FooterProps) {
       label: "Open source contributions",
       hoverColor: "hover:from-gray-600 hover:to-gray-800"
     },
-    { 
-      icon: Linkedin, 
-      href: "https://www.linkedin.com/company/chunky-tofu-studios/", 
-      label: "Professional updates",
-      hoverColor: "hover:from-blue-600 hover:to-blue-700"
-    },
-    { 
-      icon: Facebook, 
-      href: "https://www.facebook.com/chunkytofustudios", 
-      label: "Community updates",
-      hoverColor: "hover:from-blue-500 hover:to-blue-600"
-    },
-    { 
-      icon: Instagram, 
-      href: "https://www.instagram.com/chunkytofustudios/", 
-      label: "Behind the scenes",
-      hoverColor: "hover:from-pink-500 hover:to-purple-600"
-    }
   ];
 
   const handleAppClick = (appPage: AppPage) => {
@@ -85,12 +73,13 @@ export function Footer({ onAppClick }: FooterProps) {
       </div>
 
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 items-stretch">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="h-full"
           >
             <div className="flex items-center gap-3 mb-6">
               <motion.div 
@@ -123,7 +112,7 @@ export function Footer({ onAppClick }: FooterProps) {
             </p>
 
             {/* Location indicators */}
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="flex flex-wrap gap-2">
               {[
                 { city: "SF", flag: "🇺🇸" },
                 { city: "Princeton", flag: "🇺🇸" },
@@ -136,34 +125,11 @@ export function Footer({ onAppClick }: FooterProps) {
                   key={location.city}
                   className="bg-gray-800/50 px-3 py-1 rounded-full border border-gray-700"
                   whileHover={{ scale: 1.05, backgroundColor: "rgba(55, 65, 81, 0.8)" }}
-                  animate={{
-                    y: [0, -2, 0],
-                  }}
-                  transition={{
-                    y: { duration: 3, repeat: Infinity, delay: index * 0.5, ease: "easeInOut" },
-                    scale: { duration: 0.2 }
-                  }}
                 >
                   <span className="text-xs text-gray-300">
                     {location.flag} {location.city}
                   </span>
                 </motion.div>
-              ))}
-            </div>
-
-            {/* Social links with updated URLs */}
-            <div className="flex flex-wrap gap-3">
-              {socialLinks.map(({ icon: Icon, href, label, hoverColor }, index) => (
-                <motion.button
-                  key={index}
-                  onClick={() => handleSocialClick(href)}
-                  title={label}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className={`w-10 h-10 bg-gray-800 hover:bg-gradient-to-r ${hoverColor} rounded-xl flex items-center justify-center transition-all duration-200`}
-                >
-                  <Icon className="w-5 h-5 text-gray-300" />
-                </motion.button>
               ))}
             </div>
           </motion.div>
@@ -173,6 +139,7 @@ export function Footer({ onAppClick }: FooterProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
+            className="h-full"
           >
             <h4 className="text-lg mb-6 text-white flex items-center gap-2">
               <Code className="w-5 h-5" />
@@ -181,7 +148,7 @@ export function Footer({ onAppClick }: FooterProps) {
             <ul className="space-y-3">
               {[
                 "Mobile App Development",
-                "UI/UX with Texture",
+                "UI/UX based on UXR",
                 "Cross-Platform Solutions",
                 "Open Source Libraries"
               ].map((service, index) => (
@@ -200,6 +167,7 @@ export function Footer({ onAppClick }: FooterProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
+            className="h-full"
           >
             <h4 className="text-lg mb-6 text-white flex items-center gap-2">
               📱 Our Titles
@@ -257,19 +225,26 @@ export function Footer({ onAppClick }: FooterProps) {
           viewport={{ once: true }}
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex flex-col md:flex-row items-center gap-4">
-              <p className="text-gray-400 text-sm">
-                &copy; {currentYear} Chunky Tofu Studios. All rights reserved.
-              </p>
+            {/* Social links on the left */}
+            <div className="flex flex-wrap gap-3">
+              {socialLinks.map(({ icon: Icon, href, label, hoverColor }, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => handleSocialClick(href)}
+                  title={label}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.9 }}
+                  className={`w-10 h-10 bg-gray-800 hover:bg-gradient-to-r ${hoverColor} rounded-xl flex items-center justify-center transition-all duration-200`}
+                >
+                  <Icon className="w-5 h-5 text-gray-300" />
+                </motion.button>
+              ))}
             </div>
-            <div className="flex gap-6">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors duration-200 text-sm">
-                Terms of Service
-              </a>
-            </div>
+            
+            {/* Copyright on the right */}
+            <p className="text-gray-400 text-sm">
+              &copy; {currentYear} Chunky Tofu Studios. All rights reserved.
+            </p>
           </div>
         </motion.div>
       </div>

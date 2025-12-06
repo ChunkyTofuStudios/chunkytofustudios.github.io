@@ -38,7 +38,7 @@ const values = [
   { 
     icon: Code, 
     title: "Growth", 
-    description: "We are always learning. We actively seek feedback and receive it with a growth mindset.", 
+    description: "We actively seek feedback and receive it with a growth mindset.", 
     color: "text-orange-600",
     bgColor: "from-orange-500/10 to-orange-600/10",
     borderColor: "border-orange-200"

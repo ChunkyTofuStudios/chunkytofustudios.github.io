@@ -1,7 +1,7 @@
 **Last updated**
 July 9 2025
 
-**Privacy Policy**
+# Privacy Policy
 
 Chunky Tofu Studios built the Pixel Buddy app as a Freemium app. This SERVICE is provided by Chunky Tofu Studios at no cost and is intended for use as is.
 

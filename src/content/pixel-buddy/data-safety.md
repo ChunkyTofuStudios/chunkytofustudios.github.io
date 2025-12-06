@@ -1,6 +1,8 @@
 **Last updated**
 March 4 2024
 
+# Data Safety
+
 **Introduction**
 
 This page is designed to give Pixel Buddy users control over their own data. Please continue reading to better understand our data handling practices. Please also visit our [Privacy Policy](https://chunkytofustudios.com/pixel-buddy/privacy-policy/) page.

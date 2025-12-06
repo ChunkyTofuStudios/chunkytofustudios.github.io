@@ -33,7 +33,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
   };
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-gray-50 pt-16">
+    <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-gray-50 pt-24 lg:pt-16">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated Gradient Orbs */}
@@ -108,7 +108,8 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
               transition={{ delay: 0.2, duration: 0.6 }}
             >
               <motion.div 
-                className="w-16 h-16 bg-black rounded-3xl shadow-lg p-3"
+                className="w-16 h-16 rounded-3xl shadow-lg p-3"
+                style={{ backgroundColor: "rgb(33, 33, 33)" }}
                 whileHover={{ scale: 1.1, rotate: 10 }}
                 animate={{
                   boxShadow: ["0 4px 20px rgba(0, 0, 0, 0.08)", "0 8px 30px rgba(0, 0, 0, 0.12)", "0 4px 20px rgba(0, 0, 0, 0.08)"]
@@ -128,16 +129,6 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                   <span className="text-sm font-medium">Mobile App Studio</span>
                 </div>
               </div>
-            </motion.div>
-
-            {/* Motto */}
-            <motion.div
-              className="mb-6"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-
             </motion.div>
 
             {/* Main headline - UPDATED */}
@@ -177,7 +168,6 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                 <motion.div
                   key={location.city}
                   className="glass px-4 py-2 rounded-full"
-                  whileHover={{ scale: 1.05, y: -2 }}
                   animate={{
                     y: [0, -3, 0],
                   }}
