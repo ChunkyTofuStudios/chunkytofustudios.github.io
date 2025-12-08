@@ -177,7 +177,7 @@ export function trackOutboundLink(url: string, label?: string) {
   };
 
   runWhenReady(() => {
-    window.gtag('event', 'click', payload);
+    // window.gtag('event', 'click', payload);
     log('Outbound link tracked:', { url, label, linkDomain });
   });
 }
@@ -201,28 +201,8 @@ export function trackPageView(path: string, title?: string) {
   };
 
   runWhenReady(() => {
-    window.gtag('event', 'page_view', payload);
+    // window.gtag('event', 'page_view', payload);
     log('Page view tracked:', { path, title: title || document.title });
-  });
-}
-
-/**
- * Track custom events
- */
-export function trackEvent(
-  eventName: string,
-  params?: Record<string, unknown>
-) {
-  // Kick off initialization if it hasn't happened yet
-  if (!isLoading && !isReady) {
-    initializeAnalytics();
-  }
-
-  const payload = { ...params, send_to: GA_MEASUREMENT_ID };
-
-  runWhenReady(() => {
-    window.gtag('event', eventName, payload);
-    log('Event:', { eventName, params });
   });
 }
 
