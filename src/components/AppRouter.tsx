@@ -46,6 +46,41 @@ function PageViewTracker() {
   return null;
 }
 
+// Update document title when route changes (for client-side navigation)
+function DocumentTitle() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Map routes to their titles based on the HTML files
+    const titleMap: Record<string, string> = {
+      '/': 'Chunky Tofu Studios',
+      '/dozy': 'Dozy - Chunky Tofu Studios',
+      '/pixel-buddy': 'Pixel Buddy - Chunky Tofu Studios',
+      '/beehive': 'Beehive - Chunky Tofu Studios',
+    };
+
+    // Find matching title (exact match or starts with)
+    let title = titleMap[pathname];
+
+    // If no exact match, check if pathname starts with any route
+    if (!title) {
+      for (const [route, routeTitle] of Object.entries(titleMap)) {
+        if (route !== '/' && pathname.startsWith(route)) {
+          title = routeTitle;
+          break;
+        }
+      }
+    }
+
+    // Update title if found
+    if (title) {
+      document.title = title;
+    }
+  }, [pathname]);
+
+  return null;
+}
+
 function HomePage() {
   const navigate = useNavigate();
 
@@ -301,6 +336,7 @@ function BeehiveDataSafetyPageWrapper() {
 export function AppRouter() {
   return (
     <>
+      <DocumentTitle />
       <ScrollToTop />
       <PageViewTracker />
       <Routes>

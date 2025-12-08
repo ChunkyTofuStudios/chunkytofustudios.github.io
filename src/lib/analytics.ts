@@ -44,6 +44,7 @@ export function initializeDataLayer() {
     window.gtag = function gtag(...args: unknown[]) {
       window.dataLayer.push(args);
     };
+    log('gtag function defined');
   }
 }
 
