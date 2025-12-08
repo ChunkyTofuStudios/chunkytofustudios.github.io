@@ -4,6 +4,7 @@ import { BeehivePage } from "./pages/BeehivePage";
 import { PixelBuddyPage } from "./pages/PixelBuddyPage";
 import { DozyPage } from "./pages/DozyPage";
 import { MarkdownPage } from "./pages/MarkdownPage";
+import { trackPageView } from "../lib/analytics";
 
 import { HomeNavigation } from "./HomeNavigation";
 import { HeroSection } from "./HeroSection";
@@ -28,6 +29,18 @@ function ScrollToTop() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
+// Track page views when route changes
+function PageViewTracker() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Track page view when pathname changes
+    trackPageView(pathname);
   }, [pathname]);
 
   return null;
@@ -119,7 +132,7 @@ function PixelBuddyTermsPageWrapper() {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
   };
-  
+
   return (
     <MarkdownPage
       app="pixel-buddy"
@@ -138,7 +151,7 @@ function PixelBuddyPrivacyPageWrapper() {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
   };
-  
+
   return (
     <MarkdownPage
       app="pixel-buddy"
@@ -152,12 +165,12 @@ function PixelBuddyPrivacyPageWrapper() {
 }
 
 function PixelBuddyDataSafetyPageWrapper() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const navigateToApp = (app: AppPage) => {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
   };
-  
+
   return (
     <MarkdownPage
       app="pixel-buddy"
@@ -176,7 +189,7 @@ function DozyTermsPageWrapper() {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
   };
-  
+
   return (
     <MarkdownPage
       app="dozy"
@@ -195,7 +208,7 @@ function DozyPrivacyPageWrapper() {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
   };
-  
+
   return (
     <MarkdownPage
       app="dozy"
@@ -215,7 +228,7 @@ function DozyDataSafetyPageWrapper() {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
   };
-  
+
   return (
     <MarkdownPage
       app="dozy"
@@ -234,7 +247,7 @@ function BeehiveTermsPageWrapper() {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
   };
-  
+
   return (
     <MarkdownPage
       app="beehive"
@@ -253,7 +266,7 @@ function BeehivePrivacyPageWrapper() {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
   };
-  
+
   return (
     <MarkdownPage
       app="beehive"
@@ -272,7 +285,7 @@ function BeehiveDataSafetyPageWrapper() {
     if (app === 'home') navigate('/');
     else navigate(`/${app}`);
   };
-  
+
   return (
     <MarkdownPage
       app="beehive"
@@ -289,21 +302,22 @@ export function AppRouter() {
   return (
     <>
       <ScrollToTop />
+      <PageViewTracker />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        
+
         {/* Pixel Buddy Routes */}
         <Route path="/pixel-buddy" element={<PixelBuddyPageWrapper />} />
         <Route path="/pixel-buddy/terms-and-conditions" element={<PixelBuddyTermsPageWrapper />} />
         <Route path="/pixel-buddy/privacy-policy" element={<PixelBuddyPrivacyPageWrapper />} />
         <Route path="/pixel-buddy/data-safety" element={<PixelBuddyDataSafetyPageWrapper />} />
-        
+
         {/* Dozy Routes */}
         <Route path="/dozy" element={<DozyPageWrapper />} />
         <Route path="/dozy/terms-and-conditions" element={<DozyTermsPageWrapper />} />
         <Route path="/dozy/privacy-policy" element={<DozyPrivacyPageWrapper />} />
         <Route path="/dozy/data-safety" element={<DozyDataSafetyPageWrapper />} />
-        
+
         {/* Beehive Routes */}
         <Route path="/beehive" element={<BeehivePageWrapper />} />
         <Route path="/beehive/terms-and-conditions" element={<BeehiveTermsPageWrapper />} />

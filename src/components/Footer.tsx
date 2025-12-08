@@ -3,6 +3,7 @@ import { Twitter, Github, Linkedin, ArrowRight, Code } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import companyLogo from '../assets/cts_logo.png';
 import { LinkButton } from "./ui/link-button";
+import { trackOutboundLink } from "../lib/analytics";
 
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
@@ -14,22 +15,22 @@ export function Footer({ onAppClick }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { 
-      icon: Linkedin, 
-      href: "https://www.linkedin.com/company/chunky-tofu-studios/", 
-      label: "Professional updates",
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/company/chunky-tofu-studios/",
+      label: "LinkedIn Profile",
       hoverColor: "hover:from-blue-600 hover:to-blue-700"
     },
-    { 
-      icon: Twitter, 
-      href: "https://x.com/Chunky_Tofu", 
-      label: "Follow our journey on X",
+    {
+      icon: Twitter,
+      href: "https://x.com/Chunky_Tofu",
+      label: "X/Twitter Profile",
       hoverColor: "hover:from-blue-400 hover:to-cyan-500"
     },
-    { 
-      icon: Github, 
-      href: "https://github.com/ChunkyTofuStudios", 
-      label: "Open source contributions",
+    {
+      icon: Github,
+      href: "https://github.com/ChunkyTofuStudios",
+      label: "GitHub Organization",
       hoverColor: "hover:from-gray-600 hover:to-gray-800"
     },
   ];
@@ -40,7 +41,8 @@ export function Footer({ onAppClick }: FooterProps) {
     }
   };
 
-  const handleSocialClick = (url: string) => {
+  const handleSocialClick = (url: string, label?: string) => {
+    trackOutboundLink(url, label);
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
@@ -82,14 +84,14 @@ export function Footer({ onAppClick }: FooterProps) {
             className="h-full"
           >
             <div className="flex items-center gap-3 mb-6">
-              <motion.div 
+              <motion.div
                 className="w-12 h-12 rounded-xl p-2 bg-black"
                 whileHover={{ scale: 1.05, rotate: 5 }}
                 transition={{ duration: 0.3 }}
               >
-                <ImageWithFallback 
-                  src={companyLogo} 
-                  alt="Chunky Tofu Studios" 
+                <ImageWithFallback
+                  src={companyLogo}
+                  alt="Chunky Tofu Studios"
                   className="w-full h-full object-contain"
                 />
               </motion.div>
@@ -97,7 +99,7 @@ export function Footer({ onAppClick }: FooterProps) {
             </div>
 
             {/* Updated motto */}
-            <motion.div 
+            <motion.div
               className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl px-4 py-2 mb-4 inline-block border border-purple-400/30"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
@@ -204,8 +206,12 @@ export function Footer({ onAppClick }: FooterProps) {
                 </LinkButton>
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-                <button 
-                  onClick={() => window.open('https://play.google.com/store/apps/developer?id=Chunky+Tofu+Studios', '_blank', 'noopener,noreferrer')}
+                <button
+                  onClick={() => {
+                    const url = 'https://play.google.com/store/apps/developer?id=Chunky+Tofu+Studios';
+                    trackOutboundLink(url, 'View All Apps');
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                  }}
                   className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2"
                 >
                   <ArrowRight className="w-3 h-3" />
@@ -230,7 +236,7 @@ export function Footer({ onAppClick }: FooterProps) {
               {socialLinks.map(({ icon: Icon, href, label, hoverColor }, index) => (
                 <motion.button
                   key={index}
-                  onClick={() => handleSocialClick(href)}
+                  onClick={() => handleSocialClick(href, label)}
                   title={label}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
@@ -240,7 +246,7 @@ export function Footer({ onAppClick }: FooterProps) {
                 </motion.button>
               ))}
             </div>
-            
+
             {/* Copyright on the right */}
             <p className="text-gray-400 text-sm">
               &copy; {currentYear} Chunky Tofu Studios. All rights reserved.

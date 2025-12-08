@@ -3,6 +3,7 @@ import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ExternalLink, Package, Heart, Star, Download, ArrowRight } from "lucide-react";
+import { trackOutboundLink } from "../lib/analytics";
 
 const packages = [
   {
@@ -52,19 +53,10 @@ const packages = [
 ];
 
 export function OpenSourceSection() {
-  const handlePubDevClick = () => {
-    window.open('https://pub.dev/publishers/chunkytofustudios.com/packages', '_blank', 'noopener,noreferrer');
-  };
-
   const handlePackageClick = (packageName: string) => {
-    window.open(`https://pub.dev/packages/${packageName}`, '_blank', 'noopener,noreferrer');
-  };
-
-  const handleContactForBusiness = () => {
-    const contactSection = document.querySelector('[data-section="contact"]');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    const url = `https://pub.dev/packages/${packageName}`;
+    trackOutboundLink(url, `pub.dev - ${packageName}`);
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -115,7 +107,7 @@ export function OpenSourceSection() {
             </h2>
           </motion.div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            We believe in sharing our craft with the developer community. 
+            We believe in sharing our craft with the developer community.
             Explore our open source packages and libraries, built with the same texture and care as our apps.
           </p>
 
@@ -165,7 +157,11 @@ export function OpenSourceSection() {
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
               className="cursor-pointer"
-              onClick={() => window.open('https://pub.dev/publishers/chunkytofustudios.com/packages', '_blank', 'noopener,noreferrer')}
+              onClick={() => {
+                const url = 'https://pub.dev/publishers/chunkytofustudios.com/packages';
+                trackOutboundLink(url, 'pub.dev Publisher Page');
+                window.open(url, '_blank', 'noopener,noreferrer');
+              }}
             >
 
             </motion.div>
@@ -187,7 +183,7 @@ export function OpenSourceSection() {
                 <CardContent className="p-8">
                   <div className="flex items-start justify-between mb-6">
                     <div className="flex items-center gap-3">
-                      <motion.div 
+                      <motion.div
                         className={`w-12 h-12 rounded-2xl bg-gradient-to-r ${pkg.color} flex items-center justify-center shadow-lg`}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ duration: 0.2 }}
@@ -237,8 +233,8 @@ export function OpenSourceSection() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <Badge 
-                          variant="outline" 
+                        <Badge
+                          variant="outline"
                           className="text-xs border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors rounded-full"
                         >
                           {tag}

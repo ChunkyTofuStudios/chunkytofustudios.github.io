@@ -6,6 +6,7 @@ import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { AppHeader } from "../AppHeader";
 import googlePlayButtonImg from '../../assets/play_store_logo.png';
 import appStoreButtonImg from '../../assets/app_store_logo.png';
+import { trackOutboundLink } from "../../lib/analytics";
 
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
@@ -21,22 +22,22 @@ interface AppPageConfig {
   slug: string;
   logo: string;
   screenshot: string;
-  
+
   // App details
   category: string;
   categoryColor: string; // e.g., "yellow", "blue", "purple"
   subtitle: string;
   description: string;
-  
+
   // Store links
   playStoreUrl: string;
   appStoreUrl: string;
-  
+
   // Features
   features: Feature[];
   featuresTitle: string;
   featuresSubtitle: string;
-  
+
   // Colors
   gradientFrom: string;
   gradientTo: string;
@@ -51,10 +52,12 @@ interface AppPageProps {
 
 export function AppPage({ config, onAppClick }: AppPageProps) {
   const handlePlayStoreClick = () => {
+    trackOutboundLink(config.playStoreUrl, `${config.name} - Google Play`);
     window.open(config.playStoreUrl, "_blank");
   };
 
   const handleAppStoreClick = () => {
+    trackOutboundLink(config.appStoreUrl, `${config.name} - App Store`);
     window.open(config.appStoreUrl, "_blank");
   };
 
@@ -110,8 +113,8 @@ export function AppPage({ config, onAppClick }: AppPageProps) {
                   <h1 className="text-4xl font-semibold text-gray-900 mb-2">{config.name}</h1>
                   <div className="flex items-center gap-2">
                     <Badge className="bg-green-500 text-white border-0 px-2 py-1 text-sm">Free</Badge>
-                    <Badge 
-                      variant="outline" 
+                    <Badge
+                      variant="outline"
                       className={config.customColor ? "text-sm" : `border-${config.categoryColor}-300 text-${config.categoryColor}-700 bg-${config.categoryColor}-50 text-sm`}
                       style={config.customColor ? {
                         borderColor: lightenColor(config.customColor, 0.5),
@@ -169,7 +172,7 @@ export function AppPage({ config, onAppClick }: AppPageProps) {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex justify-center lg:justify-end"
             >
-              <motion.div 
+              <motion.div
                 className="relative max-w-sm"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
@@ -187,7 +190,7 @@ export function AppPage({ config, onAppClick }: AppPageProps) {
       </section>
 
       {/* Features Section */}
-      <section 
+      <section
         className="py-12 lg:py-16 bg-gradient-to-b to-white"
         style={config.customColor ? {
           backgroundImage: `linear-gradient(to bottom, ${config.customColor}0D, white)`
@@ -222,7 +225,7 @@ export function AppPage({ config, onAppClick }: AppPageProps) {
                 <Card className="h-full glass border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
                   <CardContent className="p-6">
                     <div className="space-y-3">
-                      <div 
+                      <div
                         className="w-12 h-12 text-white rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200"
                         style={config.customColor ? {
                           background: `linear-gradient(to bottom right, ${config.customColor}, ${darkenColor(config.customColor, 0.2)})`

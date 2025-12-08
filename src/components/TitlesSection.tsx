@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { ArrowRight, Instagram, MessageCircle } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { LinkButton } from "./ui/link-button";
+import { trackOutboundLink } from "../lib/analytics";
 
 // TikTok Icon Component
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -104,11 +105,13 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
     'Dozy': 'dozy'
   };
 
-  const handlePlayStoreClick = (url: string) => {
+  const handlePlayStoreClick = (url: string, appName?: string) => {
+    trackOutboundLink(url, appName ? `${appName} - Google Play` : 'Google Play');
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
-  const handleAppStoreClick = (url: string) => {
+  const handleAppStoreClick = (url: string, appName?: string) => {
+    trackOutboundLink(url, appName ? `${appName} - App Store` : 'App Store');
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
@@ -291,7 +294,7 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
                       <div className="flex gap-3 sm:gap-4 items-center">
                         {app.playStoreUrl && (
                           <motion.button
-                            onClick={() => handlePlayStoreClick(app.playStoreUrl)}
+                            onClick={() => handlePlayStoreClick(app.playStoreUrl, app.title)}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="cursor-pointer"
@@ -305,7 +308,7 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
                         )}
                         {app.appStoreUrl && (
                           <motion.button
-                            onClick={() => handleAppStoreClick(app.appStoreUrl)}
+                            onClick={() => handleAppStoreClick(app.appStoreUrl, app.title)}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="cursor-pointer"

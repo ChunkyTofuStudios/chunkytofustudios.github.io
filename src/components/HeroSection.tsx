@@ -21,17 +21,6 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
     }
   };
 
-  const handleViewApps = () => {
-    window.open('https://play.google.com/store/apps/developer?id=Chunky+Tofu+Studios', '_blank', 'noopener,noreferrer');
-  };
-
-  const handleContact = () => {
-    const contactSection = document.querySelector('[data-section="contact"]');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-gray-50 pt-24 lg:pt-16">
       {/* Dynamic Background Elements */}

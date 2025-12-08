@@ -2,7 +2,7 @@
  * Google Analytics 4 - Centralized Analytics Module
  * 
  * All analytics configuration is controlled from this single file.
- * Page views are tracked automatically by GA4.
+ * Page views are tracked explicitly using React Router's useLocation hook.
  * Outbound links are tracked automatically via event delegation.
  */
 
@@ -86,21 +86,60 @@ export function initializeAnalytics() {
 
 /**
  * Track outbound link clicks
+ * Uses GA4-compatible event format
  */
-function trackOutboundLink(url: string, label?: string) {
+export function trackOutboundLink(url: string, label?: string) {
   if (!window.gtag) {
     log('gtag not initialized, skipping outbound link');
     return;
   }
 
+  // Safely parse URL to extract domain
+  let linkDomain = '';
+  try {
+    const parsedUrl = new URL(url);
+    linkDomain = parsedUrl.hostname;
+  } catch {
+    // If URL parsing fails, try with current origin as base
+    try {
+      const parsedUrl = new URL(url, window.location.origin);
+      linkDomain = parsedUrl.hostname;
+    } catch {
+      // If still fails, use empty string
+      linkDomain = '';
+    }
+  }
+
+  // GA4-compatible event format
   window.gtag('event', 'click', {
     event_category: 'outbound',
     event_label: label || url,
+    link_url: url,
+    link_domain: linkDomain,
     transport_type: 'beacon',
-    outbound_url: url,
   });
 
-  log('Outbound link:', { url, label });
+  log('Outbound link tracked:', { url, label, linkDomain });
+}
+
+/**
+ * Track page view
+ * Call this when the route changes in a SPA
+ */
+export function trackPageView(path: string, title?: string) {
+  if (!window.gtag) {
+    log('gtag not initialized, skipping page view');
+    return;
+  }
+
+  // GA4 page_view event
+  window.gtag('event', 'page_view', {
+    page_path: path,
+    page_title: title || document.title,
+    page_location: window.location.href,
+  });
+
+  log('Page view tracked:', { path, title: title || document.title });
 }
 
 /**
