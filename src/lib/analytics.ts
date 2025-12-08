@@ -32,23 +32,37 @@ function log(message: string, data?: unknown) {
 }
 
 /**
+ * Initialize dataLayer and gtag function
+ * This should be called early, before cookie consent, so consent updates can work
+ */
+export function initializeDataLayer() {
+  // Initialize dataLayer
+  window.dataLayer = window.dataLayer || [];
+
+  // Define gtag function if it doesn't exist
+  if (!window.gtag) {
+    window.gtag = function gtag(...args: unknown[]) {
+      window.dataLayer.push(args);
+    };
+  }
+}
+
+/**
  * Initialize Google Analytics
  * Call this once when the app starts
+ * 
+ * IMPORTANT: initializeDataLayer() should be called first (before cookie consent)
+ * to ensure gtag is available for consent updates.
  */
 export function initializeAnalytics() {
-  // Prevent double initialization
-  if (window.gtag) {
+  // Ensure dataLayer is initialized
+  initializeDataLayer();
+
+  // Prevent double initialization - check if GA4 script is already loaded
+  if (document.querySelector(`script[src*="gtag/js?id=${GA_MEASUREMENT_ID}"]`)) {
     log('Already initialized, skipping');
     return;
   }
-
-  // Initialize dataLayer
-  window.dataLayer = window.dataLayer || [];
-  
-  // Define gtag function
-  window.gtag = function gtag(...args: unknown[]) {
-    window.dataLayer.push(args);
-  };
 
   // Set initial timestamp
   window.gtag('js', new Date());
@@ -124,9 +138,9 @@ function isExternalUrl(url: string): boolean {
 function setupOutboundLinkTracking() {
   document.addEventListener('click', (event) => {
     const anchor = (event.target as Element).closest('a');
-    
+
     if (!anchor) return;
-    
+
     const href = anchor.getAttribute('href');
     if (!href) return;
 

@@ -194,14 +194,10 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                 whileHover={{ scale: 1.05 }} 
                 whileTap={{ scale: 0.95 }}
                 className="rounded-2xl"
-                animate={{
-                  boxShadow: ["0 0 20px rgba(147, 51, 234, 0.4)", "0 0 40px rgba(147, 51, 234, 0.6)", "0 0 20px rgba(147, 51, 234, 0.4)"]
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
               >
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-4 text-lg rounded-2xl shadow-xl hover:shadow-2xl border-0 transition-all duration-300 font-medium group relative overflow-hidden"
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-5 text-lg rounded-2xl shadow-l hover:shadow-xl border-0 transition-all duration-300 font-medium group relative overflow-hidden"
                   onClick={() => {
                     const titlesSection = document.querySelector('[data-section="titles"]');
                     if (titlesSection) {
@@ -213,7 +209,6 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                     Explore Our Titles
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Button>
               </motion.div>
               
@@ -304,7 +299,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
 
       {/* Energetic Scroll Indicator */}
       <motion.button
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm rounded-full p-4 shadow-xl border border-white/20"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer bg-gradient-to-r from-blue-400/20 to-blue-500/20 backdrop-blur-sm rounded-full p-4 shadow-xl border border-white/20"
         animate={{ 
           y: [0, 12, 0],
           scale: [1, 1.1, 1],
@@ -313,7 +308,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
         onClick={scrollToServices}
         whileHover={{ scale: 1.2, rotate: 5 }}
       >
-        <ChevronDown className="w-6 h-6 text-purple-600" />
+        <ChevronDown className="w-6 h-6 text-blue-800/40" />
       </motion.button>
     </section>
   );

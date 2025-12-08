@@ -49,13 +49,16 @@
             "remark-gfm": "^4.0.1",
             "sonner": "^2.0.3",
             "tailwind-merge": "*",
+            "vanilla-cookieconsent": "^3.1.0",
             "vaul": "^1.1.2"
       },
       "devDependencies": {
+            "@tailwindcss/vite": "^4.1.17",
             "@types/node": "^20.10.0",
             "@types/react": "^19.2.7",
             "@types/react-dom": "^19.2.3",
             "@vitejs/plugin-react-swc": "^3.10.2",
+            "tailwindcss": "^4.1.17",
             "typescript": "^5.9.3",
             "vite": "^6.4.1"
       },
