@@ -20,9 +20,9 @@ export function AppHeader({ appSlug, appName, appLogo }: AppHeaderProps) {
   ];
 
   const isCurrentPage = (path: string) => location.pathname === path;
-  
+
   // Determine if we're on the main app page or a subpage
-  const isOnAppPage = location.pathname === `/${appSlug}`;
+  const isOnAppPage = location.pathname === `/${appSlug}` || location.pathname === `/${appSlug}/`;
   // Back goes to home if on app page, otherwise goes to app page
   const backPath = isOnAppPage ? '/' : `/${appSlug}`;
 
@@ -74,11 +74,10 @@ export function AppHeader({ appSlug, appName, appLogo }: AppHeaderProps) {
                 <LinkButton
                   key={page.path}
                   to={page.path}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 no-underline ${
-                    isActive
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 no-underline ${isActive
                       ? 'text-white bg-gray-600/60'
                       : 'text-gray-300 hover:text-white hover:bg-gray-800 hover:shadow-md'
-                  }`}
+                    }`}
                 >
                   {page.label}
                 </LinkButton>
