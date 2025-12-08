@@ -177,7 +177,7 @@ export function trackOutboundLink(url: string, label?: string) {
   };
 
   runWhenReady(() => {
-    // window.gtag('event', 'click', payload);
+    window.gtag('event', 'click', payload);
     log('Outbound link tracked:', { url, label, linkDomain });
   });
 }
@@ -201,7 +201,7 @@ export function trackPageView(path: string, title?: string) {
   };
 
   runWhenReady(() => {
-    // window.gtag('event', 'page_view', payload);
+    window.gtag('event', 'page_view', payload);
     log('Page view tracked:', { path, title: title || document.title });
   });
 }
