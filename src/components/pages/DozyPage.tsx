@@ -1,7 +1,7 @@
 import { MapPin, Bell, BarChart3, Settings, Smartphone } from "lucide-react";
 import { AppPage } from "./AppPage";
 import dozyLogo from '../../assets/dozy_logo.png';
-import dozyScreenshot from '../../assets/dozy_ss.png';
+import dozyScreenshot from '../../assets/dozy_ss.webp';
 
 type AppPageType = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 

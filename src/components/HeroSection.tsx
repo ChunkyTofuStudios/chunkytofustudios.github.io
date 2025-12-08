@@ -5,7 +5,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Link } from "react-router-dom";
 
 import companyLogo from '../assets/cts_logo.png';
-import appsMockup from '../assets/hero.png';
+import appsMockup from '../assets/hero.webp';
 
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
@@ -37,7 +37,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated Gradient Orbs */}
-        <motion.div 
+        <motion.div
           className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-purple-400/30 to-pink-600/30 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
@@ -50,7 +50,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
             ease: "easeInOut",
           }}
         />
-        <motion.div 
+        <motion.div
           className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400/30 to-cyan-600/30 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
@@ -107,7 +107,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <motion.div 
+              <motion.div
                 className="w-16 h-16 rounded-3xl shadow-lg p-3"
                 style={{ backgroundColor: "rgb(33, 33, 33)" }}
                 whileHover={{ scale: 1.1, rotate: 10 }}
@@ -116,9 +116,9 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                <img 
-                  src={companyLogo} 
-                  alt="Chunky Tofu Studios" 
+                <img
+                  src={companyLogo}
+                  alt="Chunky Tofu Studios"
                   className="w-full h-full object-contain scale-125"
                 />
               </motion.div>
@@ -144,8 +144,8 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                 with texture
               </h2>
               <p className="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed">
-                We're a group of <span className="text-gray-900 font-medium">indie developers</span> spread across 
-                <span className="text-gray-900 font-medium"> six cities worldwide</span>, 
+                We're a group of <span className="text-gray-900 font-medium">indie developers</span> spread across
+                <span className="text-gray-900 font-medium"> six cities worldwide</span>,
                 creating delightful mobile experiences that users absolutely love.
               </p>
             </motion.div>
@@ -190,13 +190,13 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
-              <motion.div 
-                whileHover={{ scale: 1.05 }} 
+              <motion.div
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="rounded-2xl"
               >
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-5 text-lg rounded-2xl shadow-l hover:shadow-xl border-0 transition-all duration-300 font-medium group relative overflow-hidden"
                   onClick={() => {
                     const titlesSection = document.querySelector('[data-section="titles"]');
@@ -211,10 +211,10 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                   </span>
                 </Button>
               </motion.div>
-              
+
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   size="lg"
                   className="glass border border-gray-200 text-gray-900 hover:bg-gray-50 px-8 py-4 text-lg rounded-2xl transition-all duration-200 font-medium"
                   onClick={() => {
@@ -245,42 +245,42 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="relative max-w-5xl mx-auto scale-100"
               >
-                <ImageWithFallback 
+                <ImageWithFallback
                   src={appsMockup}
                   alt="Chunky Tofu Studios mobile apps mockup - Beehive, Pixel Buddy, and Dozy"
                   className="w-full h-auto drop-shadow-2xl"
                 />
-                
+
                 {/* Interactive overlay areas for each app */}
                 <div className="absolute inset-0 grid grid-cols-3 gap-4 p-4">
-                  {/* Beehive - Left phone */}
-                  <Link 
-                    to="/beehive"
+                  {/* Pixel Buddy - Left phone */}
+                  <Link
+                    to="/pixel-buddy"
                     className="cursor-pointer rounded-3xl no-underline"
                     onClick={(e) => {
                       // For Command/Ctrl+Click, let browser handle naturally
                       if (e.metaKey || e.ctrlKey || e.shiftKey) return;
                       // Otherwise use onAppClick if provided
                       e.preventDefault();
-                      if (onAppClick) onAppClick('beehive');
-                    }}
-                    title="View Beehive"
-                  />
-                  
-                  {/* Pixel Buddy - Center phone */}
-                  <Link 
-                    to="/pixel-buddy"
-                    className="cursor-pointer rounded-3xl no-underline"
-                    onClick={(e) => {
-                      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
-                      e.preventDefault();
                       if (onAppClick) onAppClick('pixel-buddy');
                     }}
                     title="View Pixel Buddy"
                   />
-                  
+
+                  {/* Beehive - Center phone */}
+                  <Link
+                    to="/beehive"
+                    className="cursor-pointer rounded-3xl no-underline"
+                    onClick={(e) => {
+                      if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+                      e.preventDefault();
+                      if (onAppClick) onAppClick('beehive');
+                    }}
+                    title="View Beehive"
+                  />
+
                   {/* Dozy - Right phone */}
-                  <Link 
+                  <Link
                     to="/dozy"
                     className="cursor-pointer rounded-3xl no-underline"
                     onClick={(e) => {
@@ -300,7 +300,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
       {/* Energetic Scroll Indicator */}
       <motion.button
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer bg-gradient-to-r from-blue-400/20 to-blue-500/20 backdrop-blur-sm rounded-full p-4 shadow-xl border border-white/20"
-        animate={{ 
+        animate={{
           y: [0, 12, 0],
           scale: [1, 1.1, 1],
         }}

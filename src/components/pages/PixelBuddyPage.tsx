@@ -1,7 +1,7 @@
 import { Palette, Zap, Heart, Users, Smartphone, Shield } from "lucide-react";
 import { AppPage } from "./AppPage";
 import pixelBuddyLogo from '../../assets/pixel_buddy_logo.png';
-import pixelBuddyScreenshot from '../../assets/pixel_buddy_ss.png';
+import pixelBuddyScreenshot from '../../assets/pixel_buddy_ss.webp';
 
 type AppPageType = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
