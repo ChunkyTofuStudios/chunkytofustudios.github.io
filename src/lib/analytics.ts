@@ -34,6 +34,8 @@ function log(message: string, data?: unknown) {
 /**
  * Initialize dataLayer and gtag function
  * This should be called early, before cookie consent, so consent updates can work
+ * 
+ * Also sets default consent mode to 'denied' so events are queued until consent is granted
  */
 export function initializeDataLayer() {
   // Initialize dataLayer
@@ -45,6 +47,19 @@ export function initializeDataLayer() {
       window.dataLayer.push(args);
     };
     log('gtag function defined');
+
+    // Set default consent mode to 'denied' so events are queued until consent is granted
+    // This ensures Google Tag Assistant can see events even before consent
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      functionality_storage: 'denied',
+      personalization_storage: 'denied',
+    });
+
+    log('Default consent mode set to denied');
   }
 }
 
@@ -68,13 +83,27 @@ export function initializeAnalytics() {
   // Set initial timestamp
   window.gtag('js', new Date());
 
-  // Configure GA4 - page views are automatic
+  // Configure GA4 - queue in dataLayer (standard pattern)
+  // This gets processed when the script loads
   window.gtag('config', GA_MEASUREMENT_ID);
 
   // Load the gtag.js script
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+
+  // Also call config after script loads to ensure it's executed
+  // This is a safety measure to ensure Google Tag Assistant detects the config
+  script.onload = () => {
+    window.gtag('config', GA_MEASUREMENT_ID);
+    log('GA4 config executed after script load');
+  };
+
+  // Handle script load errors
+  script.onerror = () => {
+    log('Failed to load GA4 script');
+  };
+
   document.head.appendChild(script);
 
   log('Initialized with ID:', GA_MEASUREMENT_ID);
@@ -111,7 +140,8 @@ export function trackOutboundLink(url: string, label?: string) {
     }
   }
 
-  // GA4-compatible event format
+  // GA4-compatible event format for outbound links
+  // Using descriptive event name that Google Tag Assistant will recognize
   window.gtag('event', 'click', {
     event_category: 'outbound',
     event_label: label || url,
