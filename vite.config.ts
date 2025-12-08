@@ -20,15 +20,24 @@ export default defineConfig({
         server.middlewares.use((req, res, next) => {
           // Handle routes without trailing slash (e.g., /dozy -> serve dozy/index.html)
           const url = req.url?.split('?')[0] || '';
-          const routes = ['/dozy', '/pixel-buddy', '/beehive'];
+          const routes = ['/dozy', '/pixel-buddy', '/beehive', '/beehive/demo'];
 
           for (const route of routes) {
             // Match exact route without trailing slash
             if (url === route) {
-              const indexPath = path.join(__dirname, route, 'index.html');
+              let indexPath = '';
+              if (route.includes('/beehive/demo')) {
+                indexPath = path.join(__dirname, route.replace(/\/$/, '.html'));
+                if (!fs.existsSync(indexPath)) {
+                  indexPath = path.join(__dirname, route, 'index.html');
+                }
+              } else {
+                indexPath = path.join(__dirname, route, 'index.html');
+              }
+
               if (fs.existsSync(indexPath)) {
                 // Rewrite URL to serve the index.html file
-                req.url = route + '/index.html' + (req.url?.includes('?') ? '?' + req.url.split('?')[1] : '');
+                req.url = indexPath.replace(__dirname, '') + (req.url?.includes('?') ? '?' + req.url.split('?')[1] : '');
               }
               break;
             }
@@ -50,6 +59,9 @@ export default defineConfig({
         'beehive-data-safety': resolve(__dirname, 'beehive/data-safety.html'),
         'beehive-privacy-policy': resolve(__dirname, 'beehive/privacy-policy.html'),
         'beehive-terms-and-conditions': resolve(__dirname, 'beehive/terms-and-conditions.html'),
+        'beehive-demo': resolve(__dirname, 'beehive/demo/index.html'),
+        'beehive-demo-popular': resolve(__dirname, 'beehive/demo/popular.html'),
+        'beehive-demo-tutorial': resolve(__dirname, 'beehive/demo/tutorial.html'),
         'pixel-buddy': resolve(__dirname, 'pixel-buddy/index.html'),
         'pixel-buddy-data-safety': resolve(__dirname, 'pixel-buddy/data-safety.html'),
         'pixel-buddy-privacy-policy': resolve(__dirname, 'pixel-buddy/privacy-policy.html'),
