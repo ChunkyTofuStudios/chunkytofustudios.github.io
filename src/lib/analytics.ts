@@ -10,9 +10,15 @@ const GA_MEASUREMENT_ID = 'G-REYS4TKJBK';
 
 // Configuration
 const config = {
-  debug: true, // import.meta.env.DEV, // Enable debug logging in development
+  debug: import.meta.env.DEV, // Enable debug logging in development
   trackOutboundLinks: true,
 };
+
+// Internal state so we don't emit events before GA is configured
+let isLoading = false;
+let isReady = false;
+const pendingCalls: Array<() => void> = [];
+let outboundTrackingInitialized = false;
 
 // Type declarations for gtag
 declare global {
@@ -28,6 +34,28 @@ declare global {
 function log(message: string, data?: unknown) {
   if (config.debug) {
     console.log(`[Analytics] ${message}`, data ?? '');
+  }
+}
+
+function runWhenReady(callback: () => void) {
+  if (isReady) {
+    callback();
+  } else {
+    pendingCalls.push(callback);
+  }
+}
+
+function markReady() {
+  if (isReady) return;
+  isReady = true;
+  if (config.trackOutboundLinks && !outboundTrackingInitialized) {
+    setupOutboundLinkTracking();
+    outboundTrackingInitialized = true;
+  }
+
+  while (pendingCalls.length) {
+    const next = pendingCalls.shift();
+    next?.();
   }
 }
 
@@ -71,21 +99,38 @@ export function initializeDataLayer() {
  * to ensure gtag is available for consent updates.
  */
 export function initializeAnalytics() {
-  // Ensure dataLayer is initialized
-  initializeDataLayer();
-
-  // Prevent double initialization - check if GA4 script is already loaded
-  if (document.querySelector(`script[src*="gtag/js?id=${GA_MEASUREMENT_ID}"]`)) {
-    log('Already initialized, skipping');
+  if (isLoading) {
     return;
   }
 
-  // Set initial timestamp
+  // Ensure dataLayer is initialized
+  initializeDataLayer();
+
+  isLoading = true;
+
+  // Queue the required commands immediately so they're the first entries in the dataLayer
   window.gtag('js', new Date());
 
-  // Configure GA4 - queue in dataLayer (standard pattern)
-  // This gets processed when the script loads
   window.gtag('config', GA_MEASUREMENT_ID);
+
+  const completeInitialization = () => {
+    // Protect against multiple onload triggers
+    if (isReady) return;
+
+    // Re-issue config after the library is definitely available so Tag Assistant can see it
+    window.gtag('config', GA_MEASUREMENT_ID);
+    markReady();
+    log('GA4 config executed after script load');
+  };
+
+  // Prevent double initialization - check if GA4 script is already loaded
+  const existingScript = document.querySelector<HTMLScriptElement>(
+    `script[src*="gtag/js?id=${GA_MEASUREMENT_ID}"]`
+  );
+  if (existingScript) {
+    completeInitialization();
+    return;
+  }
 
   // Load the gtag.js script
   const script = document.createElement('script');
@@ -94,24 +139,17 @@ export function initializeAnalytics() {
 
   // Also call config after script loads to ensure it's executed
   // This is a safety measure to ensure Google Tag Assistant detects the config
-  script.onload = () => {
-    window.gtag('config', GA_MEASUREMENT_ID);
-    log('GA4 config executed after script load');
-  };
+  script.onload = completeInitialization;
 
   // Handle script load errors
   script.onerror = () => {
     log('Failed to load GA4 script');
+    isLoading = false;
   };
 
   document.head.appendChild(script);
 
   log('Initialized with ID:', GA_MEASUREMENT_ID);
-
-  // Setup outbound link tracking
-  if (config.trackOutboundLinks) {
-    setupOutboundLinkTracking();
-  }
 }
 
 /**
@@ -119,9 +157,9 @@ export function initializeAnalytics() {
  * Uses GA4-compatible event format
  */
 export function trackOutboundLink(url: string, label?: string) {
-  if (!window.gtag) {
-    log('gtag not initialized, skipping outbound link');
-    return;
+  // Kick off initialization if it hasn't happened yet
+  if (!isLoading && !isReady) {
+    initializeAnalytics();
   }
 
   // Safely parse URL to extract domain
@@ -142,15 +180,19 @@ export function trackOutboundLink(url: string, label?: string) {
 
   // GA4-compatible event format for outbound links
   // Using descriptive event name that Google Tag Assistant will recognize
-  window.gtag('event', 'click', {
+  const payload = {
     event_category: 'outbound',
     event_label: label || url,
     link_url: url,
     link_domain: linkDomain,
     transport_type: 'beacon',
-  });
+    send_to: GA_MEASUREMENT_ID,
+  };
 
-  log('Outbound link tracked:', { url, label, linkDomain });
+  runWhenReady(() => {
+    window.gtag('event', 'click', payload);
+    log('Outbound link tracked:', { url, label, linkDomain });
+  });
 }
 
 /**
@@ -158,19 +200,23 @@ export function trackOutboundLink(url: string, label?: string) {
  * Call this when the route changes in a SPA
  */
 export function trackPageView(path: string, title?: string) {
-  if (!window.gtag) {
-    log('gtag not initialized, skipping page view');
-    return;
+  // Kick off initialization if it hasn't happened yet
+  if (!isLoading && !isReady) {
+    initializeAnalytics();
   }
 
   // GA4 page_view event
-  window.gtag('event', 'page_view', {
+  const payload = {
     page_path: path,
     page_title: title || document.title,
     page_location: window.location.href,
-  });
+    send_to: GA_MEASUREMENT_ID,
+  };
 
-  log('Page view tracked:', { path, title: title || document.title });
+  runWhenReady(() => {
+    window.gtag('event', 'page_view', payload);
+    log('Page view tracked:', { path, title: title || document.title });
+  });
 }
 
 /**
@@ -180,13 +226,17 @@ export function trackEvent(
   eventName: string,
   params?: Record<string, unknown>
 ) {
-  if (!window.gtag) {
-    log('gtag not initialized, skipping event');
-    return;
+  // Kick off initialization if it hasn't happened yet
+  if (!isLoading && !isReady) {
+    initializeAnalytics();
   }
 
-  window.gtag('event', eventName, params);
-  log('Event:', { eventName, params });
+  const payload = { ...params, send_to: GA_MEASUREMENT_ID };
+
+  runWhenReady(() => {
+    window.gtag('event', eventName, payload);
+    log('Event:', { eventName, params });
+  });
 }
 
 /**
