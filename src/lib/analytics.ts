@@ -10,7 +10,7 @@ const GA_MEASUREMENT_ID = 'G-REYS4TKJBK';
 
 // Configuration
 const config = {
-  debug: import.meta.env.DEV, // Enable debug logging in development
+  debug: true, // import.meta.env.DEV, // Enable debug logging in development
   trackOutboundLinks: true,
 };
 
