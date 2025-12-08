@@ -75,19 +75,6 @@ export function initializeDataLayer() {
       window.dataLayer.push(args);
     };
     log('gtag function defined');
-
-    // Set default consent mode to 'denied' so events are queued until consent is granted
-    // This ensures Google Tag Assistant can see events even before consent
-    window.gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      functionality_storage: 'denied',
-      personalization_storage: 'denied',
-    });
-
-    log('Default consent mode set to denied');
   }
 }
 
