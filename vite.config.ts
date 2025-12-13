@@ -18,29 +18,28 @@ export default defineConfig({
       name: 'serve-subdirectory-index',
       configureServer(server) {
         server.middlewares.use((req, res, next) => {
-          // Handle routes without trailing slash (e.g., /dozy -> serve dozy/index.html)
-          const url = req.url?.split('?')[0] || '';
-          const routes = ['/dozy', '/pixel-buddy', '/beehive', '/beehive/demo'];
+          // Handle microsite routes (including policy aliases) in dev without duplicate files
+          const [pathname, query = ''] = (req.url || '').split('?');
+          const allowedBases = ['/dozy', '/pixel-buddy', '/beehive'];
+          const policySlugs = new Set(['privacy-policy', 'terms-and-conditions', 'data-safety']);
+          const ext = path.extname(pathname);
+          const baseMatch = allowedBases.find(
+            (base) => pathname === base || pathname.startsWith(`${base}/`),
+          );
 
-          for (const route of routes) {
-            // Match exact route without trailing slash
-            if (url === route) {
-              let indexPath = '';
-              if (route.includes('/beehive/demo')) {
-                indexPath = path.join(__dirname, route.replace(/\/$/, '.html'));
-                if (!fs.existsSync(indexPath)) {
-                  indexPath = path.join(__dirname, route, 'index.html');
-                }
-              } else {
-                indexPath = path.join(__dirname, route, 'index.html');
-              }
+          const lastSegment = pathname.split('/').filter(Boolean).slice(-1)[0] || '';
+          const lastSlug = lastSegment.replace('.html', '');
+          const isPolicy = policySlugs.has(lastSlug);
 
-              if (fs.existsSync(indexPath)) {
-                // Rewrite URL to serve the index.html file
-                req.url = indexPath.replace(__dirname, '') + (req.url?.includes('?') ? '?' + req.url.split('?')[1] : '');
-              }
-              break;
-            }
+          // Only intercept extensionless navigation or known policy pages
+          if (!baseMatch || (ext && ext !== '.html' && !isPolicy)) {
+            next();
+            return;
+          }
+
+          const fallback = path.join(__dirname, baseMatch.replace(/^\//, ''), 'index.html');
+          if (fs.existsSync(fallback)) {
+            req.url = fallback.replace(__dirname, '') + (query ? `?${query}` : '');
           }
 
           next();
@@ -62,6 +61,40 @@ export default defineConfig({
         'pixel-buddy': resolve(__dirname, 'pixel-buddy/index.html'),
         dozy: resolve(__dirname, 'dozy/index.html'),
       },
+      plugins: [
+        // Generate HTML files for the markdown pages
+        {
+          name: 'markdown-page-html-generation',
+          generateBundle(_, bundle) {
+            const copies = {
+              'dozy/index.html': [
+                'dozy/privacy-policy.html',
+                'dozy/terms-and-conditions.html',
+                'dozy/data-safety.html',
+              ],
+              'pixel-buddy/index.html': [
+                'pixel-buddy/privacy-policy.html',
+                'pixel-buddy/terms-and-conditions.html',
+                'pixel-buddy/data-safety.html',
+              ],
+              'beehive/index.html': [
+                'beehive/privacy-policy.html',
+                'beehive/terms-and-conditions.html',
+                'beehive/data-safety.html',
+              ],
+            };
+
+            for (const [source, targets] of Object.entries(copies)) {
+              const asset = bundle[source];
+              if (!asset || asset.type !== 'asset') continue;
+
+              targets.forEach((fileName) => {
+                bundle[fileName] = { ...asset, fileName };
+              });
+            }
+          },
+        },
+      ],
     },
   },
   resolve: {
