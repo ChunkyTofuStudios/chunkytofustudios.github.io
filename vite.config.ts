@@ -89,7 +89,13 @@ export default defineConfig({
               if (!asset || asset.type !== 'asset') continue;
 
               targets.forEach((fileName) => {
+                // Create flat HTML (e.g. pixel-buddy/privacy-policy.html)
                 bundle[fileName] = { ...asset, fileName };
+
+                // Also emit folder-style indexes so trailing slashes resolve on static hosts
+                // (e.g. pixel-buddy/privacy-policy/index.html)
+                const folderIndex = fileName.replace(/\.html$/, '/index.html');
+                bundle[folderIndex] = { ...asset, fileName: folderIndex };
               });
             }
           },
