@@ -4,21 +4,23 @@ import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import { LinkButton } from "./ui/link-button";
 import { useIsNarrowScreen } from "./ui/use-mobile";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export function HomeNavigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const isMobile = useIsNarrowScreen();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      
+
       // Determine active section based on scroll position
-      const sections = ['services', 'titles', 'opensource', 'values', 'team', 'contact'];
       let foundSection = '';
-      for (const section of sections) {
+      for (const section of navItems.map((item) => item.id)) {
         const element = document.querySelector(`[data-section="${section}"]`);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -55,14 +57,50 @@ export function HomeNavigation() {
     setIsMobileMenuOpen(false);
   };
 
+  const handleNavigationClick = (sectionId: string) => {
+    setIsMobileMenuOpen(false);
+
+    // Check if we're on the home page
+    const isOnHomePage = location.pathname === '/';
+
+    if (sectionId === 'home') {
+      if (isOnHomePage) {
+        scrollToTop();
+      } else {
+        navigate('/');
+      }
+    } else {
+      if (isOnHomePage) {
+        // Already on home, just scroll to section
+        scrollToSection(sectionId);
+      } else {
+        // Navigate to home first, then scroll to section after navigation
+        navigate('/');
+        // Wait for navigation and render, then scroll
+        setTimeout(() => {
+          const element = document.querySelector(`[data-section="${sectionId}"]`);
+          if (element) {
+            const offset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }, 100);
+      }
+    }
+  };
+
   const navItems = [
-    { id: 'home', label: 'Home', onClick: scrollToTop },
-    { id: 'services', label: 'Services', onClick: () => scrollToSection('services') },
-    { id: 'titles', label: 'Titles', onClick: () => scrollToSection('titles') },
-    { id: 'opensource', label: 'Open Source', onClick: () => scrollToSection('opensource') },
-    { id: 'values', label: 'Values', onClick: () => scrollToSection('values') },
-    { id: 'team', label: 'Team', onClick: () => scrollToSection('team') },
-    { id: 'contact', label: 'Contact', onClick: () => scrollToSection('contact') },
+    { id: 'home', label: 'Home' },
+    { id: 'services', label: 'Services' },
+    { id: 'titles', label: 'Titles' },
+    { id: 'opensource', label: 'Open Source' },
+    { id: 'values', label: 'Values' },
+    { id: 'team', label: 'Team' },
+    { id: 'contact', label: 'Contact' },
   ];
 
   return (
@@ -87,7 +125,6 @@ export function HomeNavigation() {
           {/* Logo */}
           <LinkButton
             to="/"
-            onNavigate={scrollToTop}
             className="flex items-center gap-3 cursor-pointer no-underline"
           >
             <motion.span
@@ -105,12 +142,11 @@ export function HomeNavigation() {
               {navItems.map((item) => (
                 <motion.button
                   key={item.id}
-                  onClick={item.onClick}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-                    activeSection === item.id || (item.id === 'home' && !activeSection)
-                      ? 'text-white bg-gray-600/60'
-                      : 'text-gray-300 hover:text-white hover:bg-gray-800 hover:shadow-md'
-                  }`}
+                  onClick={() => handleNavigationClick(item.id)}
+                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${activeSection === item.id
+                    ? 'text-white bg-gray-600/60'
+                    : 'text-gray-300 hover:text-white hover:bg-gray-800 hover:shadow-md'
+                    }`}
                   whileHover={{ scale: 1.02, y: -1 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.05 }}
@@ -153,12 +189,11 @@ export function HomeNavigation() {
               {navItems.map((item) => (
                 <motion.button
                   key={item.id}
-                  onClick={item.onClick}
-                  className={`w-full text-left px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${
-                    activeSection === item.id || (item.id === 'home' && !activeSection)
-                      ? 'text-white bg-gray-600/60'
-                      : 'text-gray-300 hover:text-white hover:bg-gray-800 hover:shadow-md'
-                  }`}
+                  onClick={() => handleNavigationClick(item.id)}
+                  className={`w-full text-left px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 ${activeSection === item.id || (item.id === 'home' && !activeSection)
+                    ? 'text-white bg-gray-600/60'
+                    : 'text-gray-300 hover:text-white hover:bg-gray-800 hover:shadow-md'
+                    }`}
                   whileTap={{ scale: 0.98 }}
                 >
                   {item.label}

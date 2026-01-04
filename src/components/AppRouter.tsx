@@ -4,6 +4,7 @@ import { BeehivePage } from "./pages/BeehivePage";
 import { PixelBuddyPage } from "./pages/PixelBuddyPage";
 import { DozyPage } from "./pages/DozyPage";
 import { MarkdownPage } from "./pages/MarkdownPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 import { trackPageView } from "../lib/analytics";
 
 import { HomeNavigation } from "./HomeNavigation";
@@ -95,7 +96,9 @@ function HomePage() {
   return (
     <div className="min-h-screen">
       <HomeNavigation />
-      <HeroSection onAppClick={navigateToApp} />
+      <div data-section="home">
+        <HeroSection onAppClick={navigateToApp} />
+      </div>
       <div data-section="services">
         <ServicesSection />
       </div>
@@ -359,6 +362,9 @@ export function AppRouter() {
         <Route path="/beehive/terms-and-conditions" element={<BeehiveTermsPageWrapper />} />
         <Route path="/beehive/privacy-policy" element={<BeehivePrivacyPageWrapper />} />
         <Route path="/beehive/data-safety" element={<BeehiveDataSafetyPageWrapper />} />
+
+        {/* 404 Catch-all Route */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
