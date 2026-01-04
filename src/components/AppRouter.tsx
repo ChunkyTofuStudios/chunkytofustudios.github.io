@@ -5,6 +5,7 @@ import { PixelBuddyPage } from "./pages/PixelBuddyPage";
 import { DozyPage } from "./pages/DozyPage";
 import { MarkdownPage } from "./pages/MarkdownPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { BeehiveFirebaseAuthRedirect } from "./pages/FirebaseAuthRedirect";
 import { trackPageView } from "../lib/analytics";
 
 import { HomeNavigation } from "./HomeNavigation";
@@ -359,6 +360,7 @@ export function AppRouter() {
 
         {/* Beehive Routes */}
         <Route path="/beehive" element={<BeehivePageWrapper />} />
+        <Route path="/beehive/auth" element={<BeehiveFirebaseAuthRedirect />} />
         <Route path="/beehive/terms-and-conditions" element={<BeehiveTermsPageWrapper />} />
         <Route path="/beehive/privacy-policy" element={<BeehivePrivacyPageWrapper />} />
         <Route path="/beehive/data-safety" element={<BeehiveDataSafetyPageWrapper />} />
