@@ -54,6 +54,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        '404': resolve(__dirname, 'public/404.html'),
         beehive: resolve(__dirname, 'beehive/index.html'),
         'beehive-demo': resolve(__dirname, 'beehive/demo/index.html'),
         'beehive-demo-popular': resolve(__dirname, 'beehive/demo/popular.html'),
