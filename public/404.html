@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chunky Tofu Studios</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-REYS4TKJBK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-REYS4TKJBK');
+    </script>
+
+    <!-- Redirect 404s to root for client-side routing -->
+    <script>
+        // Store the current path so the app can handle routing
+        sessionStorage.setItem('redirectPath', window.location.pathname + window.location.search + window.location.hash);
+        // Redirect to root
+        window.location.replace('/');
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
