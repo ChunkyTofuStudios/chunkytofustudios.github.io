@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/assets/favicon-DceP4qjE.ico" />
+    <link rel="icon" type="image/x-icon" href="/src/assets/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404 - Page Not Found | Chunky Tofu Studios</title>
 
@@ -15,22 +15,11 @@
         gtag('js', new Date());
         gtag('config', 'G-REYS4TKJBK');
     </script>
-
-    <!-- Redirect to SPA to handle 404 with React -->
-    <script>
-        // Store the path for the React app to display
-        sessionStorage.setItem('requestedPath', window.location.pathname + window.location.search + window.location.hash);
-        // Redirect to the app - React Router will show the 404 page
-        window.location.replace('/' + window.location.search + window.location.hash);
-    </script>
 </head>
 
 <body>
-    <!-- This page immediately redirects to the React app which will display the proper 404 page -->
-    <div
-        style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 50px;">
-        <p>Redirecting...</p>
-    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>
