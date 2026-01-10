@@ -38,7 +38,7 @@ const apps = [
     tags: ["Flutter", "Puzzle", "Word Game"],
     platform: "iOS & Android",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.chunkytofustudios.beehive&utm_source=cts&utm_medium=web&utm_campaign=landingpage",
-    appStoreUrl: "https://testflight.apple.com/join/5WeUgnQ1",
+    appStoreUrl: "https://apps.apple.com/us/app/beehive-word-puzzle-challenge/id6737005539",
     gradient: "from-yellow-500 to-orange-600",
     category: "Games",
     color: "orange",
