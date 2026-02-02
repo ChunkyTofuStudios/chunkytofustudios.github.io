@@ -1,5 +1,5 @@
 **Last updated**
-Jul 21 2025
+February 2 2026
 
 # Privacy Policy
 
@@ -42,6 +42,8 @@ We use the collected information for various purposes, including:
 * **Improving the Service:** To analyze usage and performance, allowing us to enhance features, fix issues, and develop new functionalities.
 
 * **Ensuring Security and Preventing Fraud:** To protect the integrity of our Service, detect and prevent fraudulent activities, and safeguard user data.
+
+* **Contributing to Academic Research:** To contribute to academic research projects (using aggregated data).
 
 * **Complying with Legal Obligations:** To meet legal requirements, such as responding to lawful requests and enforcing our terms and policies.
 
@@ -102,6 +104,8 @@ We may share your personal information under certain circumstances:
 **Business Transactions:** In the event of a merger, acquisition, or sale of assets, your personal information may be transferred to the new owner. We will notify you before your data is transferred and becomes subject to a different privacy policy.
 
 **Legal Obligations:** We may disclose your information if required to do so by law or in response to valid legal requests by public authorities (e.g., a court or government agency).
+
+**Academic Research:** We may use and share data for academic research projects and published papers/articles. When used for this purpose, data will be aggregated and anonymized so that users are not individually identifiable.
 
 **International Data Transfers:** Your information may be transferred to—and maintained on—servers located outside of your country or jurisdiction, where data protection laws may differ. We take steps to ensure that your data is treated securely and in accordance with this Privacy Policy, including implementing appropriate safeguards in compliance with applicable laws.
 

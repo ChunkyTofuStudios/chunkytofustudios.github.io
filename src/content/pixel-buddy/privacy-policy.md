@@ -1,5 +1,5 @@
 **Last updated**
-July 9 2025
+February 2 2026
 
 # Privacy Policy
 
@@ -13,7 +13,7 @@ The terms used in this Privacy Policy have the same meanings as in our Terms and
 
 **Information Collection and Use**
 
-For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information, including but not limited to Email, Uploaded Artwork, Usage Statistics, Crash Logs. The information that we request will be retained by us and used as described in this privacy policy.
+For a better experience, while using our Service, we may require you to provide us with certain personally identifiable information, including but not limited to Email, Uploaded Artwork, Usage Statistics, Crash Logs. The information that we request will be retained by us and used as described in this privacy policy. We may also use aggregated data to contribute to academic research projects.
 
 The app does use third-party services that may collect information used to identify you.
 
@@ -50,6 +50,10 @@ We may employ third-party companies and individuals due to the following reasons
 *   To assist us in analyzing how our Service is used.
 
 We want to inform users of this Service that these third parties have access to their Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
+
+**Academic Research**
+
+We may use and share data for academic research projects and published papers/articles. When used for this purpose, data will be aggregated and anonymized so that users are not individually identifiable.
 
 **Security**
 

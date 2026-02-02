@@ -1,5 +1,5 @@
 **Last updated**
-July 2 2025
+February 2 2026
 
 # Privacy Policy
 
@@ -50,6 +50,7 @@ We use your information to:
 - Analyze game usage and trends.
 - Personalize your gameplay experience.
 - Show ads, where applicable.
+- Contribute to academic research projects (using aggregated data).
 - Comply with legal obligations.
 
 ## 3. Sharing Your Information
@@ -58,6 +59,7 @@ We may share your information:
 
 - **Service Providers:** With partners who help us operate the Game, such as analytics providers, cloud hosting services, and customer support tools.
 - **Legal Requirements:** If required by law, regulation, or legal process.
+- **Academic Research:** We may use and share data for academic research projects and published papers/articles. When used for this purpose, data will be aggregated and anonymized so that users are not individually identifiable.
 - **Business Transfers:** In connection with a merger, acquisition, or sale of our assets.
 
 We do not sell your personal information.
