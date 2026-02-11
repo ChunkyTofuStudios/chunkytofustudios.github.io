@@ -12,12 +12,12 @@ const cofounders = [
     image: orkunHeadshot,
     linkedin: "https://www.linkedin.com/in/orkun-duman/"
   },
-  {
-    name: "Yasin Gunes",
-    title: "Co-founder & CPO",
-    image: yasinHeadshot,
-    linkedin: "https://www.linkedin.com/in/yasingunes/"
-  }
+  // {
+  //   name: "Yasin Gunes",
+  //   title: "Co-founder & CPO",
+  //   image: yasinHeadshot,
+  //   linkedin: "https://www.linkedin.com/in/yasingunes/"
+  // }
 ];
 
 export function TeamSection() {
@@ -61,7 +61,7 @@ export function TeamSection() {
           <h2 className="text-5xl md:text-6xl font-semibold text-gray-900 tracking-tight mb-8">
             Our Story
           </h2>
-          
+
           {/* Backstory Paragraph */}
           <motion.div
             className="max-w-4xl mx-auto mb-16"
@@ -71,15 +71,15 @@ export function TeamSection() {
             viewport={{ once: true }}
           >
             <p className="text-xl text-gray-600 leading-relaxed">
-              Chunky Tofu Studios was launched in late 2024 as a side project, a way for us to work on 
-              something we truly love. In 2025 we were able to go full-time, thanks to the 
-              support of a group of enthusiastic part-time team members and the encouraging and lovely feedback from our users. We're now expanding 
+              Chunky Tofu Studios was launched in late 2024 as a side project, a way for us to work on
+              something we truly love. In 2025 we were able to go full-time, thanks to the
+              support of a group of enthusiastic part-time team members and the encouraging and lovely feedback from our users. We're now expanding
               the studio and to bring novel AI features to gaming and daily utilities.
             </p>
           </motion.div>
 
           {/* Cofounders */}
-          <div className="grid md:grid-cols-2 gap-12 max-w-2xl mx-auto">
+          <div className="grid md:grid-cols-1 gap-12 max-w-2xl mx-auto">
             {cofounders.map((founder, index) => (
               <motion.div
                 key={founder.name}
