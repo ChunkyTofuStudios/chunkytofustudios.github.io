@@ -100,7 +100,7 @@ export function ContactSection() {
             Let's Talk
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ready to bring your vision to life? Have questions about Flutter best practices? Are you looking for a mobile app SDK?
+            Looking to collaborate on a project? Have questions about Flutter best practices? Are you looking for a mobile app SDK?
             Don't hesitate to reach out!
           </p>
         </motion.div>
@@ -120,8 +120,8 @@ export function ContactSection() {
                     <MessageSquare className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900">Start Your Project</h3>
-                    <p className="text-gray-600">Tell us about your idea</p>
+                    <h3 className="text-2xl font-bold text-gray-900">Contact Us</h3>
+                    <p className="text-gray-600">Reach our team directly</p>
                   </div>
                 </div>
 
@@ -140,7 +140,7 @@ export function ContactSection() {
                       disabled={isSubmitting}
                     />
                   </div>
-                  
+
                   <div>
                     <label className="text-sm font-medium text-gray-700 mb-2 block">
                       Email Address
@@ -156,16 +156,16 @@ export function ContactSection() {
                       disabled={isSubmitting}
                     />
                   </div>
-                  
+
                   <div>
                     <label className="text-sm font-medium text-gray-700 mb-2 block">
-                      Project Details
+                      Message
                     </label>
                     <Textarea
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="Tell us about your app idea, SDK/consulting needs, and the timeline you have in mind..."
+                      placeholder="What would you like to discuss?"
                       rows={6}
                       className="rounded-xl border-gray-200 bg-gray-50/50 focus:bg-white transition-colors resize-none"
                       required
@@ -195,12 +195,12 @@ export function ContactSection() {
                       <p className="font-medium">Something went wrong. Please try again or email us directly.</p>
                     </motion.div>
                   )}
-                  
+
                   <motion.div
                     whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                     whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   >
-                    <Button 
+                    <Button
                       type="submit"
                       disabled={isSubmitting}
                       className="w-full h-11 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-lg rounded-xl shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
@@ -237,11 +237,10 @@ export function ContactSection() {
           >
             <div>
               <h3 className="text-3xl font-bold text-gray-900 mb-6">
-                Ready to Build Something Amazing?
+                Ready to Work Together on Something Amazing?
               </h3>
               <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                We're excited to hear about your project! Whether you need a complete mobile app 
-                from scratch or want to enhance an existing application, our team is ready to help.
+                We're excited to hear about your idea! Whether you are a fellow app studio or a user, we're here to help.
               </p>
             </div>
 
@@ -284,7 +283,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Global Team</h4>
-                  <p className="text-gray-600">Working across timezones for you</p>
+                  <p className="text-gray-600">We're a diverse team</p>
                 </div>
               </motion.div>
             </div>
