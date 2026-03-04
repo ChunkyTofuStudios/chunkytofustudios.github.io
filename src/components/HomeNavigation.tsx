@@ -95,12 +95,10 @@ export function HomeNavigation() {
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'services', label: 'Services' },
     { id: 'titles', label: 'Titles' },
     { id: 'opensource', label: 'Open Source' },
     { id: 'values', label: 'Values' },
     { id: 'team', label: 'Team' },
-    { id: 'contact', label: 'Contact' },
   ];
 
   return (

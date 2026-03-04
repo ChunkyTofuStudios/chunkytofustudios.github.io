@@ -14,20 +14,13 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onAppClick }: HeroSectionProps) {
-  const scrollToServices = () => {
-    const servicesSection = document.querySelector('[data-section="services"]');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden bg-gray-50 pt-24 lg:pt-16">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated Gradient Orbs */}
         <motion.div
-          className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-purple-400/30 to-pink-600/30 rounded-full blur-3xl"
+          className="absolute -top-40 -right-40 w-96 h-96 bg-linear-to-br from-purple-400/30 to-pink-600/30 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 90, 180],
@@ -40,7 +33,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
           }}
         />
         <motion.div
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400/30 to-cyan-600/30 rounded-full blur-3xl"
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-linear-to-br from-blue-400/30 to-cyan-600/30 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
             rotate: [180, 270, 360],
@@ -186,7 +179,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
               >
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-5 text-lg rounded-2xl shadow-l hover:shadow-xl border-0 transition-all duration-300 font-medium group relative overflow-hidden"
+                  className="bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-5 text-lg rounded-2xl shadow-l hover:shadow-xl border-0 transition-all duration-300 font-medium group relative overflow-hidden"
                   onClick={() => {
                     const titlesSection = document.querySelector('[data-section="titles"]');
                     if (titlesSection) {
@@ -201,21 +194,6 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                 </Button>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="glass border border-gray-200 text-gray-900 hover:bg-gray-50 px-8 py-4 text-lg rounded-2xl transition-all duration-200 font-medium"
-                  onClick={() => {
-                    const contactSection = document.querySelector('[data-section="contact"]');
-                    if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                >
-                  Work With Us
-                </Button>
-              </motion.div>
             </motion.div>
           </motion.div>
 
@@ -288,13 +266,16 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
 
       {/* Energetic Scroll Indicator */}
       <motion.button
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer bg-gradient-to-r from-blue-400/20 to-blue-500/20 backdrop-blur-sm rounded-full p-4 shadow-xl border border-white/20"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer bg-linear-to-r from-blue-400/20 to-blue-500/20 backdrop-blur-sm rounded-full p-4 shadow-xl border border-white/20"
         animate={{
           y: [0, 12, 0],
           scale: [1, 1.1, 1],
         }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        onClick={scrollToServices}
+        onClick={() => {
+          const titlesSection = document.querySelector('[data-section="titles"]');
+          if (titlesSection) titlesSection.scrollIntoView({ behavior: 'smooth' });
+        }}
         whileHover={{ scale: 1.2, rotate: 5 }}
       >
         <ChevronDown className="w-6 h-6 text-blue-800/40" />

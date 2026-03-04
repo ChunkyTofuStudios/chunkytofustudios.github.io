@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Twitter, Github, Linkedin, ArrowRight, Code } from "lucide-react";
+import { Twitter, Github, Linkedin, ArrowRight, Building2 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import companyLogo from '../assets/cts_logo.png';
 import { LinkButton } from "./ui/link-button";
@@ -100,7 +100,7 @@ export function Footer({ onAppClick }: FooterProps) {
 
             {/* Updated motto */}
             <motion.div
-              className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl px-4 py-2 mb-4 inline-block border border-purple-400/30"
+              className="bg-linear-to-r from-purple-500/20 to-pink-500/20 rounded-2xl px-4 py-2 mb-4 inline-block border border-purple-400/30"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >
@@ -122,7 +122,7 @@ export function Footer({ onAppClick }: FooterProps) {
                 { city: "Istanbul", flag: "🇹🇷" },
                 { city: "Mexico City", flag: "🇲🇽" },
                 { city: "Milan", flag: "🇮🇹" }
-              ].map((location, index) => (
+              ].map((location, _) => (
                 <motion.div
                   key={location.city}
                   className="bg-gray-800/50 px-3 py-1 rounded-full border border-gray-700"
@@ -144,23 +144,47 @@ export function Footer({ onAppClick }: FooterProps) {
             className="h-full"
           >
             <h4 className="text-lg mb-6 text-white flex items-center gap-2">
-              <Code className="w-5 h-5" />
-              Services
+              <Building2 className="w-5 h-5" />
+              Company
             </h4>
             <ul className="space-y-3">
-              {[
-                "Mobile App Development",
-                "UI/UX based on UXR",
-                "Cross-Platform Solutions",
-                "Open Source Libraries"
-              ].map((service, index) => (
-                <li key={index}>
-                  <span className="text-gray-400 text-sm flex items-center gap-2">
-                    <span className="w-1 h-1 bg-purple-500 rounded-full"></span>
-                    {service}
-                  </span>
-                </li>
-              ))}
+              <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                <LinkButton
+                  to="/contact"
+                  className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2 no-underline"
+                >
+                  <span className="w-1 h-1 bg-purple-500 rounded-full"></span>
+                  Contact Us
+                </LinkButton>
+              </motion.li>
+              <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const url = 'https://www.linkedin.com/company/chunky-tofu-studios/jobs/';
+                    trackOutboundLink(url, 'Careers');
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                  }}
+                  className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2"
+                >
+                  <span className="w-1 h-1 bg-purple-500 rounded-full"></span>
+                  Careers
+                </button>
+              </motion.li>
+              <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const url = 'https://github.com/ChunkyTofuStudios';
+                    trackOutboundLink(url, 'Open Source');
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                  }}
+                  className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2"
+                >
+                  <span className="w-1 h-1 bg-purple-500 rounded-full"></span>
+                  Open Source
+                </button>
+              </motion.li>
             </ul>
           </motion.div>
 
@@ -240,7 +264,7 @@ export function Footer({ onAppClick }: FooterProps) {
                   title={label}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className={`w-10 h-10 bg-gray-800 hover:bg-gradient-to-r ${hoverColor} rounded-xl flex items-center justify-center transition-all duration-200`}
+                  className={`w-10 h-10 bg-gray-800 hover:bg-linear-to-r ${hoverColor} rounded-xl flex items-center justify-center transition-all duration-200`}
                 >
                   <Icon className="w-5 h-5 text-gray-300" />
                 </motion.button>

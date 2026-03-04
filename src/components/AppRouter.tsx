@@ -10,12 +10,11 @@ import { trackPageView } from "../lib/analytics";
 
 import { HomeNavigation } from "./HomeNavigation";
 import { HeroSection } from "./HeroSection";
-import { ServicesSection } from "./ServicesSection";
 import { TitlesSection } from "./TitlesSection";
 import { OpenSourceSection } from "./OpenSourceSection";
 import { ValuesSection } from "./ValuesSection";
 import { TeamSection } from "./TeamSection";
-import { ContactSection } from "./ContactSection";
+import { ContactPage } from "./pages/ContactPage";
 import { Footer } from "./Footer";
 
 import pixelBuddyLogo from '../assets/pixel_buddy_logo.png';
@@ -56,6 +55,7 @@ function DocumentTitle() {
     // Map routes to their titles based on the HTML files
     const titleMap: Record<string, string> = {
       '/': 'Chunky Tofu Studios',
+      '/contact': 'Contact Us - Chunky Tofu Studios',
       '/dozy': 'Dozy - Chunky Tofu Studios',
       '/pixel-buddy': 'Pixel Buddy - Chunky Tofu Studios',
       '/beehive': 'Beehive - Chunky Tofu Studios',
@@ -100,9 +100,6 @@ function HomePage() {
       <div data-section="home">
         <HeroSection onAppClick={navigateToApp} />
       </div>
-      <div data-section="services">
-        <ServicesSection />
-      </div>
       <div data-section="titles">
         <TitlesSection onAppClick={navigateToApp} />
       </div>
@@ -114,9 +111,6 @@ function HomePage() {
       </div>
       <div data-section="team">
         <TeamSection />
-      </div>
-      <div data-section="contact">
-        <ContactSection />
       </div>
       <Footer onAppClick={navigateToApp} />
     </div>
@@ -345,6 +339,7 @@ export function AppRouter() {
       <PageViewTracker />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<ContactPage />} />
 
         {/* Pixel Buddy Routes */}
         <Route path="/pixel-buddy" element={<PixelBuddyPageWrapper />} />
