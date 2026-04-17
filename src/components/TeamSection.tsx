@@ -12,17 +12,17 @@ const cofounders = [
     image: orkunHeadshot,
     linkedin: "https://www.linkedin.com/in/orkun-duman/"
   },
-  // {
-  //   name: "Yasin Gunes",
-  //   title: "Co-founder & CPO",
-  //   image: yasinHeadshot,
-  //   linkedin: "https://www.linkedin.com/in/yasingunes/"
-  // }
+  {
+    name: "Yasin Gunes",
+    title: "Co-founder & CPO",
+    image: yasinHeadshot,
+    linkedin: "https://www.linkedin.com/in/yasingunes/"
+  }
 ];
 
 export function TeamSection() {
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+    <section className="py-16 bg-linear-to-b from-white to-gray-50 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
         {[...Array(8)].map((_, i) => (
@@ -79,7 +79,7 @@ export function TeamSection() {
           </motion.div>
 
           {/* Cofounders */}
-          <div className="grid md:grid-cols-1 gap-12 max-w-2xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 max-w-2xl mx-auto">
             {cofounders.map((founder, index) => (
               <motion.div
                 key={founder.name}
