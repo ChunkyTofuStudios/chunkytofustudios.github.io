@@ -24,9 +24,19 @@ import beehiveLogo from '../assets/beehive_logo.png';
 
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
-// Scroll restoration following React Router guide
+// Scroll restoration following React Router guide.
+// We disable the browser's native scroll restoration so it doesn't fight
+// our manual scroll-to-top (otherwise, pressing Back from an app page
+// lands the user at the previous scroll position on the homepage
+// — usually way down at the Titles section — instead of the top).
 function ScrollToTop() {
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);

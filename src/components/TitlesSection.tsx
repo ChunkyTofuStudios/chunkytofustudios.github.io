@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
 import { ArrowRight, Instagram, MessageCircle } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { LinkButton } from "./ui/link-button";
@@ -13,35 +12,52 @@ const TikTokIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// Apple Icon Component
-const AppleIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
-  </svg>
-);
-
 import dozyLogo from '../assets/dozy_logo.png';
 import pixelBuddyLogo from '../assets/pixel_buddy_logo.png';
 import beehiveLogo from '../assets/beehive_logo.png';
-import dozyScreenshot from '../assets/dozy_ss.webp';
-import beehiveScreenshot from '../assets/beehive_ss.webp';
-import pixelBuddyScreenshot from '../assets/pixel_buddy_ss.webp';
 import googlePlayButtonImg from '../assets/play_store_logo.png';
 import appStoreButtonImg from '../assets/app_store_logo.png';
 
-const apps = [
+// 3 mocks per app
+import beehive1 from '../assets/beehive_1.png';
+import beehive2 from '../assets/beehive_2.png';
+import beehive3 from '../assets/beehive_3.png';
+import pixelBuddy1 from '../assets/pixel_buddy_1.png';
+import pixelBuddy2 from '../assets/pixel_buddy_2.png';
+import pixelBuddy3 from '../assets/pixel_buddy_3.png';
+import dozy1 from '../assets/dozy_1.png';
+import dozy2 from '../assets/dozy_2.png';
+import dozy3 from '../assets/dozy_3.png';
+
+interface AppData {
+  title: string;
+  description: string;
+  logo: string;
+  screenshots: string[];
+  tags: string[];
+  platform: string;
+  playStoreUrl: string;
+  appStoreUrl: string;
+  category: string;
+  socialMedia: {
+    instagram?: string;
+    tiktok?: string;
+    youtube?: string;
+    discord?: string;
+  };
+}
+
+const apps: AppData[] = [
   {
     title: "Beehive",
     description: "A strategic word puzzle game. Build your vocabulary with challenging daily puzzles and hexagonal gameplay.",
     logo: beehiveLogo,
-    screenshot: beehiveScreenshot,
+    screenshots: [beehive1, beehive2, beehive3],
     tags: ["Flutter", "Puzzle", "Word Game"],
     platform: "iOS & Android",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.chunkytofustudios.beehive&utm_source=cts&utm_medium=web&utm_campaign=landingpage",
     appStoreUrl: "https://apps.apple.com/us/app/beehive-word-puzzle-challenge/id6737005539",
-    gradient: "from-yellow-500 to-orange-600",
     category: "Games",
-    color: "orange",
     socialMedia: {
       instagram: "https://instagram.com/beehivegame",
       tiktok: "https://tiktok.com/@beehive.game",
@@ -53,14 +69,12 @@ const apps = [
     title: "Pixel Buddy",
     description: "A delightful pixel art coloring book app with hundreds of beautiful designs to bring to life.",
     logo: pixelBuddyLogo,
-    screenshot: pixelBuddyScreenshot,
+    screenshots: [pixelBuddy1, pixelBuddy2, pixelBuddy3],
     tags: ["Flutter", "Coloring Book", "Pixel Art"],
     platform: "iOS & Android",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.chunkytofustudios.pixel_buddy&utm_source=cts&utm_medium=web&utm_campaign=landingpage",
     appStoreUrl: "https://apps.apple.com/us/app/pixel-buddy-coloring-book/id6451399345?uo=4",
-    gradient: "from-green-500 to-blue-600",
     category: "Games",
-    color: "blue",
     socialMedia: {
       instagram: "https://instagram.com/pixelbuddy_game",
       tiktok: "https://www.tiktok.com/@pixelbuddy.game",
@@ -71,14 +85,12 @@ const apps = [
     title: "Dozy",
     description: "The ultimate companion for long-distance commuters — designed to make travel time productive and enjoyable.",
     logo: dozyLogo,
-    screenshot: dozyScreenshot,
+    screenshots: [dozy1, dozy2, dozy3],
     tags: ["Flutter", "Public Transit", "Productivity"],
     platform: "iOS & Android",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.chunkytofustudios.destiwake&utm_source=cts&utm_medium=web&utm_campaign=landingpage",
     appStoreUrl: "https://apps.apple.com/app/apple-store/id6736437794?pt=106088813&ct=landingpage&mt=8",
-    gradient: "from-indigo-500 to-purple-600",
     category: "Utilities",
-    color: "purple",
     socialMedia: {
       instagram: "https://www.instagram.com/dozyapp",
       tiktok: "https://www.tiktok.com/@dozyapp",
@@ -86,16 +98,126 @@ const apps = [
   }
 ];
 
-const colorSchemes = {
-  purple: "from-purple-500/10 to-pink-500/10",
-  blue: "from-blue-500/10 to-cyan-500/10",
-  orange: "from-orange-500/10 to-red-500/10"
-};
-
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
 interface TitlesSectionProps {
   onAppClick?: (app: AppPage) => void;
+}
+
+// Fanned phone trio — same layout language as the hero section.
+function PhoneTrio({
+  screenshots,
+  title,
+}: {
+  screenshots: string[];
+  title: string;
+}) {
+  const [left, center, right] = [
+    screenshots[0],
+    screenshots[1] ?? screenshots[0],
+    screenshots[2] ?? screenshots[1] ?? screenshots[0],
+  ];
+
+  return (
+    <div
+      className="relative w-full max-w-xl h-[440px] md:h-[520px] mx-auto"
+      style={{ perspective: '1400px', transformStyle: 'preserve-3d' }}
+    >
+      {/* Left phone */}
+      <motion.div
+        className="absolute left-[3%] top-[10%] w-[40%] z-10"
+        initial={{ opacity: 0, y: 40, rotateY: 12 }}
+        whileInView={{ opacity: 1, y: 0, rotateY: 12 }}
+        transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true }}
+        whileHover={{ y: -12, scale: 1.05, rotateY: 4, zIndex: 30 }}
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        <ImageWithFallback
+          src={left}
+          alt={`${title} screenshot 1`}
+          className="w-full h-auto block"
+        />
+      </motion.div>
+
+      {/* Center phone (front) */}
+      <motion.div
+        className="absolute left-1/2 -translate-x-1/2 top-[-2%] w-[46%] z-20"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true }}
+        whileHover={{ y: -12, scale: 1.05, zIndex: 30 }}
+      >
+        <ImageWithFallback
+          src={center}
+          alt={`${title} screenshot 2`}
+          className="w-full h-auto block"
+        />
+      </motion.div>
+
+      {/* Right phone */}
+      <motion.div
+        className="absolute right-[3%] top-[16%] w-[40%] z-10"
+        initial={{ opacity: 0, y: 40, rotateY: -12 }}
+        whileInView={{ opacity: 1, y: 0, rotateY: -12 }}
+        transition={{ delay: 0.7, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true }}
+        whileHover={{ y: -12, scale: 1.05, rotateY: -4, zIndex: 30 }}
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        <ImageWithFallback
+          src={right}
+          alt={`${title} screenshot 3`}
+          className="w-full h-auto block"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
+// New Learn More button — matte dark pill, arrow slides right on hover
+function LearnMoreButton({
+  to,
+  onNavigate,
+  label = "Learn More",
+}: {
+  to: string;
+  onNavigate?: () => void;
+  label?: string;
+}) {
+  return (
+    <LinkButton to={to} onNavigate={onNavigate} className="no-underline inline-block">
+      <motion.span
+        whileHover={{ y: -1 }}
+        whileTap={{ scale: 0.97 }}
+        className="group relative inline-flex items-center gap-2 pl-6 pr-5 py-3 rounded-full text-[15px] font-semibold tracking-tight overflow-hidden"
+        style={{
+          color: '#ffffff',
+          background: 'linear-gradient(180deg, #2a2a2d 0%, #1d1d1f 100%)',
+          boxShadow:
+            '0 10px 24px rgba(29, 29, 31, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.35)',
+        }}
+      >
+        {/* Sheen sweep on hover */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"
+          style={{
+            background:
+              'linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%)',
+          }}
+        />
+        <span className="relative z-10">{label}</span>
+        <span
+          aria-hidden
+          className="relative z-10 inline-flex items-center justify-center transition-transform duration-200 group-hover:translate-x-1"
+        >
+          <ArrowRight className="w-4 h-4" />
+        </span>
+      </motion.span>
+    </LinkButton>
+  );
 }
 
 export function TitlesSection({ onAppClick }: TitlesSectionProps) {
@@ -121,7 +243,6 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
       'Pixel Buddy': '/pixel-buddy',
       'Dozy': '/dozy'
     };
-
     return pathMap[appTitle] || '/';
   };
 
@@ -184,8 +305,6 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
             Discover the mobile apps we've crafted with passion and user-first principles.
             Each app represents hours of love, code, and creativity.
           </p>
-
-
         </motion.div>
 
         <div className="space-y-32">
@@ -198,16 +317,12 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
               viewport={{ once: true }}
             >
               <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-                {/* App Mockup */}
+                {/* App Gallery — fanned trio like the hero */}
                 <div className={`flex justify-center ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                  <div className={`${app.title === 'Pixel Buddy' ? 'max-w-xl' : 'max-w-lg'}`}>
-                    <ImageWithFallback
-                      src={app.screenshot}
-                      alt={`${app.title} app mockup`}
-                      className={`${app.title === 'Pixel Buddy' ? 'w-[50%]' : 'w-[60%]'} h-auto mx-auto ${app.title === 'Pixel Buddy' ? 'drop-shadow-2xl' : 'drop-shadow-2xl'}`}
-                      style={app.title === 'Pixel Buddy' ? { filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.35))' } : undefined}
-                    />
-                  </div>
+                  <PhoneTrio
+                    screenshots={app.screenshots}
+                    title={app.title}
+                  />
                 </div>
 
                 {/* App Info */}
@@ -232,8 +347,6 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
                       {app.description}
                     </p>
 
-
-
                     {/* Technologies */}
                     <div className="flex flex-wrap gap-2 mb-8">
                       {app.tags.map((tag, tagIndex) => (
@@ -254,28 +367,32 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
 
                     {/* Social Media Links */}
                     <div className="flex justify-center lg:justify-start gap-4 mb-6">
-                      <motion.a
-                        href={app.socialMedia.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-200"
-                      >
-                        <Instagram className="w-5 h-5" />
-                      </motion.a>
-                      <motion.a
-                        href={app.socialMedia.tiktok}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="w-10 h-10 bg-gradient-to-br from-gray-800 to-black rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-200"
-                      >
-                        <TikTokIcon className="w-5 h-5" />
-                      </motion.a>
+                      {app.socialMedia.instagram && (
+                        <motion.a
+                          href={app.socialMedia.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-200"
+                        >
+                          <Instagram className="w-5 h-5" />
+                        </motion.a>
+                      )}
+                      {app.socialMedia.tiktok && (
+                        <motion.a
+                          href={app.socialMedia.tiktok}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="w-10 h-10 bg-gradient-to-br from-gray-800 to-black rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-200"
+                        >
+                          <TikTokIcon className="w-5 h-5" />
+                        </motion.a>
+                      )}
                       {/* Only show Discord for Beehive */}
-                      {app.title === "Beehive" && (
+                      {app.title === "Beehive" && app.socialMedia.discord && (
                         <motion.a
                           href={app.socialMedia.discord}
                           target="_blank"
@@ -295,9 +412,10 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
                         {app.playStoreUrl && (
                           <motion.button
                             onClick={() => handlePlayStoreClick(app.playStoreUrl, app.title)}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="cursor-pointer"
+                            whileHover={{ y: -2, scale: 1.03 }}
+                            whileTap={{ scale: 0.97 }}
+                            className="cursor-pointer transition-shadow"
+                            style={{ filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.12))' }}
                           >
                             <ImageWithFallback
                               src={googlePlayButtonImg}
@@ -309,9 +427,10 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
                         {app.appStoreUrl && (
                           <motion.button
                             onClick={() => handleAppStoreClick(app.appStoreUrl, app.title)}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="cursor-pointer"
+                            whileHover={{ y: -2, scale: 1.03 }}
+                            whileTap={{ scale: 0.97 }}
+                            className="cursor-pointer transition-shadow"
+                            style={{ filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.12))' }}
                           >
                             <ImageWithFallback
                               src={appStoreButtonImg}
@@ -321,24 +440,11 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
                           </motion.button>
                         )}
                       </div>
-                      <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                      >
-                        <LinkButton
-                          to={handleAppNavigation(app.title)}
-                          onNavigate={() => onAppClick?.(appMap[app.title])}
-                          className="no-underline"
-                        >
-                          <Button
-                            size="lg"
-                            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 text-lg rounded-2xl border-0 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl"
-                          >
-                            <ArrowRight className="w-5 h-5 mr-2" />
-                            Learn More
-                          </Button>
-                        </LinkButton>
-                      </motion.div>
+
+                      <LearnMoreButton
+                        to={handleAppNavigation(app.title)}
+                        onNavigate={() => onAppClick?.(appMap[app.title])}
+                      />
                     </div>
                   </motion.div>
                 </div>
@@ -346,8 +452,6 @@ export function TitlesSection({ onAppClick }: TitlesSectionProps) {
             </motion.div>
           ))}
         </div>
-
-
       </div>
     </section>
   );

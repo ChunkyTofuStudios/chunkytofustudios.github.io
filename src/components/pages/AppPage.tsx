@@ -21,7 +21,8 @@ interface AppPageConfig {
   name: string;
   slug: string;
   logo: string;
-  screenshot: string;
+  screenshot?: string;        // legacy single-screenshot (still used as fallback)
+  screenshots?: string[];     // new: up to 3 screenshots for the gallery trio
 
   // App details
   category: string;
@@ -80,7 +81,7 @@ export function AppPage({ config, onAppClick }: AppPageProps) {
   };
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br ${config.gradientFrom} via-white ${config.gradientTo}`}>
+    <div className="min-h-screen bg-[#fafafa]">
       <AppHeader
         appSlug={config.slug}
         appName={config.name}
@@ -165,25 +166,78 @@ export function AppPage({ config, onAppClick }: AppPageProps) {
               </div>
             </motion.div>
 
-            {/* Right Mockup */}
+            {/* Right Mockup — 3-phone gallery trio (or single-screenshot fallback) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex justify-center lg:justify-end"
             >
-              <motion.div
-                className="relative max-w-sm"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                style={{ filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.25))' }}
-              >
-                <ImageWithFallback
-                  src={config.screenshot}
-                  alt={`${config.name} App Screenshot`}
-                  className="w-full h-auto rounded-3xl"
-                />
-              </motion.div>
+              {(() => {
+                const shots = config.screenshots && config.screenshots.length > 0
+                  ? config.screenshots
+                  : (config.screenshot ? [config.screenshot] : []);
+
+                if (shots.length >= 2) {
+                  const [left, center, right] = [shots[0], shots[1] ?? shots[0], shots[2] ?? shots[1] ?? shots[0]];
+                  return (
+                    <div
+                      className="relative w-full max-w-xl h-[440px] md:h-[520px]"
+                      style={{ perspective: '1400px', transformStyle: 'preserve-3d' }}
+                    >
+                      {/* Left phone */}
+                      <motion.div
+                        className="absolute left-[3%] top-[10%] w-[40%] z-10"
+                        initial={{ opacity: 0, y: 40, rotateY: 12 }}
+                        animate={{ opacity: 1, y: 0, rotateY: 12 }}
+                        transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                        whileHover={{ y: -10, scale: 1.05, rotateY: 4, zIndex: 30 }}
+                        style={{ transformStyle: 'preserve-3d' }}
+                      >
+                        <ImageWithFallback src={left} alt={`${config.name} screenshot 1`} className="w-full h-auto" />
+                      </motion.div>
+
+                      {/* Center phone */}
+                      <motion.div
+                        className="absolute left-1/2 -translate-x-1/2 top-[-2%] w-[46%] z-20"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                        whileHover={{ y: -10, scale: 1.05, zIndex: 30 }}
+                      >
+                        <ImageWithFallback src={center} alt={`${config.name} screenshot 2`} className="w-full h-auto" />
+                      </motion.div>
+
+                      {/* Right phone */}
+                      <motion.div
+                        className="absolute right-[3%] top-[16%] w-[40%] z-10"
+                        initial={{ opacity: 0, y: 40, rotateY: -12 }}
+                        animate={{ opacity: 1, y: 0, rotateY: -12 }}
+                        transition={{ delay: 0.7, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                        whileHover={{ y: -10, scale: 1.05, rotateY: -4, zIndex: 30 }}
+                        style={{ transformStyle: 'preserve-3d' }}
+                      >
+                        <ImageWithFallback src={right} alt={`${config.name} screenshot 3`} className="w-full h-auto" />
+                      </motion.div>
+                    </div>
+                  );
+                }
+
+                // Single-screenshot fallback
+                return (
+                  <motion.div
+                    className="relative max-w-sm"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ImageWithFallback
+                      src={shots[0]}
+                      alt={`${config.name} App Screenshot`}
+                      className="w-full h-auto"
+                    />
+                  </motion.div>
+                );
+              })()}
             </motion.div>
           </div>
         </div>
