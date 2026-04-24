@@ -2,6 +2,9 @@ import { MapPin, Bell, BarChart3, Settings, Smartphone } from "lucide-react";
 import { AppPage } from "./AppPage";
 import dozyLogo from '../../assets/dozy_logo.png';
 import dozyScreenshot from '../../assets/dozy_ss.webp';
+import dozy1 from '../../assets/dozy_1.png';
+import dozy2 from '../../assets/dozy_2.png';
+import dozy3 from '../../assets/dozy_3.png';
 
 type AppPageType = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
@@ -15,6 +18,7 @@ export function DozyPage({ onAppClick }: DozyPageProps) {
     slug: "dozy",
     logo: dozyLogo,
     screenshot: dozyScreenshot,
+    screenshots: [dozy2, dozy1, dozy3], // Trip Planner, In-trip, Stations
     category: "Public Transit",
     categoryColor: "purple",
     subtitle: "Smart Travel Alarm for Commuters",
