@@ -5,9 +5,9 @@ import { useRef } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 import companyLogo from '../assets/cts_logo.png';
-import beehiveHero from '../assets/beehive_hero.png';
-import dozyHero from '../assets/dozy_hero.png';
-import pbHero from '../assets/pixel_buddy_hero.png';
+import beehiveHero from '../assets/beehive_hero.webp';
+import dozyHero from '../assets/dozy_hero.webp';
+import pbHero from '../assets/pixel_buddy_hero.webp';
 
 export function HeroSection() {
   const scrollToTitles = () => {
@@ -206,7 +206,7 @@ export function HeroSection() {
                     filter: 'drop-shadow(0 24px 28px rgba(15, 23, 42, 0.18)) drop-shadow(0 4px 6px rgba(15, 23, 42, 0.08))',
                   }}
                 >
-                  <ImageWithFallback src={dozyHero} alt="Dozy trip planner app — iOS and Android" className="w-full h-auto" />
+                  <ImageWithFallback src={dozyHero} alt="Dozy commute companion app — iOS and Android" className="w-full h-auto" />
                 </motion.div>
               </Link>
 

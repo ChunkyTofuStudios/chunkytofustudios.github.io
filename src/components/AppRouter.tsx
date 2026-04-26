@@ -12,9 +12,9 @@ import { TeamSection } from "./TeamSection";
 import { Footer } from "./Footer";
 import { JsonLd } from "./JsonLd";
 
-import pixelBuddyLogo from '../assets/pixel_buddy_logo.png';
-import dozyLogo from '../assets/dozy_logo.png';
-import beehiveLogo from '../assets/beehive_logo.png';
+import pixelBuddyLogo from '../assets/pixel_buddy_logo.webp';
+import dozyLogo from '../assets/dozy_logo.webp';
+import beehiveLogo from '../assets/beehive_logo.webp';
 
 // Lazy-load non-home routes so the landing page ships less JS.
 const BeehivePage = lazy(() => import('./pages/BeehivePage').then(m => ({ default: m.BeehivePage })));

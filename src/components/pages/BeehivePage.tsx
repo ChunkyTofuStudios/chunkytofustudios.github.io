@@ -1,10 +1,10 @@
 import { Zap, TrendingUp, Target, Gamepad2, Trophy, Clock } from "lucide-react";
 import { AppPage } from "./AppPage";
-import beehiveLogo from '../../assets/beehive_logo.png';
+import beehiveLogo from '../../assets/beehive_logo.webp';
 import beehiveScreenshot from '../../assets/beehive_ss.webp';
-import beehive1 from '../../assets/beehive_1.png';
-import beehive2 from '../../assets/beehive_2.png';
-import beehive3 from '../../assets/beehive_3.png';
+import beehive1 from '../../assets/beehive_1.webp';
+import beehive2 from '../../assets/beehive_2.webp';
+import beehive3 from '../../assets/beehive_3.webp';
 
 type AppPageType = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 

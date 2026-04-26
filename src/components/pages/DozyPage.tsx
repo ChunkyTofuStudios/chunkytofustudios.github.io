@@ -1,10 +1,10 @@
 import { MapPin, Bell, BarChart3, Settings, Smartphone } from "lucide-react";
 import { AppPage } from "./AppPage";
-import dozyLogo from '../../assets/dozy_logo.png';
+import dozyLogo from '../../assets/dozy_logo.webp';
 import dozyScreenshot from '../../assets/dozy_ss.webp';
-import dozy1 from '../../assets/dozy_1.png';
-import dozy2 from '../../assets/dozy_2.png';
-import dozy3 from '../../assets/dozy_3.png';
+import dozy1 from '../../assets/dozy_1.webp';
+import dozy2 from '../../assets/dozy_2.webp';
+import dozy3 from '../../assets/dozy_3.webp';
 
 type AppPageType = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 

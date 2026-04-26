@@ -8,22 +8,22 @@ import { TikTokIcon } from "./ui/tiktok-icon";
 import { useEmojiBurst } from "./ui/emoji-burst";
 import { trackOutboundLink } from "../lib/analytics";
 
-import dozyLogo from '../assets/dozy_logo.png';
-import pixelBuddyLogo from '../assets/pixel_buddy_logo.png';
-import beehiveLogo from '../assets/beehive_logo.png';
+import dozyLogo from '../assets/dozy_logo.webp';
+import pixelBuddyLogo from '../assets/pixel_buddy_logo.webp';
+import beehiveLogo from '../assets/beehive_logo.webp';
 import googlePlayButtonImg from '../assets/play_store_logo.png';
 import appStoreButtonImg from '../assets/app_store_logo.png';
 
 // 3 mocks per app
-import beehive1 from '../assets/beehive_1.png';
-import beehive2 from '../assets/beehive_2.png';
-import beehive3 from '../assets/beehive_3.png';
-import pixelBuddy1 from '../assets/pixel_buddy_1.png';
-import pixelBuddy2 from '../assets/pixel_buddy_2.png';
-import pixelBuddy3 from '../assets/pixel_buddy_3.png';
-import dozy1 from '../assets/dozy_1.png';
-import dozy2 from '../assets/dozy_2.png';
-import dozy3 from '../assets/dozy_3.png';
+import beehive1 from '../assets/beehive_1.webp';
+import beehive2 from '../assets/beehive_2.webp';
+import beehive3 from '../assets/beehive_3.webp';
+import pixelBuddy1 from '../assets/pixel_buddy_1.webp';
+import pixelBuddy2 from '../assets/pixel_buddy_2.webp';
+import pixelBuddy3 from '../assets/pixel_buddy_3.webp';
+import dozy1 from '../assets/dozy_1.webp';
+import dozy2 from '../assets/dozy_2.webp';
+import dozy3 from '../assets/dozy_3.webp';
 
 interface AppData {
   title: string;

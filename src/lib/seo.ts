@@ -27,19 +27,19 @@ const APP_META: Record<string, RouteMeta> = {
     title: 'Beehive — Word Puzzle Game | Chunky Tofu Studios',
     description:
       'Beehive is a daily word puzzle game. Find words, build your hive, and compete on global leaderboards. Free on iOS and Android.',
-    ogImage: '/og-beehive.png',
+    ogImage: '/og-beehive.webp',
   },
   'pixel-buddy': {
     title: 'Pixel Buddy — Pixel Art Coloring Book | Chunky Tofu Studios',
     description:
       'Pixel Buddy is a relaxing pixel art coloring book with hundreds of beautiful designs. Free on iOS and Android.',
-    ogImage: '/og-pixel-buddy.png',
+    ogImage: '/og-pixel-buddy.webp',
   },
   dozy: {
-    title: 'Dozy — Trip Planner | Chunky Tofu Studios',
+    title: 'Dozy — Commute Companion | Chunky Tofu Studios',
     description:
-      'Dozy helps you plan trips and keep your travel memories in one place. Free on iOS and Android.',
-    ogImage: '/og-dozy.png',
+      'Dozy is the companion for long-distance commuters — designed to make travel time productive and enjoyable. Free on iOS and Android.',
+    ogImage: '/og-dozy.webp',
   },
 };
 
