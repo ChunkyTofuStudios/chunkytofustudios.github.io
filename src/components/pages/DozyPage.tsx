@@ -19,7 +19,7 @@ export function DozyPage({ onAppClick }: DozyPageProps) {
     logo: dozyLogo,
     screenshot: dozyScreenshot,
     screenshots: [dozy2, dozy1, dozy3], // Trip Planner, In-trip, Stations
-    category: "Public Transit",
+    category: "Transportation",
     categoryColor: "purple",
     subtitle: "Smart Travel Alarm for Commuters",
     description: "Realtime trip tracker and GPS-based alarm app designed for commuters in New Jersey, New York, Philly, Chicago and Ireland.",

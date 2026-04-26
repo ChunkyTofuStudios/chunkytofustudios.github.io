@@ -90,7 +90,7 @@ const apps: AppData[] = [
     platform: "iOS & Android",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.chunkytofustudios.destiwake&utm_source=cts&utm_medium=web&utm_campaign=landingpage",
     appStoreUrl: "https://apps.apple.com/app/apple-store/id6736437794?pt=106088813&ct=landingpage&mt=8",
-    category: "Utilities",
+    category: "Transportation",
     accentColor: "#8B5CF6",
     socialMedia: {
       instagram: "https://www.instagram.com/dozyapp",
