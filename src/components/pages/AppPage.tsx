@@ -4,6 +4,8 @@ import { Card, CardContent } from "../ui/card";
 import { Footer } from "../Footer";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { AppHeader } from "../AppHeader";
+import { JsonLd } from "../JsonLd";
+import { useEmojiBurst } from "../ui/emoji-burst";
 import googlePlayButtonImg from '../../assets/play_store_logo.png';
 import appStoreButtonImg from '../../assets/app_store_logo.png';
 import { trackOutboundLink } from "../../lib/analytics";
@@ -52,14 +54,19 @@ interface AppPageProps {
 }
 
 export function AppPage({ config, onAppClick }: AppPageProps) {
-  const handlePlayStoreClick = () => {
+  const { trigger: burst, overlay: burstOverlay } = useEmojiBurst();
+
+  const handlePlayStoreClick = (e: React.MouseEvent) => {
+    burst(e.clientX, e.clientY);
     trackOutboundLink(config.playStoreUrl, `${config.name} - Google Play`);
-    window.open(config.playStoreUrl, "_blank");
+    // Small delay so users catch the burst before the tab switches focus away.
+    window.setTimeout(() => window.open(config.playStoreUrl, "_blank"), 180);
   };
 
-  const handleAppStoreClick = () => {
+  const handleAppStoreClick = (e: React.MouseEvent) => {
+    burst(e.clientX, e.clientY);
     trackOutboundLink(config.appStoreUrl, `${config.name} - App Store`);
-    window.open(config.appStoreUrl, "_blank");
+    window.setTimeout(() => window.open(config.appStoreUrl, "_blank"), 180);
   };
 
   // Helper function to lighten a hex color
@@ -80,8 +87,26 @@ export function AppPage({ config, onAppClick }: AppPageProps) {
     return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
   };
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'MobileApplication',
+    name: config.name,
+    description: config.description,
+    applicationCategory: config.category,
+    operatingSystem: 'iOS, Android',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    installUrl: [config.playStoreUrl, config.appStoreUrl],
+    publisher: {
+      '@type': 'Organization',
+      name: 'Chunky Tofu Studios',
+      url: 'https://chunkytofustudios.com',
+    },
+  };
+
   return (
     <div className="min-h-screen bg-[#fafafa]">
+      {burstOverlay}
+      <JsonLd id={`app-${config.slug}`} data={jsonLd} />
       <AppHeader
         appSlug={config.slug}
         appName={config.name}
@@ -141,25 +166,27 @@ export function AppPage({ config, onAppClick }: AppPageProps) {
               <div className="flex flex-col sm:flex-row gap-3">
                 <motion.button
                   onClick={handlePlayStoreClick}
+                  aria-label={`Download ${config.name} on Google Play`}
                   whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.92 }}
                   className="cursor-pointer"
                 >
                   <ImageWithFallback
                     src={googlePlayButtonImg}
-                    alt="Get it on Google Play"
+                    alt=""
                     className="h-14 w-auto"
                   />
                 </motion.button>
                 <motion.button
                   onClick={handleAppStoreClick}
+                  aria-label={`Download ${config.name} on the App Store`}
                   whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.92 }}
                   className="cursor-pointer"
                 >
                   <ImageWithFallback
                     src={appStoreButtonImg}
-                    alt="Download on the App Store"
+                    alt=""
                     className="h-14 w-auto"
                   />
                 </motion.button>

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { AppRouter } from "./components/AppRouter";
+import { KonamiCode } from "./components/KonamiCode";
 import { initializeDataLayer } from "./lib/analytics";
 import { initializeCookieConsent } from "./lib/cookie_consent";
 import { initializeAnalytics } from "./lib/analytics";
@@ -17,5 +18,10 @@ export default function App() {
     initializeAnalytics();
   }, []);
 
-  return <AppRouter />;
+  return (
+    <>
+      <AppRouter />
+      <KonamiCode />
+    </>
+  );
 }

@@ -1,7 +1,10 @@
 import { Zap, TrendingUp, Target, Gamepad2, Trophy, Clock } from "lucide-react";
 import { AppPage } from "./AppPage";
-import beehiveLogo from '../../assets/beehive_logo.png';
+import beehiveLogo from '../../assets/beehive_logo.webp';
 import beehiveScreenshot from '../../assets/beehive_ss.webp';
+import beehive1 from '../../assets/beehive_1.webp';
+import beehive2 from '../../assets/beehive_2.webp';
+import beehive3 from '../../assets/beehive_3.webp';
 
 type AppPageType = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
@@ -15,6 +18,7 @@ export function BeehivePage({ onAppClick }: BeehivePageProps) {
     slug: "beehive",
     logo: beehiveLogo,
     screenshot: beehiveScreenshot,
+    screenshots: [beehive2, beehive1, beehive3], // Home, Gameplay, Leaderboard
     category: "Word Game",
     categoryColor: "orange",
     subtitle: "Buzz into the World of Words with Beehive",

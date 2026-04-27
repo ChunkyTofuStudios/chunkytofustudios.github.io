@@ -145,10 +145,14 @@ export function HomeNavigation() {
               className="flex items-center gap-2 cursor-pointer no-underline"
             >
               <motion.span
-                className="text-[15px] font-semibold tracking-tight"
-                style={{ color: '#1d1d1f' }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="text-[15px] font-semibold tracking-tight inline-block"
+                style={{ color: '#1d1d1f', transformOrigin: 'center bottom' }}
+                whileHover={{
+                  rotate: [0, -4, 4, -3, 3, 0],
+                  scale: 1.04,
+                  transition: { duration: 0.6, ease: 'easeInOut' },
+                }}
+                whileTap={{ scale: 0.96 }}
               >
                 Chunky Tofu Studios
               </motion.span>

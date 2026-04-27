@@ -1,0 +1,19 @@
+# Chunky Tofu Studios
+
+> Indie mobile app studio with developers across San Francisco, Princeton, Dublin, Istanbul, Mexico City, and Milan. We build mobile experiences people love — word puzzles, pixel art, and commute companions.
+
+## Apps
+
+- [Beehive](https://chunkytofustudios.com/beehive): Daily word puzzle game. Find words, build your hive, compete on leaderboards. iOS + Android, free.
+- [Pixel Buddy](https://chunkytofustudios.com/pixel-buddy): Pixel art coloring book with hundreds of designs. iOS + Android, free.
+- [Dozy](https://chunkytofustudios.com/dozy): The commute companion for long-distance commuters — making travel time productive and enjoyable. iOS + Android, free.
+
+## Company
+
+- [Home](https://chunkytofustudios.com/): Studio overview, team, and values.
+- [Contact](https://chunkytofustudios.com/contact): General, app support, press, publishing, careers.
+- [GitHub](https://github.com/ChunkyTofuStudios): Open source contributions.
+
+## Policies
+
+Each app has its own Privacy Policy, Terms & Conditions, and Data Safety disclosures linked from its product page.

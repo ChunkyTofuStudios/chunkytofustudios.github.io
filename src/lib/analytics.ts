@@ -19,6 +19,7 @@ let isLoading = false;
 let isReady = false;
 const pendingCalls: Array<() => void> = [];
 let outboundTrackingInitialized = false;
+let consentDefaultsSet = false;
 
 // Type declarations for gtag
 declare global {
@@ -62,7 +63,7 @@ function markReady() {
 /**
  * Initialize dataLayer and gtag function
  * This should be called early, before cookie consent, so consent updates can work
- * 
+ *
  * Also sets default consent mode to 'denied' so events are queued until consent is granted
  */
 export function initializeDataLayer() {
@@ -75,6 +76,23 @@ export function initializeDataLayer() {
       window.dataLayer.push(args);
     };
     log('gtag function defined');
+  }
+
+  // GDPR: set Consent Mode defaults to 'denied' before anything fires.
+  // Cookie consent UI will call gtag('consent','update',...) once the user chooses.
+  // Guarded so repeated calls don't push duplicate defaults into the dataLayer.
+  if (!consentDefaultsSet) {
+    window.gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'denied',
+      personalization_storage: 'denied',
+      security_storage: 'granted',
+      wait_for_update: 500,
+    });
+    consentDefaultsSet = true;
   }
 }
 

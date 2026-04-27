@@ -1,7 +1,10 @@
 import { MapPin, Bell, BarChart3, Settings, Smartphone } from "lucide-react";
 import { AppPage } from "./AppPage";
-import dozyLogo from '../../assets/dozy_logo.png';
+import dozyLogo from '../../assets/dozy_logo.webp';
 import dozyScreenshot from '../../assets/dozy_ss.webp';
+import dozy1 from '../../assets/dozy_1.webp';
+import dozy2 from '../../assets/dozy_2.webp';
+import dozy3 from '../../assets/dozy_3.webp';
 
 type AppPageType = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
@@ -15,7 +18,8 @@ export function DozyPage({ onAppClick }: DozyPageProps) {
     slug: "dozy",
     logo: dozyLogo,
     screenshot: dozyScreenshot,
-    category: "Public Transit",
+    screenshots: [dozy2, dozy1, dozy3], // Trip Planner, In-trip, Stations
+    category: "Transportation",
     categoryColor: "purple",
     subtitle: "Smart Travel Alarm for Commuters",
     description: "Realtime trip tracker and GPS-based alarm app designed for commuters in New Jersey, New York, Philly, Chicago and Ireland.",

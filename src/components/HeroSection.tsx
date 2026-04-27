@@ -1,32 +1,45 @@
-import { motion } from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 import companyLogo from '../assets/cts_logo.png';
-import beehiveHero from '../assets/beehive_hero.png';
-import dozyHero from '../assets/dozy_hero.png';
-import pbHero from '../assets/pixel_buddy_hero.png';
+import beehiveHero from '../assets/beehive_hero.webp';
+import dozyHero from '../assets/dozy_hero.webp';
+import pbHero from '../assets/pixel_buddy_hero.webp';
 
-type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
-
-interface HeroSectionProps {
-  onAppClick?: (app: AppPage) => void;
-}
-
-export function HeroSection({ onAppClick }: HeroSectionProps) {
+export function HeroSection() {
   const scrollToTitles = () => {
     const el = document.querySelector('[data-section="titles"]');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleAppClick = (e: React.MouseEvent, app: AppPage) => {
-    if (e.metaKey || e.ctrlKey || e.shiftKey) return;
-    e.preventDefault();
-    if (onAppClick) onAppClick(app);
+  const cities = ["San Francisco", "Princeton", "Dublin", "Istanbul", "Mexico City", "Milan"];
+
+  // Cursor parallax — phones subtly tilt toward the mouse. Springed so motion
+  // feels organic, not robotic.
+  const stageRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 120, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 120, damping: 20 });
+  const tiltY = useTransform(springX, [-1, 1], [-6, 6]);
+  const tiltX = useTransform(springY, [-1, 1], [4, -4]);
+  const driftX = useTransform(springX, [-1, 1], [-8, 8]);
+  const driftY = useTransform(springY, [-1, 1], [-6, 6]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = stageRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    mouseX.set(((e.clientX - rect.left) / rect.width) * 2 - 1);
+    mouseY.set(((e.clientY - rect.top) / rect.height) * 2 - 1);
   };
 
-  const cities = ["San Francisco", "Princeton", "Dublin", "Istanbul", "Mexico City", "Milan"];
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   return (
     <section className="min-h-screen flex flex-col justify-start items-center relative overflow-x-hidden bg-[#fafafa]">
@@ -86,12 +99,39 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                 className="text-[clamp(3rem,8vw,7rem)] leading-[0.9] tracking-[-0.04em] text-gray-900 mb-8"
                 style={{ fontWeight: 600 }}
               >
-                <span className="block">Building</span>
-                <span className="block">apps with</span>
+                {['Building', 'apps with'].map((word, i) => (
+                  <motion.span
+                    key={word}
+                    className="block"
+                    initial={{ opacity: 0, y: 40, rotate: -3 }}
+                    animate={{ opacity: 1, y: 0, rotate: 0 }}
+                    transition={{
+                      delay: 0.15 + i * 0.12,
+                      type: 'spring',
+                      stiffness: 140,
+                      damping: 12,
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
                 <motion.span
                   className="block italic text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-fuchsia-500 to-amber-500 bg-[length:200%_auto]"
-                  animate={{ backgroundPosition: ["0% center", "200% center"] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  initial={{ opacity: 0, y: 50, rotate: -4, scale: 0.9 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    rotate: 0,
+                    scale: 1,
+                    backgroundPosition: ["0% center", "200% center"],
+                  }}
+                  transition={{
+                    opacity: { delay: 0.4, duration: 0.3 },
+                    y: { delay: 0.4, type: 'spring', stiffness: 160, damping: 10 },
+                    rotate: { delay: 0.4, type: 'spring', stiffness: 160, damping: 10 },
+                    scale: { delay: 0.4, type: 'spring', stiffness: 160, damping: 10 },
+                    backgroundPosition: { duration: 4, repeat: Infinity, ease: "linear" },
+                  }}
                 >
                   texture.
                 </motion.span>
@@ -108,7 +148,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                   onClick={scrollToTitles}
                   className="group flex items-center gap-3 bg-gray-900 text-white px-7 py-3.5 rounded-full hover:bg-gray-800 transition-colors"
                   whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileTap={{ scale: 0.92 }}
                 >
                   <span>See our work</span>
                   <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
@@ -120,7 +160,7 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
                   }}
                   className="text-gray-600 hover:text-gray-900 transition-colors underline underline-offset-4 decoration-gray-300 hover:decoration-gray-900"
                   whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileTap={{ scale: 0.92 }}
                 >
                   Meet the team
                 </motion.button>
@@ -134,64 +174,80 @@ export function HeroSection({ onAppClick }: HeroSectionProps) {
             initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
             animate={{ opacity: 1, scale: 1, rotateY: 0 }}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
           >
-            <div className="relative h-[440px] md:h-[520px]" style={{ perspective: '1400px', transformStyle: 'preserve-3d' }}>
+            <motion.div
+              ref={stageRef}
+              className="relative h-[440px] md:h-[520px]"
+              style={{
+                perspective: '1400px',
+                transformStyle: 'preserve-3d',
+                rotateX: tiltX,
+                rotateY: tiltY,
+                x: driftX,
+                y: driftY,
+              }}
+            >
               {/* Dozy - back left */}
               <Link
                 to="/dozy"
-                onClick={(e) => handleAppClick(e, 'dozy')}
                 title="View Dozy"
                 className="no-underline"
               >
                 <motion.div
-                  className="absolute left-[3%] top-[10%] w-[40%] z-10 cursor-pointer"
+                  className="absolute left-[3%] top-[12%] w-[40%] z-10 cursor-pointer"
                   initial={{ opacity: 0, y: 60, rotateY: 12 }}
                   animate={{ opacity: 1, y: 0, rotateY: 12 }}
                   transition={{ delay: 0.7, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={{ y: -14, scale: 1.06, rotateY: 4, zIndex: 30 }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    filter: 'drop-shadow(0 24px 28px rgba(15, 23, 42, 0.18)) drop-shadow(0 4px 6px rgba(15, 23, 42, 0.08))',
+                  }}
                 >
-                  <ImageWithFallback src={dozyHero} alt="Dozy in trip" className="w-full h-auto" />
+                  <ImageWithFallback src={dozyHero} alt="Dozy commute companion app — iOS and Android" className="w-full h-auto" />
                 </motion.div>
               </Link>
 
               {/* Beehive - center front */}
               <Link
                 to="/beehive"
-                onClick={(e) => handleAppClick(e, 'beehive')}
                 title="View Beehive"
                 className="no-underline"
               >
                 <motion.div
-                  className="absolute left-1/2 -translate-x-1/2 top-[-2%] w-[46%] z-20 cursor-pointer"
+                  className="absolute left-1/2 -translate-x-1/2 top-[-4%] w-[46%] z-20 cursor-pointer"
                   initial={{ opacity: 0, y: 60 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={{ y: -14, scale: 1.06, zIndex: 30 }}
                 >
-                  <ImageWithFallback src={beehiveHero} alt="Beehive gameplay" className="w-full h-auto" />
+                  <ImageWithFallback src={beehiveHero} alt="Beehive word puzzle game — iOS and Android" className="w-full h-auto" />
                 </motion.div>
               </Link>
 
               {/* Pixel Buddy - back right */}
               <Link
                 to="/pixel-buddy"
-                onClick={(e) => handleAppClick(e, 'pixel-buddy')}
                 title="View Pixel Buddy"
                 className="no-underline"
               >
                 <motion.div
-                  className="absolute right-[3%] top-[16%] w-[40%] z-10 cursor-pointer"
+                  className="absolute right-[3%] top-[22%] w-[40%] z-10 cursor-pointer"
                   initial={{ opacity: 0, y: 60, rotateY: -12 }}
                   animate={{ opacity: 1, y: 0, rotateY: -12 }}
                   transition={{ delay: 0.9, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={{ y: -14, scale: 1.06, rotateY: -4, zIndex: 30 }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  style={{
+                    transformStyle: 'preserve-3d',
+                    filter: 'drop-shadow(0 24px 28px rgba(15, 23, 42, 0.18)) drop-shadow(0 4px 6px rgba(15, 23, 42, 0.08))',
+                  }}
                 >
-                  <ImageWithFallback src={pbHero} alt="Pixel Buddy gallery" className="w-full h-auto" />
+                  <ImageWithFallback src={pbHero} alt="Pixel Buddy pixel art coloring book — iOS and Android" className="w-full h-auto" />
                 </motion.div>
               </Link>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
