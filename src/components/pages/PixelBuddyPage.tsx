@@ -1,7 +1,10 @@
 import { Palette, Zap, Heart, Users, Smartphone, Shield } from "lucide-react";
 import { AppPage } from "./AppPage";
-import pixelBuddyLogo from '../../assets/pixel_buddy_logo.png';
+import pixelBuddyLogo from '../../assets/pixel_buddy_logo.webp';
 import pixelBuddyScreenshot from '../../assets/pixel_buddy_ss.webp';
+import pixelBuddy1 from '../../assets/pixel_buddy_1.webp';
+import pixelBuddy2 from '../../assets/pixel_buddy_2.webp';
+import pixelBuddy3 from '../../assets/pixel_buddy_3.webp';
 
 type AppPageType = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
 
@@ -15,6 +18,7 @@ export function PixelBuddyPage({ onAppClick }: PixelBuddyPageProps) {
     slug: "pixel-buddy",
     logo: pixelBuddyLogo,
     screenshot: pixelBuddyScreenshot,
+    screenshots: [pixelBuddy2, pixelBuddy1, pixelBuddy3], // Books, Gallery (signature center), Gameplay
     category: "Art & Design",
     categoryColor: "orange",
     subtitle: "Pixel art - paint by number",

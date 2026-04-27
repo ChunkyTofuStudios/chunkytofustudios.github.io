@@ -1,9 +1,10 @@
 import { motion } from "motion/react";
-import { Mail, Linkedin, Twitter, Github, Gamepad2, Newspaper, Briefcase, HeartHandshake } from "lucide-react";
+import { ArrowUpRight, Mail, Linkedin, Twitter, Github, Gamepad2, Newspaper, Briefcase, HeartHandshake } from "lucide-react";
 import { HomeNavigation } from "../HomeNavigation";
 import { Footer } from "../Footer";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { trackOutboundLink } from "../../lib/analytics";
+import { SocialButton, type SocialBrand } from "../ui/social-button";
 
 import photo1 from "../../assets/team_photo/1.webp";
 import photo2 from "../../assets/team_photo/2.webp";
@@ -18,24 +19,29 @@ const teamPhotos = [photo1, photo2, photo3, photo4, photo5, photo6, photo7, phot
 
 type AppPage = "home" | "beehive" | "pixel-buddy" | "dozy";
 
-const socialLinks = [
+const socialLinks: Array<{
+  brand: SocialBrand;
+  icon: typeof Linkedin;
+  label: string;
+  href: string;
+}> = [
   {
+    brand: 'linkedin',
     icon: Linkedin,
     label: "LinkedIn",
     href: "https://www.linkedin.com/company/chunky-tofu-studios/",
-    color: "hover:bg-blue-600",
   },
   {
+    brand: 'twitter',
     icon: Twitter,
     label: "X / Twitter",
     href: "https://x.com/Chunky_Tofu",
-    color: "hover:bg-sky-500",
   },
   {
+    brand: 'github',
     icon: Github,
     label: "GitHub",
     href: "https://github.com/ChunkyTofuStudios",
-    color: "hover:bg-gray-700",
   },
 ];
 
@@ -88,9 +94,8 @@ export function ContactPage() {
     else navigate(`/${app}`);
   };
 
-  const handleExternalLink = (href: string, label?: string) => {
+  const trackExternal = (href: string, label?: string) => {
     trackOutboundLink(href, label);
-    window.open(href, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -99,7 +104,7 @@ export function ContactPage() {
 
       {/* Hero — scrolling team carousel as blurred background */}
       {/* mt-16 pushes the hero fully below the fixed nav bar */}
-      <div className="relative overflow-hidden mt-10" style={{ height: 330, backgroundColor: "#151515" }}>
+      <div className="relative overflow-hidden mt-10 min-h-[220px] md:min-h-[330px]" style={{ backgroundColor: "#151515" }}>
         {/* Background: auto-scrolling carousel, blurred */}
         {/* Tiles are scaled to fill the container height: 320px tall, width = 320 * (344/214) ≈ 515px */}
         <div className="absolute inset-0 flex" style={{ filter: "blur(2px)", transform: "scale(1.05)" }}>
@@ -153,23 +158,22 @@ export function ContactPage() {
 
         {/* Social links — front and center */}
         <motion.div
-          className="flex justify-center gap-5 mb-16"
+          className="flex justify-center gap-4 mb-16 flex-wrap"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {socialLinks.map(({ icon: Icon, label, href, color }) => (
-            <motion.button
+          {socialLinks.map(({ brand, icon, label, href }) => (
+            <SocialButton
               key={label}
-              onClick={() => handleExternalLink(href, label)}
-              title={label}
-              className={`flex items-center gap-2 bg-gray-100 ${color} text-gray-700 hover:text-white px-5 py-3 rounded-2xl text-sm font-medium transition-all duration-200 shadow-sm hover:shadow-md`}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <Icon className="w-5 h-5" />
-              <span className="hidden sm:inline">{label}</span>
-            </motion.button>
+              brand={brand}
+              icon={icon}
+              href={href}
+              label={label}
+              size="lg"
+              showLabel
+              onClick={() => trackExternal(href, label)}
+            />
           ))}
         </motion.div>
 
@@ -191,16 +195,22 @@ export function ContactPage() {
                 <p className="text-gray-500 text-sm mb-3 leading-relaxed">{entry.description}</p>
                 {"action" in entry && entry.action && (
                   entry.action.external ? (
-                    <button
-                      type="button"
+                    <a
+                      href={entry.action.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={() => {
                         const action = entry.action;
-                        if (action) handleExternalLink(action.href, action.label);
+                        if (action) trackExternal(action.href, action.label);
                       }}
-                      className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+                      className="group inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors"
                     >
-                      {entry.action.label} →
-                    </button>
+                      {entry.action.label}
+                      <ArrowUpRight
+                        className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        aria-hidden
+                      />
+                    </a>
                   ) : (
                     <a
                       href={entry.action.href}
@@ -213,13 +223,19 @@ export function ContactPage() {
                 {"links" in entry && entry.links && (
                   <div className="flex flex-wrap gap-3">
                     {entry.links.map((link) => (
-                      <a
+                      <Link
                         key={link.label}
-                        href={link.href}
-                        className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+                        to={link.href}
+                        className="group inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors"
                       >
-                        {link.label} →
-                      </a>
+                        {link.label}
+                        <span
+                          aria-hidden
+                          className="inline-block transition-transform duration-200 group-hover:translate-x-0.5"
+                        >
+                          →
+                        </span>
+                      </Link>
                     ))}
                   </div>
                 )}

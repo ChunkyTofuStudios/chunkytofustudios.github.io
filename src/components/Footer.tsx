@@ -1,8 +1,14 @@
+import { useMemo } from "react";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
 import { Twitter, Github, Linkedin, ArrowRight, Building2 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import companyLogo from '../assets/cts_logo.png';
+import beehiveLogo from '../assets/beehive_logo.webp';
+import pixelBuddyLogo from '../assets/pixel_buddy_logo.webp';
+import dozyLogo from '../assets/dozy_logo.webp';
 import { LinkButton } from "./ui/link-button";
+import { SocialButton, type SocialBrand } from "./ui/social-button";
 import { trackOutboundLink } from "../lib/analytics";
 
 type AppPage = 'home' | 'beehive' | 'pixel-buddy' | 'dozy';
@@ -13,64 +19,64 @@ interface FooterProps {
 
 export function Footer({ onAppClick }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
 
-  const socialLinks = [
-    {
-      icon: Linkedin,
-      href: "https://www.linkedin.com/company/chunky-tofu-studios/",
-      label: "LinkedIn Profile",
-      hoverColor: "hover:from-blue-600 hover:to-blue-700"
-    },
-    {
-      icon: Twitter,
-      href: "https://x.com/Chunky_Tofu",
-      label: "X/Twitter Profile",
-      hoverColor: "hover:from-blue-400 hover:to-cyan-500"
-    },
-    {
-      icon: Github,
-      href: "https://github.com/ChunkyTofuStudios",
-      label: "GitHub Organization",
-      hoverColor: "hover:from-gray-600 hover:to-gray-800"
-    },
+  // Subtle floating pattern of app logos in the footer background.
+  // Positions randomized once per mount so they don't reshuffle on re-render.
+  const appLogos = [beehiveLogo, pixelBuddyLogo, dozyLogo];
+  const floatingLogos = useMemo(
+    () => Array.from({ length: 9 }, (_, i) => ({
+      src: appLogos[i % appLogos.length],
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      size: 48 + Math.round(Math.random() * 40),
+    })),
+    // appLogos is module-scoped (constant refs), so mount-only is correct.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
+  const socialLinks: Array<{ brand: SocialBrand; icon: typeof Linkedin; href: string; label: string }> = [
+    { brand: 'linkedin', icon: Linkedin, href: "https://www.linkedin.com/company/chunky-tofu-studios/", label: "LinkedIn Profile" },
+    { brand: 'twitter', icon: Twitter, href: "https://x.com/Chunky_Tofu", label: "X/Twitter Profile" },
+    { brand: 'github', icon: Github, href: "https://github.com/ChunkyTofuStudios", label: "GitHub Organization" },
   ];
 
   const handleAppClick = (appPage: AppPage) => {
     if (onAppClick) {
       onAppClick(appPage);
+    } else {
+      navigate(appPage === 'home' ? '/' : `/${appPage}`);
     }
-  };
-
-  const handleSocialClick = (url: string, label?: string) => {
-    trackOutboundLink(url, label);
-    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
     <footer className="bg-gray-900 text-white py-20 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
+      {/* Background — drifting pattern of app logos at low opacity */}
+      <div className="absolute inset-0" aria-hidden>
+        {floatingLogos.map((logo, i) => (
+          <motion.img
             key={i}
-            className="absolute text-6xl opacity-5"
+            src={logo.src}
+            alt=""
+            className="absolute rounded-2xl opacity-[0.06]"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: logo.left,
+              top: logo.top,
+              width: logo.size,
+              height: logo.size,
             }}
             animate={{
-              rotate: [0, 360],
-              scale: [0.8, 1.2, 0.8],
+              y: [0, -12, 0],
+              rotate: [0, 8, 0],
             }}
             transition={{
-              duration: 12 + i * 2,
+              duration: 14 + i * 1.5,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.8,
+              delay: i * 0.6,
             }}
-          >
-            🎨
-          </motion.div>
+          />
         ))}
       </div>
 
@@ -231,15 +237,19 @@ export function Footer({ onAppClick }: FooterProps) {
               </motion.li>
               <motion.li whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
                 <button
+                  aria-label="View all apps by Chunky Tofu Studios on Google Play"
                   onClick={() => {
                     const url = 'https://play.google.com/store/apps/developer?id=Chunky+Tofu+Studios';
                     trackOutboundLink(url, 'View All Apps');
                     window.open(url, '_blank', 'noopener,noreferrer');
                   }}
-                  className="text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2"
+                  className="group text-gray-400 hover:text-white transition-colors duration-200 text-sm text-left flex items-center gap-2"
                 >
-                  <ArrowRight className="w-3 h-3" />
                   View All Apps
+                  <ArrowRight
+                    className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1"
+                    aria-hidden
+                  />
                 </button>
               </motion.li>
             </ul>
@@ -257,17 +267,15 @@ export function Footer({ onAppClick }: FooterProps) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Social links on the left */}
             <div className="flex flex-wrap gap-3">
-              {socialLinks.map(({ icon: Icon, href, label, hoverColor }, index) => (
-                <motion.button
-                  key={index}
-                  onClick={() => handleSocialClick(href, label)}
-                  title={label}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className={`w-10 h-10 bg-gray-800 hover:bg-linear-to-r ${hoverColor} rounded-xl flex items-center justify-center transition-all duration-200`}
-                >
-                  <Icon className="w-5 h-5 text-gray-300" />
-                </motion.button>
+              {socialLinks.map(({ brand, icon, href, label }) => (
+                <SocialButton
+                  key={brand}
+                  brand={brand}
+                  icon={icon}
+                  href={href}
+                  label={label}
+                  onClick={() => trackOutboundLink(href, label)}
+                />
               ))}
             </div>
 

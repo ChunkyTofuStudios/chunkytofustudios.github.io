@@ -212,3 +212,12 @@
 html {
   font-size: var(--font-size);
 }
+
+/* Accessible focus ring for keyboard users across every interactive element.
+   :focus-visible only triggers for keyboard navigation, so mouse clicks stay
+   visually clean. */
+*:focus-visible {
+  outline: 2px solid rgb(99 102 241);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}

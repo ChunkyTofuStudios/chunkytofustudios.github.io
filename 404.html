@@ -3,22 +3,21 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/src/assets/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 - Page Not Found | Chunky Tofu Studios</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-REYS4TKJBK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-REYS4TKJBK');
-    </script>
+    <title>404 — Page Not Found | Chunky Tofu Studios</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Chunky Tofu Studios to explore our indie mobile apps." />
+    <meta name="robots" content="noindex" />
 </head>
 
 <body>
-    <div id="root"></div>
+    <div id="root">
+        <noscript>
+            <h1>404 — Page Not Found</h1>
+            <p><a href="/">Return to Chunky Tofu Studios</a></p>
+        </noscript>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
 </body>
 
