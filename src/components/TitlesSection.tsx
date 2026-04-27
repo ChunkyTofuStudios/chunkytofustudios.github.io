@@ -126,7 +126,6 @@ function PhoneTrio({
         whileInView={{ opacity: 1, y: 0, rotateY: 12 }}
         transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: true }}
-        whileHover={{ y: -12, scale: 1.05, rotateY: 4, zIndex: 30 }}
         style={{
           transformStyle: 'preserve-3d',
           filter: 'drop-shadow(0 20px 24px rgba(15, 23, 42, 0.18)) drop-shadow(0 4px 6px rgba(15, 23, 42, 0.08))',
@@ -146,7 +145,6 @@ function PhoneTrio({
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: true }}
-        whileHover={{ y: -12, scale: 1.05, zIndex: 30 }}
       >
         <ImageWithFallback
           src={center}
@@ -162,7 +160,6 @@ function PhoneTrio({
         whileInView={{ opacity: 1, y: 0, rotateY: -12 }}
         transition={{ delay: 0.7, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: true }}
-        whileHover={{ y: -12, scale: 1.05, rotateY: -4, zIndex: 30 }}
         style={{
           transformStyle: 'preserve-3d',
           filter: 'drop-shadow(0 20px 24px rgba(15, 23, 42, 0.18)) drop-shadow(0 4px 6px rgba(15, 23, 42, 0.08))',
