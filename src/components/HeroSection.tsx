@@ -200,7 +200,6 @@ export function HeroSection() {
                   initial={{ opacity: 0, y: 60, rotateY: 12 }}
                   animate={{ opacity: 1, y: 0, rotateY: 12 }}
                   transition={{ delay: 0.7, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ y: -14, scale: 1.06, rotateY: 4, zIndex: 30 }}
                   style={{
                     transformStyle: 'preserve-3d',
                     filter: 'drop-shadow(0 24px 28px rgba(15, 23, 42, 0.18)) drop-shadow(0 4px 6px rgba(15, 23, 42, 0.08))',
@@ -221,7 +220,6 @@ export function HeroSection() {
                   initial={{ opacity: 0, y: 60 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ y: -14, scale: 1.06, zIndex: 30 }}
                 >
                   <ImageWithFallback src={beehiveHero} alt="Beehive word puzzle game — iOS and Android" className="w-full h-auto" />
                 </motion.div>
@@ -238,7 +236,6 @@ export function HeroSection() {
                   initial={{ opacity: 0, y: 60, rotateY: -12 }}
                   animate={{ opacity: 1, y: 0, rotateY: -12 }}
                   transition={{ delay: 0.9, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={{ y: -14, scale: 1.06, rotateY: -4, zIndex: 30 }}
                   style={{
                     transformStyle: 'preserve-3d',
                     filter: 'drop-shadow(0 24px 28px rgba(15, 23, 42, 0.18)) drop-shadow(0 4px 6px rgba(15, 23, 42, 0.08))',
